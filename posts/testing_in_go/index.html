@@ -1,269 +1,271 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Giới thiệu về Testing trong Go | Hai Sam's Blog</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="Giới thiệu Testing là một quá trình quan trọng trong mọi ngành sản xuất từ việc trồng trọt:lựa chọn giống, phương pháp sản xuất đến công việc sản xuất các thiết bị, hệ thống cực lớn trong các ngành công ngiệp. Chẳng thế mà người đảm nhận vị trí Quality assurancce (QA) luôn có một quyền lực rất lớn trong các công ty sản xuất công ngiệp. Và ngành công nghiệp sản xuất phầm mềm hiển nhiên là cũng không ngoại lệ."><meta name=generator content="Hugo 0.79.1"><meta name=ROBOTS content="NOINDEX, NOFOLLOW"><link rel=stylesheet href=/ananke/dist/main.css_5c99d70a7725bacd4c701e995b969fea.css><meta property="og:title" content="Giới thiệu về Testing trong Go"><meta property="og:description" content="Giới thiệu Testing là một quá trình quan trọng trong mọi ngành sản xuất từ việc trồng trọt:lựa chọn giống, phương pháp sản xuất đến công việc sản xuất các thiết bị, hệ thống cực lớn trong các ngành công ngiệp. Chẳng thế mà người đảm nhận vị trí Quality assurancce (QA) luôn có một quyền lực rất lớn trong các công ty sản xuất công ngiệp. Và ngành công nghiệp sản xuất phầm mềm hiển nhiên là cũng không ngoại lệ."><meta property="og:type" content="article"><meta property="og:url" content="https://samthehai.github.io/posts/testing_in_go/"><meta property="article:published_time" content="2020-03-18T00:00:00+00:00"><meta property="article:modified_time" content="2020-03-18T00:00:00+00:00"><meta itemprop=name content="Giới thiệu về Testing trong Go"><meta itemprop=description content="Giới thiệu Testing là một quá trình quan trọng trong mọi ngành sản xuất từ việc trồng trọt:lựa chọn giống, phương pháp sản xuất đến công việc sản xuất các thiết bị, hệ thống cực lớn trong các ngành công ngiệp. Chẳng thế mà người đảm nhận vị trí Quality assurancce (QA) luôn có một quyền lực rất lớn trong các công ty sản xuất công ngiệp. Và ngành công nghiệp sản xuất phầm mềm hiển nhiên là cũng không ngoại lệ."><meta itemprop=datePublished content="2020-03-18T00:00:00+00:00"><meta itemprop=dateModified content="2020-03-18T00:00:00+00:00"><meta itemprop=wordCount content="1395"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Giới thiệu về Testing trong Go"><meta name=twitter:description content="Giới thiệu Testing là một quá trình quan trọng trong mọi ngành sản xuất từ việc trồng trọt:lựa chọn giống, phương pháp sản xuất đến công việc sản xuất các thiết bị, hệ thống cực lớn trong các ngành công ngiệp. Chẳng thế mà người đảm nhận vị trí Quality assurancce (QA) luôn có một quyền lực rất lớn trong các công ty sản xuất công ngiệp. Và ngành công nghiệp sản xuất phầm mềm hiển nhiên là cũng không ngoại lệ."></head><body class="ma0 avenir bg-near-white"><header><div class=bg-black><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l justify-between items-center center"><a href=/ class="f3 fw2 hover-white no-underline white-90 dib">Hai Sam's Blog</a><div class="flex-l items-center"></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l flex-wrap justify-between mw8 center ph3"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked">POSTS</aside><div id=sharing class=mt3><a href="https://www.facebook.com/sharer.php?u=https://samthehai.github.io/posts/testing_in_go/" class="facebook no-underline" aria-label="share on Facebook"><svg height="32" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765 50.32h6.744V33.998h4.499l.596-5.624h-5.095l.007-2.816c0-1.466.14-2.253 2.244-2.253h2.812V17.68h-4.5c-5.405.0-7.307 2.729-7.307 7.317v3.377h-3.369v5.625h3.369V50.32zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd"/></svg></a><a href="https://twitter.com/share?url=https://samthehai.github.io/posts/testing_in_go/&text=Gi%e1%bb%9bi%20thi%e1%bb%87u%20v%e1%bb%81%20Testing%20trong%20Go" class="twitter no-underline" aria-label="share on Twitter"><svg height="32" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167 22.283c-2.619.953-4.274 3.411-4.086 6.101l.063 1.038-1.048-.127c-3.813-.487-7.145-2.139-9.974-4.915l-1.383-1.377-.356 1.017c-.754 2.267-.272 4.661 1.299 6.271.838.89.649 1.017-.796.487-.503-.169-.943-.296-.985-.233-.146.149.356 2.076.754 2.839.545 1.06 1.655 2.097 2.871 2.712l1.027.487-1.215.021c-1.173.0-1.215.021-1.089.467.419 1.377 2.074 2.839 3.918 3.475l1.299.444-1.131.678c-1.676.976-3.646 1.526-5.616 1.568C19.775 43.256 19 43.341 19 43.405c0 .211 2.557 1.397 4.044 1.864 4.463 1.377 9.765.783 13.746-1.568 2.829-1.673 5.657-5 6.978-8.221.713-1.716 1.425-4.851 1.425-6.354.0-.975.063-1.102 1.236-2.267.692-.678 1.341-1.419 1.467-1.631.21-.403.188-.403-.88-.043-1.781.636-2.033.551-1.152-.402.649-.678 1.425-1.907 1.425-2.267.0-.063-.314.042-.671.233-.377.212-1.215.53-1.844.72l-1.131.361-1.027-.7c-.566-.381-1.361-.805-1.781-.932C39.766 21.902 38.131 21.944 37.167 22.283zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg></a><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://samthehai.github.io/posts/testing_in_go/&title=Gi%e1%bb%9bi%20thi%e1%bb%87u%20v%e1%bb%81%20Testing%20trong%20Go" class="linkedin no-underline" aria-label="share on LinkedIn"><svg height="32" style="enable-background:new 0 0 65 65" viewBox="0 0 65 65" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M50.837 48.137V36.425c0-6.275-3.35-9.195-7.816-9.195-3.604.0-5.219 1.983-6.119 3.374V27.71h-6.79c.09 1.917.0 20.427.0 20.427h6.79V36.729c0-.609.044-1.219.224-1.655.49-1.22 1.607-2.483 3.482-2.483 2.458.0 3.44 1.873 3.44 4.618v10.929H50.837zM22.959 24.922c2.367.0 3.842-1.57 3.842-3.531-.044-2.003-1.475-3.528-3.797-3.528s-3.841 1.524-3.841 3.528c0 1.961 1.474 3.531 3.753 3.531H22.959zM34 64C17.432 64 4 50.568 4 34 4 17.431 17.432 4 34 4s30 13.431 30 30C64 50.568 50.568 64 34 64zM26.354 48.137V27.71h-6.789v20.427H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg></a></div><h1 class="f1 athelas mt3 mb1">Giới thiệu về Testing trong Go</h1><time class="f6 mv4 dib tracked" datetime=2020-03-18T00:00:00Z>March 18, 2020</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id=giới-thiệu>Giới thiệu</h1><p>Testing là một quá trình quan trọng trong mọi ngành sản xuất từ việc trồng trọt:lựa chọn giống, phương pháp sản xuất đến công việc sản xuất các thiết bị, hệ thống cực lớn trong các ngành công ngiệp. Chẳng thế mà người đảm nhận vị trí Quality assurancce (QA) luôn có một quyền lực rất lớn trong các công ty sản xuất công ngiệp. Và ngành công nghiệp sản xuất phầm mềm hiển nhiên là cũng không ngoại lệ. Tuy nhiên việc testing theo cách nhìn nhận chủ quan của mình vẫn chưa được xem trọng đúng mực. Trước khi Go ra đời (có lẽ là) chưa có một ngôn ngữ lập trình nào tích hợp các tool testing vào!</p><p>Wait, What??? Vâng, đúng vậy Go có bao gồm một chương trình đặc biệt <code>go test</code> và thư viện <code>testing</code> giúp cho việc viết unittest dễ dàng hơn.
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>Giới thiệu về Testing trong Go - Hai Sam's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta itemprop=name content="Giới thiệu về Testing trong Go"><meta itemprop=description content="Giới thiệu Testing là một quá trình quan trọng trong mọi ngành sản xuất từ việc trồng trọt:lựa chọn giống, phương pháp sản xuất đến công việc sản xuất các thiết bị, hệ thống cực lớn trong các ngành công ngiệp. Chẳng thế mà người đảm nhận vị trí Quality assurancce (QA) luôn có một quyền lực rất lớn trong các công ty sản xuất công ngiệp. Và ngành công nghiệp sản xuất phầm mềm hiển nhiên là cũng không ngoại lệ."><meta itemprop=datePublished content="2020-03-18T00:00:00+00:00"><meta itemprop=dateModified content="2020-03-18T00:00:00+00:00"><meta itemprop=wordCount content="1395"><meta itemprop=keywords content="Programming,Go,"><meta property="og:title" content="Giới thiệu về Testing trong Go"><meta property="og:description" content="Giới thiệu Testing là một quá trình quan trọng trong mọi ngành sản xuất từ việc trồng trọt:lựa chọn giống, phương pháp sản xuất đến công việc sản xuất các thiết bị, hệ thống cực lớn trong các ngành công ngiệp. Chẳng thế mà người đảm nhận vị trí Quality assurancce (QA) luôn có một quyền lực rất lớn trong các công ty sản xuất công ngiệp. Và ngành công nghiệp sản xuất phầm mềm hiển nhiên là cũng không ngoại lệ."><meta property="og:type" content="article"><meta property="og:url" content="https://samthehai.github.io/posts/testing_in_go/"><meta property="article:published_time" content="2020-03-18T00:00:00+00:00"><meta property="article:modified_time" content="2020-03-18T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Giới thiệu về Testing trong Go"><meta name=twitter:description content="Giới thiệu Testing là một quá trình quan trọng trong mọi ngành sản xuất từ việc trồng trọt:lựa chọn giống, phương pháp sản xuất đến công việc sản xuất các thiết bị, hệ thống cực lớn trong các ngành công ngiệp. Chẳng thế mà người đảm nhận vị trí Quality assurancce (QA) luôn có một quyền lực rất lớn trong các công ty sản xuất công ngiệp. Và ngành công nghiệp sản xuất phầm mềm hiển nhiên là cũng không ngoại lệ."><link href="https://fonts.googleapis.com/css?family=Playfair+Display:700" rel=stylesheet type=text/css><link rel=stylesheet type=text/css media=screen href=https://samthehai.github.iocss/normalize.css><link rel=stylesheet type=text/css media=screen href=https://samthehai.github.iocss/main.css><link id=dark-scheme rel=stylesheet type=text/css href=https://samthehai.github.iocss/dark.css><script src=https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js></script><script src=https://samthehai.github.iojs/main.js></script></head><body><div class="container wrapper"><div class=header><div class=avatar><a href=https://samthehai.github.io><img src="https://avatars.githubusercontent.com/u/28634475?s=460&u=f4564e31e24dbd90802eaf4a18d2d9e578c77108&v=4" alt="Hai Sam's Blog"></a></div><h1 class=site-title><a href=https://samthehai.github.io>Hai Sam's Blog</a></h1><div class=site-description><p>Hai Sam, a programming enthusiasm father</p><nav class="nav social"><ul class=flat><li><a href=https://github.com/samthehai title=Github><i data-feather=github></i></a></li><li><a href=/index.xml title=RSS><i data-feather=rss></i></a></li><li><a href=# class=scheme-toggle id=scheme-toggle></a></li></ul></nav></div><nav class=nav><ul class=flat><li><a href=/>Home</a></li><li><a href=/posts>All posts</a></li><li><a href=/about>About</a></li><li><a href=/tags>Tags</a></li></ul></nav></div><div class=post><div class=post-header><div class=meta><div class=date><span class=day>18</span>
+<span class=rest>Mar 2020</span></div></div><div class=matter><h1 class=title>Giới thiệu về Testing trong Go</h1></div></div><div class=markdown><h1 id=giới-thiệu>Giới thiệu</h1><p>Testing là một quá trình quan trọng trong mọi ngành sản xuất từ việc trồng trọt:lựa chọn giống, phương pháp sản xuất đến công việc sản xuất các thiết bị, hệ thống cực lớn trong các ngành công ngiệp. Chẳng thế mà người đảm nhận vị trí Quality assurancce (QA) luôn có một quyền lực rất lớn trong các công ty sản xuất công ngiệp. Và ngành công nghiệp sản xuất phầm mềm hiển nhiên là cũng không ngoại lệ. Tuy nhiên việc testing theo cách nhìn nhận chủ quan của mình vẫn chưa được xem trọng đúng mực. Trước khi Go ra đời (có lẽ là) chưa có một ngôn ngữ lập trình nào tích hợp các tool testing vào!</p><p>Wait, What??? Vâng, đúng vậy Go có bao gồm một chương trình đặc biệt <code>go test</code> và thư viện <code>testing</code> giúp cho việc viết unittest dễ dàng hơn.
 Chúng ta hãy cùng tìm hiểu về cách viết unittest trong Go ngay sau đây qua một vi dụ được trich dẫn từ
-<a href=https://gobyexample.com/testing>https://gobyexample.com/testing</a></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+<a href=https://gobyexample.com/testing>https://gobyexample.com/testing</a></p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#00f>package</span> main
 
-<span style=color:#f92672>import</span> (
-  <span style=color:#e6db74>&#34;fmt&#34;</span>
-  <span style=color:#e6db74>&#34;testing&#34;</span>
+<span style=color:#00f>import</span> (
+  <span style=color:#a31515>&#34;fmt&#34;</span>
+  <span style=color:#a31515>&#34;testing&#34;</span>
 )
 
-<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>IntMin</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span> <span style=color:#66d9ef>int</span>) <span style=color:#66d9ef>int</span> {
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>a</span> &lt; <span style=color:#a6e22e>b</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span>
-  } <span style=color:#66d9ef>else</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>b</span>
+<span style=color:#00f>func</span> IntMin(a, b <span style=color:#2b91af>int</span>) <span style=color:#2b91af>int</span> {
+  <span style=color:#00f>if</span> a &lt; b {
+    <span style=color:#00f>return</span> a
+  } <span style=color:#00f>else</span> {
+    <span style=color:#00f>return</span> b
   }
 }
 
-<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>TestIntMinBasic</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-  <span style=color:#a6e22e>ans</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>IntMin</span>(<span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>)
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>ans</span> <span style=color:#f92672>!=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>2</span> {
-    <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;IntMin(2, -2) = %d; want -2&#34;</span>, <span style=color:#a6e22e>ans</span>)
+<span style=color:#00f>func</span> TestIntMinBasic(t *testing.T) {
+  ans := IntMin(2, -2)
+  <span style=color:#00f>if</span> ans != -2 {
+    t.Errorf(<span style=color:#a31515>&#34;IntMin(2, -2) = %d; want -2&#34;</span>, ans)
   }
 }
 
-<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>TestIntMinTableDriven</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>tests</span> = []<span style=color:#66d9ef>struct</span> {
-    <span style=color:#a6e22e>a</span>,<span style=color:#a6e22e>b</span> <span style=color:#66d9ef>int</span>
-    <span style=color:#a6e22e>want</span> <span style=color:#66d9ef>int</span>
+<span style=color:#00f>func</span> TestIntMinTableDriven(t *testing.T) {
+  <span style=color:#00f>var</span> tests = []<span style=color:#00f>struct</span> {
+    a,b <span style=color:#2b91af>int</span>
+    want <span style=color:#2b91af>int</span>
   }{
-    {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>},
-    {<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>},
-    {<span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>},
-    {<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>},
-    {<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>},
+    {0, 1, 0},
+    {1, 0, 0},
+    {2, -2, -2},
+    {0, -1, -1},
+    {-1, 0, -1},
   }
 
-  <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>tt</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>tests</span> {
-    <span style=color:#a6e22e>testname</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;%d, %d&#34;</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>b</span>)
-    <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Run</span>(<span style=color:#a6e22e>testname</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-      <span style=color:#a6e22e>ans</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>IntMin</span>(<span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>b</span>)
-      <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>ans</span> <span style=color:#f92672>!=</span> <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>want</span> {
-        <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;got %d, want %d&#34;</span>, <span style=color:#a6e22e>ans</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>want</span>)
+  <span style=color:#00f>for</span> _, tt := <span style=color:#00f>range</span> tests {
+    testname := fmt.Sprintf(<span style=color:#a31515>&#34;%d, %d&#34;</span>, tt.a, tt.b)
+    t.Run(testname, <span style=color:#00f>func</span>(t *testing.T) {
+      ans := IntMin(tt.a, tt.b)
+      <span style=color:#00f>if</span> ans != tt.want {
+        t.Errorf(<span style=color:#a31515>&#34;got %d, want %d&#34;</span>, ans, tt.want)
       }
     })
   }
 }
-</code></pre></div><p>Nhấn nút play để chạy thử (có thể chạy ở local bằng lệnh go test) trên <a href=https://play.golang.org/p/jCRgtgRwie3>https://play.golang.org/p/jCRgtgRwie3</a> sẽ ra được kết quẩ như dưới này</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinBasic</span>
-<span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinBasic</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>0</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/-</span><span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>
-<span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>0</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/-</span><span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-<span style=color:#a6e22e>PASS</span>
+</code></pre></div><p>Nhấn nút play để chạy thử (có thể chạy ở local bằng lệnh go test) trên <a href=https://play.golang.org/p/jCRgtgRwie3>https://play.golang.org/p/jCRgtgRwie3</a> sẽ ra được kết quẩ như dưới này</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go>=== RUN   TestIntMinBasic
+--- PASS: TestIntMinBasic (0.00s)
+=== RUN   TestIntMinTableDriven
+=== RUN   TestIntMinTableDriven/0,1
+=== RUN   TestIntMinTableDriven/1,0
+=== RUN   TestIntMinTableDriven/2,-2
+=== RUN   TestIntMinTableDriven/0,-1
+=== RUN   TestIntMinTableDriven/-1,0
+--- PASS: TestIntMinTableDriven (0.00s)
+    --- PASS: TestIntMinTableDriven/0,1 (0.00s)
+    --- PASS: TestIntMinTableDriven/1,0 (0.00s)
+    --- PASS: TestIntMinTableDriven/2,-2 (0.00s)
+    --- PASS: TestIntMinTableDriven/0,-1 (0.00s)
+    --- PASS: TestIntMinTableDriven/-1,0 (0.00s)
+PASS
 
-<span style=color:#a6e22e>All</span> <span style=color:#a6e22e>tests</span> <span style=color:#a6e22e>passed</span>.
-</code></pre></div><p>Sau đây chúng ta sẽ thử code (hoặc copy paste tuỳ ý) lại phần test trên và chạy ở local</p><ul><li>Tạo file source Go với tên kiểu như intutils.go chứa nội dung như ở dưới</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+All tests passed.
+</code></pre></div><p>Sau đây chúng ta sẽ thử code (hoặc copy paste tuỳ ý) lại phần test trên và chạy ở local</p><ul><li>Tạo file source Go với tên kiểu như intutils.go chứa nội dung như ở dưới</li></ul><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#00f>package</span> main
 
-<span style=color:#f92672>import</span> (
-  <span style=color:#e6db74>&#34;fmt&#34;</span>
-  <span style=color:#e6db74>&#34;testing&#34;</span>
+<span style=color:#00f>import</span> (
+  <span style=color:#a31515>&#34;fmt&#34;</span>
+  <span style=color:#a31515>&#34;testing&#34;</span>
 )
 
-<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>IntMin</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span> <span style=color:#66d9ef>int</span>) <span style=color:#66d9ef>int</span> {
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>a</span> &lt; <span style=color:#a6e22e>b</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span>
-  } <span style=color:#66d9ef>else</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>b</span>
+<span style=color:#00f>func</span> IntMin(a, b <span style=color:#2b91af>int</span>) <span style=color:#2b91af>int</span> {
+  <span style=color:#00f>if</span> a &lt; b {
+    <span style=color:#00f>return</span> a
+  } <span style=color:#00f>else</span> {
+    <span style=color:#00f>return</span> b
   }
 }
-</code></pre></div><ul><li>Sau đó tạo code test cho phần code ở trên và lưu ở file intutils_test.go</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>TestIntMinBasic</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-  <span style=color:#a6e22e>ans</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>IntMin</span>(<span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>)
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>ans</span> <span style=color:#f92672>!=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>2</span> {
-    <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;IntMin(2, -2) = %d; want -2&#34;</span>, <span style=color:#a6e22e>ans</span>)
+</code></pre></div><ul><li>Sau đó tạo code test cho phần code ở trên và lưu ở file intutils_test.go</li></ul><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#00f>func</span> TestIntMinBasic(t *testing.T) {
+  ans := IntMin(2, -2)
+  <span style=color:#00f>if</span> ans != -2 {
+    t.Errorf(<span style=color:#a31515>&#34;IntMin(2, -2) = %d; want -2&#34;</span>, ans)
   }
 }
 
-<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>TestIntMinTableDriven</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>tests</span> = []<span style=color:#66d9ef>struct</span> {
-    <span style=color:#a6e22e>a</span>,<span style=color:#a6e22e>b</span> <span style=color:#66d9ef>int</span>
-    <span style=color:#a6e22e>want</span> <span style=color:#66d9ef>int</span>
+<span style=color:#00f>func</span> TestIntMinTableDriven(t *testing.T) {
+  <span style=color:#00f>var</span> tests = []<span style=color:#00f>struct</span> {
+    a,b <span style=color:#2b91af>int</span>
+    want <span style=color:#2b91af>int</span>
   }{
-    {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>},
-    {<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>},
-    {<span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>},
-    {<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>},
-    {<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>},
+    {0, 1, 0},
+    {1, 0, 0},
+    {2, -2, -2},
+    {0, -1, -1},
+    {-1, 0, -1},
   }
 
-  <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>tt</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>tests</span> {
-    <span style=color:#a6e22e>testname</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;%d, %d&#34;</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>b</span>)
-    <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Run</span>(<span style=color:#a6e22e>testname</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-      <span style=color:#a6e22e>ans</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>IntMin</span>(<span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>b</span>)
-      <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>ans</span> <span style=color:#f92672>!=</span> <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>want</span> {
-        <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;got %d, want %d&#34;</span>, <span style=color:#a6e22e>ans</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>want</span>)
+  <span style=color:#00f>for</span> _, tt := <span style=color:#00f>range</span> tests {
+    testname := fmt.Sprintf(<span style=color:#a31515>&#34;%d, %d&#34;</span>, tt.a, tt.b)
+    t.Run(testname, <span style=color:#00f>func</span>(t *testing.T) {
+      ans := IntMin(tt.a, tt.b)
+      <span style=color:#00f>if</span> ans != tt.want {
+        t.Errorf(<span style=color:#a31515>&#34;got %d, want %d&#34;</span>, ans, tt.want)
       }
     })
   }
 }
-</code></pre></div><p>Một số lưu ý:</p><ul><li>Một test sẽ được tạo bằng cách viết một function với tên bắt đầu bằng chữ Test.</li><li>t.Error* sẽ báo lỗi khi test fail nhưng sẽ tiếp tục thực hiện việc test tiếp, trong khi đó t.Fail* sẽ báo test fail và dừng hay lập tức khi test bị fail.</li><li>t.Log* có thể được sử dụng để cung cấp thông tin debug</li><li>Việc test thường sẽ được lặp lại với các bộ input khác nhau nên idiom là sử dụng table-driven style: các input và expected tương ứng sẽ được liệt kê ra một bảng ( thường sủ dụng slice) và sử dụng một vòng lặp đơn để duyệt qua tất cả và thực hiện việc test.</li><li>t.Run cho phép chạy từng test con, từng entry một và có thể chạy và liệt kê kết quả của từng test con bằng cách dùng lệnh <code>go test -v</code></li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#960050;background-color:#1e0010>$</span> <span style=color:#66d9ef>go</span> <span style=color:#a6e22e>test</span> <span style=color:#f92672>-</span><span style=color:#a6e22e>v</span>
-<span style=color:#f92672>==</span> <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinBasic</span>
-<span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinBasic</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>0</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
-<span style=color:#f92672>==</span>= <span style=color:#a6e22e>RUN</span>   <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/-</span><span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>
-<span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/</span><span style=color:#ae81ff>0</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-    <span style=color:#f92672>---</span> <span style=color:#a6e22e>PASS</span>: <span style=color:#a6e22e>TestIntMinTableDriven</span><span style=color:#f92672>/-</span><span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span> (<span style=color:#ae81ff>0.00</span><span style=color:#a6e22e>s</span>)
-<span style=color:#a6e22e>PASS</span>
-<span style=color:#a6e22e>ok</span>      <span style=color:#a6e22e>_source</span><span style=color:#f92672>/</span><span style=color:#a6e22e>testing_in_go</span>        <span style=color:#ae81ff>0.064</span><span style=color:#a6e22e>s</span>
+</code></pre></div><p>Một số lưu ý:</p><ul><li>Một test sẽ được tạo bằng cách viết một function với tên bắt đầu bằng chữ Test.</li><li>t.Error* sẽ báo lỗi khi test fail nhưng sẽ tiếp tục thực hiện việc test tiếp, trong khi đó t.Fail* sẽ báo test fail và dừng hay lập tức khi test bị fail.</li><li>t.Log* có thể được sử dụng để cung cấp thông tin debug</li><li>Việc test thường sẽ được lặp lại với các bộ input khác nhau nên idiom là sử dụng table-driven style: các input và expected tương ứng sẽ được liệt kê ra một bảng ( thường sủ dụng slice) và sử dụng một vòng lặp đơn để duyệt qua tất cả và thực hiện việc test.</li><li>t.Run cho phép chạy từng test con, từng entry một và có thể chạy và liệt kê kết quả của từng test con bằng cách dùng lệnh <code>go test -v</code></li></ul><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span>$</span> <span style=color:#00f>go</span> test -v
+== RUN   TestIntMinBasic
+--- PASS: TestIntMinBasic (0.00s)
+=== RUN   TestIntMinTableDriven
+=== RUN   TestIntMinTableDriven/0,1
+=== RUN   TestIntMinTableDriven/1,0
+=== RUN   TestIntMinTableDriven/2,-2
+=== RUN   TestIntMinTableDriven/0,-1
+=== RUN   TestIntMinTableDriven/-1,0
+--- PASS: TestIntMinTableDriven (0.00s)
+    --- PASS: TestIntMinTableDriven/0,1 (0.00s)
+    --- PASS: TestIntMinTableDriven/1,0 (0.00s)
+    --- PASS: TestIntMinTableDriven/2,-2 (0.00s)
+    --- PASS: TestIntMinTableDriven/0,-1 (0.00s)
+    --- PASS: TestIntMinTableDriven/-1,0 (0.00s)
+PASS
+ok      _source/testing_in_go        0.064s
 </code></pre></div><h1 id=thư-viện-testing>Thư viện testing</h1><h1 id=công-cụ-go-test>Công cụ go test</h1><h1 id=thư-viện-khác>Thư viện khác</h1><h2 id=go-sqlmock-sql-driver-mock-dành-cho-golang>go-sqlmock: sql driver mock dành cho Golang</h2><p><a href=https://github.com/DATA-DOG/go-sqlmock>https://github.com/DATA-DOG/go-sqlmock</a>
-sqlmock là thư viện mock hiện thực sql/driver. Chỉ có 1 mục đích duy nhất là để mô phỏng hành vì của bất cứ sql driver nào trong test mà không cần một kết nối thật đến database. Đảm bảo duy trì đúng TDD workflow.</p><ul><li>Thư viện này đã được hoàn thiện và ổn định.</li><li>Hỗ trọ đồng bộ và nhiều kết nối.</li><li>Hỗ trợ mocking các feature liên quan đến Context ở go1.8 và đặt tên sql parameter.</li><li>Không yêu cầu phải chỉnh sửa source code.</li><li>Driver cho phép mocking bứt cứ hành vi của phương thức nào của sql driver.</li><li>Expectation mặc định yêu cầu chặt chẽ về thứ tự matching.</li><li>Không có third-party deoendency.</li></ul><h3 id=cài-đặt>Cài đặt</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>go get github.com/DATA-DOG/go-sqlmock
-</code></pre></div><h3 id=cách-viết-test-sử-dụng-go-sqlmock>Cách viết test sử dụng go-sqlmock</h3><p>Sau đây chúng ta sẽ đi qua một ví dụ về cách sử dụng thư viện giả sử code cần test đang sử dụng <a href=https://github.com/go-sql-driver/mysql>go-mysql-driver</a></p><h4 id=code-đối-tượng-để-test>Code đối tượng để test</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+sqlmock là thư viện mock hiện thực sql/driver. Chỉ có 1 mục đích duy nhất là để mô phỏng hành vì của bất cứ sql driver nào trong test mà không cần một kết nối thật đến database. Đảm bảo duy trì đúng TDD workflow.</p><ul><li>Thư viện này đã được hoàn thiện và ổn định.</li><li>Hỗ trọ đồng bộ và nhiều kết nối.</li><li>Hỗ trợ mocking các feature liên quan đến Context ở go1.8 và đặt tên sql parameter.</li><li>Không yêu cầu phải chỉnh sửa source code.</li><li>Driver cho phép mocking bứt cứ hành vi của phương thức nào của sql driver.</li><li>Expectation mặc định yêu cầu chặt chẽ về thứ tự matching.</li><li>Không có third-party deoendency.</li></ul><h3 id=cài-đặt>Cài đặt</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>go get github.com/DATA-DOG/go-sqlmock
+</code></pre></div><h3 id=cách-viết-test-sử-dụng-go-sqlmock>Cách viết test sử dụng go-sqlmock</h3><p>Sau đây chúng ta sẽ đi qua một ví dụ về cách sử dụng thư viện giả sử code cần test đang sử dụng <a href=https://github.com/go-sql-driver/mysql>go-mysql-driver</a></p><h4 id=code-đối-tượng-để-test>Code đối tượng để test</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#00f>package</span> main
 
-<span style=color:#f92672>import</span> (
-  <span style=color:#e6db74>&#34;database/sql&#34;</span>
-  <span style=color:#a6e22e>_</span> <span style=color:#e6db74>&#34;github.com/go-sql-driver/mysql&#34;</span>
+<span style=color:#00f>import</span> (
+  <span style=color:#a31515>&#34;database/sql&#34;</span>
+  _ <span style=color:#a31515>&#34;github.com/go-sql-driver/mysql&#34;</span>
 )
 
-<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>recordStats</span>(<span style=color:#a6e22e>db</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>sql</span>.<span style=color:#a6e22e>DB</span>, <span style=color:#a6e22e>userID</span>, <span style=color:#a6e22e>productID</span> <span style=color:#66d9ef>int64</span>) (<span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>) {
-  <span style=color:#a6e22e>tx</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>db</span>.<span style=color:#a6e22e>Begin</span>()
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+<span style=color:#00f>func</span> recordStats(db *sql.DB, userID, productID <span style=color:#2b91af>int64</span>) (err <span style=color:#2b91af>error</span>) {
+  tx, err := db.Begin()
+  <span style=color:#00f>if</span> err != <span style=color:#00f>nil</span> {
+    <span style=color:#00f>return</span> err
   }
 
-  <span style=color:#66d9ef>defer</span> <span style=color:#66d9ef>func</span>() {
-    <span style=color:#66d9ef>switch</span> <span style=color:#a6e22e>err</span> {
-    <span style=color:#66d9ef>case</span> <span style=color:#66d9ef>nil</span>:
-      <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>tx</span>.<span style=color:#a6e22e>Commit</span>()
-    <span style=color:#66d9ef>default</span>:
-      <span style=color:#a6e22e>tx</span>.<span style=color:#a6e22e>Rollback</span>()
+  <span style=color:#00f>defer</span> <span style=color:#00f>func</span>() {
+    <span style=color:#00f>switch</span> err {
+    <span style=color:#00f>case</span> <span style=color:#00f>nil</span>:
+      err = tx.Commit()
+    <span style=color:#00f>default</span>:
+      tx.Rollback()
     }
   }()
 
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>tx</span>.<span style=color:#a6e22e>Exec</span>(<span style=color:#e6db74>&#34;UPDATE products SET views = views + 1&#34;</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+  <span style=color:#00f>if</span> _, err = tx.Exec(<span style=color:#a31515>&#34;UPDATE products SET views = views + 1&#34;</span>); err != <span style=color:#00f>nil</span> {
+    <span style=color:#00f>return</span> err
   }
 
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>tx</span>.<span style=color:#a6e22e>Exec</span>(<span style=color:#e6db74>&#34;INSERT INTO product_viewers (user_id, product_id) VALUES (?, ?)&#34;</span>, <span style=color:#a6e22e>userID</span>, <span style=color:#a6e22e>productID</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+  <span style=color:#00f>if</span> _, err = tx.Exec(<span style=color:#a31515>&#34;INSERT INTO product_viewers (user_id, product_id) VALUES (?, ?)&#34;</span>, userID, productID); err != <span style=color:#00f>nil</span> {
+    <span style=color:#00f>return</span> err
   }
 
-  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+  <span style=color:#00f>return</span> <span style=color:#00f>nil</span>
 }
 
-<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-  <span style=color:#75715e>// @NOTE: the real connection is not required for tests
-</span><span style=color:#75715e></span>  <span style=color:#a6e22e>db</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>sql</span>.<span style=color:#a6e22e>Open</span>(<span style=color:#e6db74>&#34;mysql&#34;</span>, <span style=color:#e6db74>&#34;root@/blog&#34;</span>)
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-    panic(<span style=color:#a6e22e>err</span>)
+<span style=color:#00f>func</span> main() {
+  <span style=color:green>// @NOTE: the real connection is not required for tests
+</span><span style=color:green></span>  db, err := sql.Open(<span style=color:#a31515>&#34;mysql&#34;</span>, <span style=color:#a31515>&#34;root@/blog&#34;</span>)
+  <span style=color:#00f>if</span> err != <span style=color:#00f>nil</span> {
+    panic(err)
   }
-  <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>db</span>.<span style=color:#a6e22e>Close</span>()
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>recordStats</span>(<span style=color:#a6e22e>db</span>, <span style=color:#ae81ff>1</span> <span style=color:#75715e>/*some user id*/</span>, <span style=color:#ae81ff>5</span> <span style=color:#75715e>/*some product id*/</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-    panic(<span style=color:#a6e22e>err</span>)
+  <span style=color:#00f>defer</span> db.Close()
+  <span style=color:#00f>if</span> err = recordStats(db, 1 <span style=color:green>/*some user id*/</span>, 5 <span style=color:green>/*some product id*/</span>); err != <span style=color:#00f>nil</span> {
+    panic(err)
   }
 }
-</code></pre></div><h4 id=code-test-sử-dụng-sqlmock>Code test sử dụng sqlmock</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</code></pre></div><h4 id=code-test-sử-dụng-sqlmock>Code test sử dụng sqlmock</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#00f>package</span> main
 
-<span style=color:#f92672>import</span> (
-  <span style=color:#e6db74>&#34;fmt&#34;</span>
-  <span style=color:#e6db74>&#34;testing&#34;</span>
+<span style=color:#00f>import</span> (
+  <span style=color:#a31515>&#34;fmt&#34;</span>
+  <span style=color:#a31515>&#34;testing&#34;</span>
 
-  <span style=color:#e6db74>&#34;github.com/DATA-DOG/go-sqlmock&#34;</span>
+  <span style=color:#a31515>&#34;github.com/DATA-DOG/go-sqlmock&#34;</span>
 )
 
-<span style=color:#75715e>// a successful case
-</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>TestShouldUpdateStats</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-  <span style=color:#75715e>// create mock db connection, mock data entity
-</span><span style=color:#75715e></span>  <span style=color:#a6e22e>db</span>, <span style=color:#a6e22e>mock</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>sqlmock</span>.<span style=color:#a6e22e>New</span>()
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-    <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;an error &#39;%s&#39; was not expected when opening stub database connection&#34;</span>, <span style=color:#a6e22e>err</span>)
+<span style=color:green>// a successful case
+</span><span style=color:green></span><span style=color:#00f>func</span> TestShouldUpdateStats(t *testing.T) {
+  <span style=color:green>// create mock db connection, mock data entity
+</span><span style=color:green></span>  db, mock, err := sqlmock.New()
+  <span style=color:#00f>if</span> err != <span style=color:#00f>nil</span> {
+    t.Fatalf(<span style=color:#a31515>&#34;an error &#39;%s&#39; was not expected when opening stub database connection&#34;</span>, err)
   }
-  <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>db</span>.<span style=color:#a6e22e>Close</span>()
+  <span style=color:#00f>defer</span> db.Close()
 
-  <span style=color:#75715e>// creat mock data for test
-</span><span style=color:#75715e></span>  <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectBegin</span>()
-  <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectExec</span>(<span style=color:#e6db74>&#34;UPDATE products&#34;</span>).
-    <span style=color:#a6e22e>WillReturnResult</span>(
-      <span style=color:#a6e22e>sqlmock</span>.<span style=color:#a6e22e>NewResult</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>)
+  <span style=color:green>// creat mock data for test
+</span><span style=color:green></span>  mock.ExpectBegin()
+  mock.ExpectExec(<span style=color:#a31515>&#34;UPDATE products&#34;</span>).
+    WillReturnResult(
+      sqlmock.NewResult(1, 1)
     )
-  <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectExec</span>(<span style=color:#e6db74>&#34;INSERT INTO product_viewers&#34;</span>).
-    <span style=color:#a6e22e>WithArgs</span>(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>).
-    <span style=color:#a6e22e>WillReturnResult</span>(
-      <span style=color:#a6e22e>sqlmock</span>.<span style=color:#a6e22e>NewResult</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>)
+  mock.ExpectExec(<span style=color:#a31515>&#34;INSERT INTO product_viewers&#34;</span>).
+    WithArgs(2, 3).
+    WillReturnResult(
+      sqlmock.NewResult(1, 1)
     )
-  <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectCommit</span>()
+  mock.ExpectCommit()
 
-  <span style=color:#75715e>// test table
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>tests</span> = []<span style=color:#66d9ef>struct</span> {
-    <span style=color:#a6e22e>userID</span>, <span style=color:#a6e22e>productID</span> <span style=color:#66d9ef>int64</span>
+  <span style=color:green>// test table
+</span><span style=color:green></span>  <span style=color:#00f>var</span> tests = []<span style=color:#00f>struct</span> {
+    userID, productID <span style=color:#2b91af>int64</span>
   }{
-    {<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>},
+    {2, 3},
   }
 
-  <span style=color:#75715e>// execute test
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>tt</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>tests</span> {
-    <span style=color:#a6e22e>testname</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;%d, %d&#34;</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>userID</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>productID</span>)
-    <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Run</span>(<span style=color:#a6e22e>testname</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-      <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>recordStats</span>(<span style=color:#a6e22e>db</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>userID</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>productID</span>)
-      <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-        <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;error was not expected while updating stats: %s&#34;</span>, <span style=color:#a6e22e>err</span>)
+  <span style=color:green>// execute test
+</span><span style=color:green></span>  <span style=color:#00f>for</span> _, tt := <span style=color:#00f>range</span> tests {
+    testname := fmt.Sprintf(<span style=color:#a31515>&#34;%d, %d&#34;</span>, tt.userID, tt.productID)
+    t.Run(testname, <span style=color:#00f>func</span>(t *testing.T) {
+      err := recordStats(db, tt.userID, tt.productID)
+      <span style=color:#00f>if</span> err != <span style=color:#00f>nil</span> {
+        t.Errorf(<span style=color:#a31515>&#34;error was not expected while updating stats: %s&#34;</span>, err)
       }
 
-      <span style=color:#75715e>// we make sure that all expectations were met
-</span><span style=color:#75715e></span>      <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectationsWereMet</span>(); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-        <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;there were unfulfilled expectations: %s&#34;</span>, <span style=color:#a6e22e>err</span>)
+      <span style=color:green>// we make sure that all expectations were met
+</span><span style=color:green></span>      <span style=color:#00f>if</span> err := mock.ExpectationsWereMet(); err != <span style=color:#00f>nil</span> {
+        t.Errorf(<span style=color:#a31515>&#34;there were unfulfilled expectations: %s&#34;</span>, err)
       }
     })
   }
 }
 
-<span style=color:#75715e>// a failing test case
-</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>TestShouldRollbackStatUpdatesOnFailure</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-  <span style=color:#75715e>// create mock db connection, mock data entity
-</span><span style=color:#75715e></span>  <span style=color:#a6e22e>db</span>, <span style=color:#a6e22e>mock</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>sqlmock</span>.<span style=color:#a6e22e>New</span>()
-  <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-    <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Fatalf</span>(<span style=color:#e6db74>&#34;an error &#39;%s&#39; was not expected when opening a stub database connection&#34;</span>, <span style=color:#a6e22e>err</span>)
+<span style=color:green>// a failing test case
+</span><span style=color:green></span><span style=color:#00f>func</span> TestShouldRollbackStatUpdatesOnFailure(t *testing.T) {
+  <span style=color:green>// create mock db connection, mock data entity
+</span><span style=color:green></span>  db, mock, err := sqlmock.New()
+  <span style=color:#00f>if</span> err != <span style=color:#00f>nil</span> {
+    t.Fatalf(<span style=color:#a31515>&#34;an error &#39;%s&#39; was not expected when opening a stub database connection&#34;</span>, err)
   }
 
-  <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>db</span>.<span style=color:#a6e22e>Close</span>()
+  <span style=color:#00f>defer</span> db.Close()
 
-  <span style=color:#75715e>// creat mock data for test
-</span><span style=color:#75715e></span>  <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectBegin</span>()
-  <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectExec</span>(<span style=color:#e6db74>&#34;UPDATE products&#34;</span>).
-    <span style=color:#a6e22e>WillReturnResult</span>(
-      <span style=color:#a6e22e>sqlmock</span>.<span style=color:#a6e22e>NewResult</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>)
+  <span style=color:green>// creat mock data for test
+</span><span style=color:green></span>  mock.ExpectBegin()
+  mock.ExpectExec(<span style=color:#a31515>&#34;UPDATE products&#34;</span>).
+    WillReturnResult(
+      sqlmock.NewResult(1, 1)
     )
-  <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectExec</span>(<span style=color:#e6db74>&#34;INSERT INTO product_viewers&#34;</span>).
-    <span style=color:#a6e22e>WithArgs</span>(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>).
-    <span style=color:#a6e22e>WillReturnError</span>(<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;some error&#34;</span>))
-  <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectRollback</span>()
+  mock.ExpectExec(<span style=color:#a31515>&#34;INSERT INTO product_viewers&#34;</span>).
+    WithArgs(2, 3).
+    WillReturnError(fmt.Errorf(<span style=color:#a31515>&#34;some error&#34;</span>))
+  mock.ExpectRollback()
 
-  <span style=color:#75715e>// test table
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>tests</span> = []<span style=color:#66d9ef>struct</span> {
-    <span style=color:#a6e22e>userID</span>, <span style=color:#a6e22e>productID</span> <span style=color:#66d9ef>int64</span>
+  <span style=color:green>// test table
+</span><span style=color:green></span>  <span style=color:#00f>var</span> tests = []<span style=color:#00f>struct</span> {
+    userID, productID <span style=color:#2b91af>int64</span>
   }{
-    {<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>},
+    {2, 3},
   }
 
-  <span style=color:#75715e>// execute test
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>tt</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>tests</span> {
-    <span style=color:#a6e22e>testname</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;%d, %d&#34;</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>userID</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>productID</span>)
-    <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Run</span>(<span style=color:#a6e22e>testname</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) {
-      <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>recordStats</span>(<span style=color:#a6e22e>db</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>userID</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>productID</span>)
-      <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>nil</span> {
-        <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;was expecting an error, but there was none&#34;</span>)
+  <span style=color:green>// execute test
+</span><span style=color:green></span>  <span style=color:#00f>for</span> _, tt := <span style=color:#00f>range</span> tests {
+    testname := fmt.Sprintf(<span style=color:#a31515>&#34;%d, %d&#34;</span>, tt.userID, tt.productID)
+    t.Run(testname, <span style=color:#00f>func</span>(t *testing.T) {
+      err := recordStats(db, tt.userID, tt.productID)
+      <span style=color:#00f>if</span> err == <span style=color:#00f>nil</span> {
+        t.Errorf(<span style=color:#a31515>&#34;was expecting an error, but there was none&#34;</span>)
       }
 
-      <span style=color:#75715e>// we make sure that all expectations were met
-</span><span style=color:#75715e></span>      <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>ExpectationsWereMet</span>(); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-        <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;there were unfulfilled expectations: %s&#34;</span>, <span style=color:#a6e22e>err</span>)
+      <span style=color:green>// we make sure that all expectations were met
+</span><span style=color:green></span>      <span style=color:#00f>if</span> err := mock.ExpectationsWereMet(); err != <span style=color:#00f>nil</span> {
+        t.Errorf(<span style=color:#a31515>&#34;there were unfulfilled expectations: %s&#34;</span>, err)
       }
     })
   }
 }
-</code></pre></div><p>Ở trên là ví dụ test cho code sử dụng go-mysql-driver, chúng ta có thể sử dụng go-sqlmock để test code sử dụng các thư viện khác, ORM như GORM,&mldr; đều OK.</p><h1 id=nguồn-tham-khảo>Nguồn tham khảo</h1><p>[1] <a href=https://golang.org/pkg/testing/>https://golang.org/pkg/testing/</a></p><p>[2] <a href=https://github.com/DATA-DOG/go-sqlmock>https://github.com/DATA-DOG/go-sqlmock</a></p><p>[3] <a href=https://blog.alexellis.io/golang-writing-unit-tests/>https://blog.alexellis.io/golang-writing-unit-tests/</a></p><ul class=pa0></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"></aside></article></main><footer class="bg-black bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=https://samthehai.github.io>&copy; Hai Sam's Blog 2021</a><div></div></div></footer></body></html>
+</code></pre></div><p>Ở trên là ví dụ test cho code sử dụng go-mysql-driver, chúng ta có thể sử dụng go-sqlmock để test code sử dụng các thư viện khác, ORM như GORM,&mldr; đều OK.</p><h1 id=nguồn-tham-khảo>Nguồn tham khảo</h1><p>[1] <a href=https://golang.org/pkg/testing/>https://golang.org/pkg/testing/</a></p><p>[2] <a href=https://github.com/DATA-DOG/go-sqlmock>https://github.com/DATA-DOG/go-sqlmock</a></p><p>[3] <a href=https://blog.alexellis.io/golang-writing-unit-tests/>https://blog.alexellis.io/golang-writing-unit-tests/</a></p></div><div class=tags><ul class=flat><li><a href=/tags/programming>Programming</a></li><li><a href=/tags/go>Go</a></li></ul></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;var disqus_shortname='Hai Sam\u0027s Blog';dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div class="footer wrapper"><nav class=nav><div>2021 © Copyright notice | <a href=https://github.com/knadh/hugo-ink>Ink</a> theme on <a href=https://gohugo.io>Hugo</a></div></nav></div><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-123-45','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script>feather.replace()</script></body></html>
