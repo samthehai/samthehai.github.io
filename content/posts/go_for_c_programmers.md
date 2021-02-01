@@ -1,6 +1,7 @@
 ---
 title: "Golang dành cho dân lập trình C"
 date: "2020-03-15"
+tags: [Programming, Go]
 ---
 
 # 1. Giới thiệu về Go

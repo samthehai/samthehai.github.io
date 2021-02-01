@@ -1,6 +1,7 @@
 ---
 title: "Cấu trúc dữ liệu trong Go: Interfaces"
 date: "2020-12-27"
+tags: [Programming, Go]
 ---
 
 # 1. Giới thiệu

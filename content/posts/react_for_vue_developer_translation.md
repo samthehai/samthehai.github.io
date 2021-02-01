@@ -1,6 +1,7 @@
 ---
 title: "React.js dành cho dân lập trình Vue.js"
 date: "2020-12-20"
+tags: [Programming, Reactjs, Vuejs]
 ---
 
 # 1. Giới thiệu

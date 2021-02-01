@@ -1,6 +1,7 @@
 ---
 title: "Giới thiệu về Testing trong Go"
 date: "2020-03-18"
+tags: [Programming, Go]
 ---
 
 # Giới thiệu

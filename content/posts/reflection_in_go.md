@@ -1,6 +1,7 @@
 ---
 title: "Reflection trong Go"
 date: "2020-12-27"
+tags: [Programming, Go]
 ---
 
 # 1. Giới thiệu

@@ -1,6 +1,9 @@
 ---
 title: "Thuật toán cơ bản: Quicksort trong practice hay là Introsort"
 date: "2021-01-25"
+description: "Tìm hiểu cơ bản về thuật toán Quicksort trong thực hành hay còn gọi là Introsort"
+tags: [Programming, Algorithm]
+---
 ---
 
 # 1. Giới thiệu

@@ -1,6 +1,7 @@
 ---
 title: "Cấu trúc dữ liệu cơ bản: Array và Linked List"
 date: "2020-12-27"
+tags: [Programming, Datastructure]
 ---
 
 # 1. Giới thiệu

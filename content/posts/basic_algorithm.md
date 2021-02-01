@@ -1,6 +1,7 @@
 ---
 title: "Thuật toán cơ bản: phân tích độ phức tạp giải thuật"
 date: "2020-10-24"
+tags: [Programming, Algorithm]
 ---
 
 # 1. Giới thiệu
