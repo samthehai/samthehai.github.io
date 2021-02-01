@@ -1,0 +1,650 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>React.js dành cho dân lập trình Vue.js | Hai Sam's Blog</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="1. Giới thiệu Đang học React.js để áp dụng cho các dự án đang làm thì bí stuck một số chỗ. Nhân tiện kiếm được trên mạng một tài liệu mình thấy hay giới thiệu về React cho những ai đã có nền tảng Vue.js Mình lược dịch lại tài liệu này sang Tiếng Việt như một cách để active learning luôn.
+Table of contents  Templates Props Data Computed properties Methods Events Lifecycle methods Watchers Slots & scoped slots Provide / inject Custom directives Transitions  2."><meta name=generator content="Hugo 0.79.1"><meta name=ROBOTS content="NOINDEX, NOFOLLOW"><link rel=stylesheet href=/ananke/dist/main.css_5c99d70a7725bacd4c701e995b969fea.css><meta property="og:title" content="React.js dành cho dân lập trình Vue.js"><meta property="og:description" content="1. Giới thiệu Đang học React.js để áp dụng cho các dự án đang làm thì bí stuck một số chỗ. Nhân tiện kiếm được trên mạng một tài liệu mình thấy hay giới thiệu về React cho những ai đã có nền tảng Vue.js Mình lược dịch lại tài liệu này sang Tiếng Việt như một cách để active learning luôn.
+Table of contents  Templates Props Data Computed properties Methods Events Lifecycle methods Watchers Slots & scoped slots Provide / inject Custom directives Transitions  2."><meta property="og:type" content="article"><meta property="og:url" content="https://samthehai.github.io/posts/react_for_vue_developer_translation/"><meta property="article:published_time" content="2020-12-20T00:00:00+00:00"><meta property="article:modified_time" content="2020-12-20T00:00:00+00:00"><meta itemprop=name content="React.js dành cho dân lập trình Vue.js"><meta itemprop=description content="1. Giới thiệu Đang học React.js để áp dụng cho các dự án đang làm thì bí stuck một số chỗ. Nhân tiện kiếm được trên mạng một tài liệu mình thấy hay giới thiệu về React cho những ai đã có nền tảng Vue.js Mình lược dịch lại tài liệu này sang Tiếng Việt như một cách để active learning luôn.
+Table of contents  Templates Props Data Computed properties Methods Events Lifecycle methods Watchers Slots & scoped slots Provide / inject Custom directives Transitions  2."><meta itemprop=datePublished content="2020-12-20T00:00:00+00:00"><meta itemprop=dateModified content="2020-12-20T00:00:00+00:00"><meta itemprop=wordCount content="3059"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="React.js dành cho dân lập trình Vue.js"><meta name=twitter:description content="1. Giới thiệu Đang học React.js để áp dụng cho các dự án đang làm thì bí stuck một số chỗ. Nhân tiện kiếm được trên mạng một tài liệu mình thấy hay giới thiệu về React cho những ai đã có nền tảng Vue.js Mình lược dịch lại tài liệu này sang Tiếng Việt như một cách để active learning luôn.
+Table of contents  Templates Props Data Computed properties Methods Events Lifecycle methods Watchers Slots & scoped slots Provide / inject Custom directives Transitions  2."></head><body class="ma0 avenir bg-near-white"><header><div class=bg-black><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l justify-between items-center center"><a href=/ class="f3 fw2 hover-white no-underline white-90 dib">Hai Sam's Blog</a><div class="flex-l items-center"></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l flex-wrap justify-between mw8 center ph3"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked">POSTS</aside><div id=sharing class=mt3><a href="https://www.facebook.com/sharer.php?u=https://samthehai.github.io/posts/react_for_vue_developer_translation/" class="facebook no-underline" aria-label="share on Facebook"><svg height="32" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765 50.32h6.744V33.998h4.499l.596-5.624h-5.095l.007-2.816c0-1.466.14-2.253 2.244-2.253h2.812V17.68h-4.5c-5.405.0-7.307 2.729-7.307 7.317v3.377h-3.369v5.625h3.369V50.32zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd"/></svg></a><a href="https://twitter.com/share?url=https://samthehai.github.io/posts/react_for_vue_developer_translation/&text=React.js%20d%c3%a0nh%20cho%20d%c3%a2n%20l%e1%ba%adp%20tr%c3%acnh%20Vue.js" class="twitter no-underline" aria-label="share on Twitter"><svg height="32" style="enable-background:new 0 0 67 67" viewBox="0 0 67 67" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167 22.283c-2.619.953-4.274 3.411-4.086 6.101l.063 1.038-1.048-.127c-3.813-.487-7.145-2.139-9.974-4.915l-1.383-1.377-.356 1.017c-.754 2.267-.272 4.661 1.299 6.271.838.89.649 1.017-.796.487-.503-.169-.943-.296-.985-.233-.146.149.356 2.076.754 2.839.545 1.06 1.655 2.097 2.871 2.712l1.027.487-1.215.021c-1.173.0-1.215.021-1.089.467.419 1.377 2.074 2.839 3.918 3.475l1.299.444-1.131.678c-1.676.976-3.646 1.526-5.616 1.568C19.775 43.256 19 43.341 19 43.405c0 .211 2.557 1.397 4.044 1.864 4.463 1.377 9.765.783 13.746-1.568 2.829-1.673 5.657-5 6.978-8.221.713-1.716 1.425-4.851 1.425-6.354.0-.975.063-1.102 1.236-2.267.692-.678 1.341-1.419 1.467-1.631.21-.403.188-.403-.88-.043-1.781.636-2.033.551-1.152-.402.649-.678 1.425-1.907 1.425-2.267.0-.063-.314.042-.671.233-.377.212-1.215.53-1.844.72l-1.131.361-1.027-.7c-.566-.381-1.361-.805-1.781-.932C39.766 21.902 38.131 21.944 37.167 22.283zM33 64C16.432 64 3 50.569 3 34S16.432 4 33 4s30 13.431 30 30S49.568 64 33 64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg></a><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://samthehai.github.io/posts/react_for_vue_developer_translation/&title=React.js%20d%c3%a0nh%20cho%20d%c3%a2n%20l%e1%ba%adp%20tr%c3%acnh%20Vue.js" class="linkedin no-underline" aria-label="share on LinkedIn"><svg height="32" style="enable-background:new 0 0 65 65" viewBox="0 0 65 65" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M50.837 48.137V36.425c0-6.275-3.35-9.195-7.816-9.195-3.604.0-5.219 1.983-6.119 3.374V27.71h-6.79c.09 1.917.0 20.427.0 20.427h6.79V36.729c0-.609.044-1.219.224-1.655.49-1.22 1.607-2.483 3.482-2.483 2.458.0 3.44 1.873 3.44 4.618v10.929H50.837zM22.959 24.922c2.367.0 3.842-1.57 3.842-3.531-.044-2.003-1.475-3.528-3.797-3.528s-3.841 1.524-3.841 3.528c0 1.961 1.474 3.531 3.753 3.531H22.959zM34 64C17.432 64 4 50.568 4 34 4 17.431 17.432 4 34 4s30 13.431 30 30C64 50.568 50.568 64 34 64zM26.354 48.137V27.71h-6.789v20.427H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:"/></svg></a></div><h1 class="f1 athelas mt3 mb1">React.js dành cho dân lập trình Vue.js</h1><time class="f6 mv4 dib tracked" datetime=2020-12-20T00:00:00Z>December 20, 2020</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id=1-giới-thiệu>1. Giới thiệu</h1><p>Đang học React.js để áp dụng cho các dự án đang làm thì bí stuck một số chỗ.
+Nhân tiện kiếm được trên mạng một tài liệu mình thấy hay giới thiệu về React cho những ai đã có nền tảng Vue.js
+Mình lược dịch lại tài liệu này sang Tiếng Việt như một cách để active learning luôn.</p><h2 id=table-of-contents>Table of contents</h2><ul><li>Templates</li><li>Props</li><li>Data</li><li>Computed properties</li><li>Methods</li><li>Events</li><li>Lifecycle methods</li><li>Watchers</li><li>Slots & scoped slots</li><li>Provide / inject</li><li>Custom directives</li><li>Transitions</li></ul><h1 id=2-templates>2. Templates</h1><p>Tương đương bên React: JSX</p><p>Vue sử dụng HTML strings với một vài custom directives. Thường thì .vue filé sé được sử dụng để tách biệt templates và script và có thể có styles nữa.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- Greeter.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>p</span>&gt;Hello, {{ name }}!&lt;/<span style=color:#f92672>p</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;name&#34;</span>],
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>React sử dụng một script mở rộng của ECMAScript gọi là JSX.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Greeter</span>({ <span style=color:#a6e22e>name</span> }) {
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>Hello</span>, {<span style=color:#a6e22e>name</span>}<span style=color:#f92672>!</span>&lt;/<span style=color:#f92672>p</span>&gt;;
+}
+</code></pre></div><h2 id=21-conditional-rendering>2.1. Conditional rendering</h2><p>Tương đương bên React: Sử dụng logic && operator, tenary statements hoặc là early return</p><p>Vue sử dụng v-if, v-else và v-else-if để render có điều kiện một phần của templates</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- Awesome.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>article</span>&gt;
+    &lt;<span style=color:#f92672>h1</span> <span style=color:#a6e22e>v-if</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;awesome&#34;</span>&gt;Vue is awesome!&lt;/<span style=color:#f92672>h1</span>&gt;
+  &lt;/<span style=color:#f92672>article</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;awesome&#34;</span>],
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>React thì không hỗ trợ directive nên là bạn phải sử dụng ngôn ngữ lập trình để trả về có điều kiện một phần của templates.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Awesome</span>({ <span style=color:#a6e22e>awesome</span> }) {
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>article</span>&gt;{<span style=color:#a6e22e>awesome</span> <span style=color:#f92672>&amp;&amp;</span> &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Vue</span> <span style=color:#a6e22e>is</span> <span style=color:#a6e22e>awesome</span><span style=color:#f92672>!</span>&lt;/<span style=color:#f92672>h1</span>&gt;}&lt;/<span style=color:#f92672>article</span>&gt;;
+}
+</code></pre></div><p>Trong trường họp cần else statement thì bạn phải sử dụng tenary statements</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Awesome</span>({ <span style=color:#a6e22e>awesome</span> }) {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>article</span>&gt;
+      {<span style=color:#a6e22e>awesome</span> <span style=color:#f92672>?</span> &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>React</span> <span style=color:#a6e22e>is</span> <span style=color:#a6e22e>awesome</span><span style=color:#f92672>!</span>&lt;/<span style=color:#f92672>h1</span>&gt; <span style=color:#f92672>:</span> &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Oh</span> <span style=color:#a6e22e>no</span> <span style=color:#960050;background-color:#1e0010>😢</span>&lt;/<span style=color:#f92672>h1</span>&gt;};
+    &lt;/<span style=color:#f92672>article</span>&gt;
+  );
+}
+</code></pre></div><p>Bạn cũng có thể tách biêt hai xử lý bằng cách sử dụng early return</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Awesome</span>({ <span style=color:#a6e22e>awesome</span> }) {
+  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>awesome</span>) {
+    <span style=color:#66d9ef>return</span> (
+      &lt;<span style=color:#f92672>article</span>&gt;
+        &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Oh</span> <span style=color:#a6e22e>no</span> <span style=color:#960050;background-color:#1e0010>😢</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;/<span style=color:#f92672>article</span>&gt;
+    );
+  }
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>article</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>React</span> <span style=color:#a6e22e>is</span> <span style=color:#a6e22e>awesome</span><span style=color:#f92672>!</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+    &lt;/<span style=color:#f92672>article</span>&gt;
+  );
+}
+</code></pre></div><h2 id=22-list-rendering>2.2. List rendering</h2><p>Tương đương bên React: Array.map</p><p>Vue sử dụng v-for directive để lặp qua objects và arrays</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- Recipe.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>ul</span>&gt;
+    &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>v-for</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;(ingredient, index) in ingredients&#34;</span> <span style=color:#a6e22e>:key</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;index&#34;</span>&gt;
+      {{ ingredient }}
+    &lt;/<span style=color:#f92672>li</span>&gt;
+  &lt;/<span style=color:#f92672>ul</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;ingredients&#34;</span>],
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>Với React bạn có thể map array để tạo danh sách elements sử dụng hàm build in Array.map của javascript</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Recipe</span>({ <span style=color:#a6e22e>ingredients</span> }) {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>ul</span>&gt;
+      {<span style=color:#a6e22e>ingredients</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>ingredient</span>, <span style=color:#a6e22e>index</span>) =&gt; (
+        &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>index</span>}&gt;{<span style=color:#a6e22e>ingredient</span>}&lt;/<span style=color:#f92672>li</span>&gt;
+      ))}
+    &lt;/<span style=color:#f92672>ul</span>&gt;
+  );
+}
+</code></pre></div><p>Duyệt qua object thì khó hơn. Vue cho phép sử dụng v-for directives để duyệt qua keys và values.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- KeyValueList.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>ul</span>&gt;
+    &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>v-for</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;(value, key) in object&#34;</span> <span style=color:#a6e22e>:key</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;key&#34;</span>&gt;{{ key }}: {{ value }}&lt;/<span style=color:#f92672>li</span>&gt;
+  &lt;/<span style=color:#f92672>ul</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;object&#34;</span>], <span style=color:#75715e>// E.g. { a: &#39;Foo&#39;, b: &#39;Bar&#39; }
+</span><span style=color:#75715e></span>  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>Cá nhân tôi thì thích sử dụng hàm builtin Object.entries với React để duyệt qua object.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>KeyValueList</span>({ <span style=color:#a6e22e>object</span> }) {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>ul</span>&gt;
+      {Object.<span style=color:#a6e22e>entries</span>(<span style=color:#a6e22e>object</span>).<span style=color:#a6e22e>map</span>(([<span style=color:#a6e22e>key</span>, <span style=color:#a6e22e>value</span>]) =&gt; (
+        &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>key</span>}&gt;{<span style=color:#a6e22e>value</span>}&lt;/<span style=color:#f92672>li</span>&gt;
+      ))}
+    &lt;/<span style=color:#f92672>ul</span>&gt;
+  );
+}
+</code></pre></div><h2 id=23-class-và-style-bindings>2.3. Class và style bindings</h2><p>Tương đương bên React: Truyền props theo cách manual</p><p>Vue tự động binds class và style props xuống cho HTML element ngoài cùng của một component.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- Post.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>article</span>&gt;
+    &lt;<span style=color:#f92672>h1</span>&gt;{{ title }}&lt;/<span style=color:#f92672>h1</span>&gt;
+  &lt;/<span style=color:#f92672>article</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;title&#34;</span>],
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+
+<span style=color:#75715e>&lt;!--
+</span><span style=color:#75715e>&lt;post
+</span><span style=color:#75715e>  :title=&#34;About CSS&#34;
+</span><span style=color:#75715e>  class=&#34;margin-bottom&#34;
+</span><span style=color:#75715e>  style=&#34;color: red&#34;
+</span><span style=color:#75715e>/&gt;
+</span><span style=color:#75715e>--&gt;</span>
+</code></pre></div><p>Với React, bạn cần truyền className và style props môt cách manually. Chú ý rằng style phải là một object với React, strings thì không được support.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Post</span>({ <span style=color:#a6e22e>title</span>, <span style=color:#a6e22e>className</span>, <span style=color:#a6e22e>style</span> }) {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>article</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>className</span>} <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>style</span>}&gt;
+      {<span style=color:#a6e22e>title</span>}
+    &lt;/<span style=color:#f92672>article</span>&gt;
+  );
+}
+
+{
+  <span style=color:#75715e>/* &lt;Post
+</span><span style=color:#75715e>  title=&#34;About CSS&#34;
+</span><span style=color:#75715e>  className=&#34;margin-bottom&#34;
+</span><span style=color:#75715e>  style={{ color: &#39;red&#39; }}
+</span><span style=color:#75715e>/&gt; */</span>
+}
+</code></pre></div><p>Nếu bạn muốn truyền xuống tất cả các props còn lại, có thể sử dụng spread operator.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Post</span>({ <span style=color:#a6e22e>title</span>, ...<span style=color:#a6e22e>props</span> }) {
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>article</span> {<span style=color:#a6e22e>...props</span>}&gt;{<span style=color:#a6e22e>title</span>}&lt;/<span style=color:#f92672>article</span>&gt;;
+}
+</code></pre></div><p>Nếu bạn muốn sử dụng API class giống như bên Vue, có thể tham khảo thử viện <a href=https://github.com/JedWatson/classnames>classnames</a> của Jed Watson.</p><h1 id=3-props>3. Props</h1><p>Tương đương vên React: Props</p><p>Props bên React hoạt dộng gần như tương tự bên Vue. Chỉ có một khác biệt nhỏ: React không <a href=https://vuejs.org/v2/api/#inheritAttrs>thừa kế</a> những atributes không được định nghĩa</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- Post.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>h1</span>&gt;{{ title }}&lt;/<span style=color:#f92672>h1</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;title&#34;</span>],
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span>
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Post</span>({ <span style=color:#a6e22e>title</span> }) {
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>h3</span>&gt; {{ <span style=color:#a6e22e>title</span> }}&lt;/<span style=color:#f92672>h3</span>&gt;;
+}
+</code></pre></div><p>Có thể sử dụng dynamic bind bằng cách sử dụng prefix :, đây chính là alias của directive v-bind. React thì lại sử dụng dấu ngoặc nhọn.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- Post.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>post-title</span> <span style=color:#a6e22e>:title</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;title&#34;</span> /&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;title&#34;</span>],
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Post</span>({ <span style=color:#a6e22e>title</span> }) {
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>PostTitle</span> <span style=color:#a6e22e>title</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>title</span>} /&gt;;
+}
+</code></pre></div><h2 id=4-data>4. Data</h2><p>Tương đương bên React: useState hook</p><p>Trong Vue data option được sử dụng dể chứa trạng thái local của component.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- ButtonCounter.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>button</span> <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>click</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;count++&#34;</span>&gt;You clicked me {{ count }} times.&lt;/<span style=color:#f92672>button</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>data</span>() {
+      <span style=color:#66d9ef>return</span> {
+        <span style=color:#a6e22e>count</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>0</span>,
+      };
+    },
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>React thì sử dụng useState hook, sẽ trả về một array có hai phần tử chứa trạng thái hiện tại và một hàm setter.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ButtonCounter</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>count</span>, <span style=color:#a6e22e>setCounter</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
+
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>setCount</span>(<span style=color:#a6e22e>count</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>)}&gt;{<span style=color:#a6e22e>count</span>}&lt;/<span style=color:#f92672>button</span>&gt;;
+}
+</code></pre></div><p>Bạn có thể chia mỗi state ra bằng cách gọi useState nhiều lần hoặc gộp lại gọi một lần.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ProfileForm</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>setName</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;Sebastian&#34;</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>email</span>, <span style=color:#a6e22e>setEmail</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;sebastian@spatie.be&#34;</span>);
+
+  <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>}
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ProfileForm</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>values</span>, <span style=color:#a6e22e>setValues</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>({
+    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Sebastian&#34;</span>,
+    <span style=color:#a6e22e>email</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;sebastian@spatie.be&#34;</span>,
+  });
+
+  <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>}
+</code></pre></div><h2 id=41-v-model>4.1. v-model</h2><p>v-model là một directive rất hữu ích trong Vue, nó kết hợp việc truyền giá trị xuống thông qua prop với việc lắng nghe input event. Điều này có thể khiến gây nhầm lẫn rằng Vue thực hiện biding hai chiều, nhưng thật ra cơ chế ẩn dưới vẫn là “truyền props xuống, nhận events trả lên”.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- Profile.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span> <span style=color:#a6e22e>v-model</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;name&#34;</span> /&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>data</span>() {
+      <span style=color:#66d9ef>return</span> {
+        <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Sebastian&#34;</span>,
+      };
+    },
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>Có thể triển khai đầy đủ v-model thành như dưới này:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span> <span style=color:#a6e22e>:value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;name&#34;</span> <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>input</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;name = $event.tagert.value&#34;</span> /&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+</code></pre></div><p>Tuy nhiên bên React không có cách biểu diễn tương tự, bạn luôn phải viết tường mình.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Profile</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>setName</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;Sebastian&#34;</span>);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>input</span>
+      <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>
+      <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>name</span>}
+      <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>event</span>) =&gt; <span style=color:#a6e22e>setName</span>(<span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>name</span>)}
+    /&gt;
+  );
+}
+</code></pre></div><h2 id=42-computed-properties>4.2. Computed properties</h2><p>Tương đương bên React: biến, wrap lại bằng useMemo</p><p>Có hai lý do cho việc tồn tại của computed properties trong Vue: dể tránh việc trộn lẫn giữa logic và markup trong template, để cache những phần đòi hỏi tính toán phức tạp trong component state.</p><p>Nếu mà không có computed:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- ReversedMessage.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>p</span>&gt;{{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}&lt;/<span style=color:#f92672>p</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;message&#34;</span>],
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ReversedMessage</span>({ <span style=color:#a6e22e>message</span> }) {
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>p</span>&gt;{<span style=color:#a6e22e>message</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#34;&#34;</span>).<span style=color:#a6e22e>reverse</span>().<span style=color:#a6e22e>join</span>(<span style=color:#e6db74>&#34;&#34;</span>)}&lt;/<span style=color:#f92672>p</span>&gt;;
+}
+</code></pre></div><p>Trong React bạn có thể tách phần logic khỏi template bằng cách gán giá trị kết quả vào một biến.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- ReversedMessage.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>p</span>&gt;{{ reversedMessage }}&lt;/<span style=color:#f92672>p</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;message&#34;</span>],
+
+    <span style=color:#a6e22e>computed</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>reversedMessage</span>() {
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>message</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#34;&#34;</span>).<span style=color:#a6e22e>reverse</span>().<span style=color:#a6e22e>join</span>(<span style=color:#e6db74>&#34;&#34;</span>);
+      },
+    },
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ReversedMessage</span>({ <span style=color:#a6e22e>message</span> }) {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>reversedMessage</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>message</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#34;&#34;</span>).<span style=color:#a6e22e>reverse</span>().<span style=color:#a6e22e>join</span>(<span style=color:#e6db74>&#34;&#34;</span>);
+
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>p</span>&gt;{<span style=color:#a6e22e>reversedMessage</span>}&lt;/<span style=color:#f92672>p</span>&gt;;
+}
+</code></pre></div><p>Nếu chú trọng đến performance, việc tính toán có thể được wrap lại bằng cách sử dụng useMemo hook, useMemo yêu cầu phải có một hàm callback trả về kết quả tính toán và một mảng của dependencies.</p><p>Trong ví dụ sau đây <code>reversedMessage</code> chỉ phải bị tính toán lại nếu như biến <code>message</code> nó phụ thuộc bị thay đổi</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useMemo</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ReversedMessage</span>({ <span style=color:#a6e22e>message</span> }) {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>reversedMessage</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() =&gt; {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>message</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#34;&#34;</span>).<span style=color:#a6e22e>reverse</span>().<span style=color:#a6e22e>join</span>(<span style=color:#e6db74>&#34;&#34;</span>);
+  }, [<span style=color:#a6e22e>message</span>]);
+
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>p</span>&gt;{<span style=color:#a6e22e>reversedMessage</span>}&lt;/<span style=color:#f92672>p</span>&gt;;
+}
+</code></pre></div><h1 id=5-methods>5. Methods</h1><p>Tương đương bên React: Functions</p><p>Vue có một options tên là methods để khai báo các hàm được sủ dụng bên trong component</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- ImportantButton.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;doSomething&#34;</span>&gt;Do something!&lt;/<span style=color:#f92672>button</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>methods</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>doSomething</span>() {
+        <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>      },
+    },
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>Trong React bạn có thể khai báo một functions bình thường ở bên trong component.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ImportantButton</span>() {
+  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>doSomething</span>() {
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>  }
+
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>doSomething</span>}&gt;<span style=color:#a6e22e>Do</span> <span style=color:#a6e22e>something</span><span style=color:#f92672>!</span>&lt;/<span style=color:#f92672>button</span>&gt;;
+}
+</code></pre></div><h1 id=6-events>6. Events</h1><p>Tương đương bên React: Callback props</p><p>Events là những callback cần thiết được gọi khi có những sự kiện xảy ra phía component con. Events là một thành phần quan trọng trong Vue, bạn có thể lắng nghe nó sử dụng @, là thể ngắn gọn của v-on.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- PostForm.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>form</span>&gt;
+    &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span> <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>click</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;$emit(&#39;save&#39;)&#34;</span>&gt;Save&lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span> <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>click</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;$emit(&#39;publish&#39;)&#34;</span>&gt;Publish&lt;/<span style=color:#f92672>button</span>&gt;
+  &lt;/<span style=color:#f92672>form</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+</code></pre></div><p>Events không có bất kỳ ý nghĩa đặc biệt nào như vậy bên React, nó đơn giản chỉ là những callback prop được gọi bởi những component con.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>PostForm</span>({ <span style=color:#a6e22e>onSave</span>, <span style=color:#a6e22e>onPublish</span> }) {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>form</span>&gt;
+      &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onSave</span>}&gt;
+        <span style=color:#a6e22e>Save</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+      &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onPublish</span>}&gt;
+        <span style=color:#a6e22e>Publish</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/<span style=color:#f92672>form</span>&gt;
+  );
+}
+</code></pre></div><h2 id=61-event-modifier>6.1. Event modifier</h2><p>Tương đương bên React: Higher order function</p><p>Vue có một vài modifier như <code>prevent</code>, <code>stop</code> để thay đổi cách mà event được handle mà không cần phải chỉnh sửa lại handler.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- AjaxForm.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>form</span> <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>submit</span><span style=color:#960050;background-color:#1e0010>.</span><span style=color:#a6e22e>prevent</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;submitWithAjax&#34;</span>&gt;
+    <span style=color:#75715e>&lt;!-- ... --&gt;</span>
+  &lt;/<span style=color:#f92672>form</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>methods</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>submitWithAjax</span>() {
+        <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>      },
+    },
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>Không có những modiffier như vậy trong React. Prevent default và stopping hầu như sẽ được xử lý bên trong hàm callback.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>AjaxForm</span>() {
+  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>submitWithAjax</span>(<span style=color:#a6e22e>event</span>) {
+    <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>  }
+
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>form</span> <span style=color:#a6e22e>onSubmit</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>submitWithAjax</span>}&gt;{<span style=color:#75715e>/* ... */</span>}&lt;/<span style=color:#f92672>form</span>&gt;;
+}
+</code></pre></div><p>Nếu bạn thực muốn có cái gì đó giống như là modifier bạn có thể sử dụng higher order function.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>prevent</span>(<span style=color:#a6e22e>callback</span>) {
+  <span style=color:#66d9ef>return</span> (<span style=color:#a6e22e>event</span>) =&gt; {
+    <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#a6e22e>callback</span>(<span style=color:#a6e22e>event</span>);
+  };
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>AjaxForm</span>() {
+  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>submitWithAjax</span>(<span style=color:#a6e22e>event</span>) {
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>  }
+
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>form</span> <span style=color:#a6e22e>onSubmit</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>prevent</span>(<span style=color:#a6e22e>submitWithAjax</span>)}&gt;{<span style=color:#75715e>/* ... */</span>}&lt;/<span style=color:#f92672>form</span>&gt;;
+}
+</code></pre></div><h1 id=7-lifecycle-methods>7. Lifecycle methods</h1><p>Tương đương bên React: <code>useEffect</code> hook</p><p>Đối với class component, React có những <a href=https://reactjs.org/docs/react-component.html#the-component-lifecycle>API tương tự</a> Vue nếu nói về component lifecycle. Với hook, hầu như tất cả các vấn đề tương tự có thể được giải quyết bằng cách sử dụng <code>useEffect</code>. Nói chung effects và lifecycle methods có cơ chế khác nhau nên là khó để so sánh, phần này chỉ giới hạn việc mô tả vài ví dụ. Effect xứng đáng có một phần riêng để bàn.</p><p>Thông thường vai trò của lifeccycle methods là để setup và teardown những thư viện bên thứ ba.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span> <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;input&#34;</span> /&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>import</span> <span style=color:#a6e22e>DateTimePicker</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;awesome-date-time-picker&#34;</span>;
+
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>mounted</span>() {
+      <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>dateTimePickerInstance</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>DateTimePicker</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>$refs</span>.<span style=color:#a6e22e>input</span>);
+    },
+    <span style=color:#a6e22e>beforeDestroy</span>() {
+      <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>dateTimePickerInstance</span>.<span style=color:#a6e22e>destroy</span>();
+    },
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>Sử dụng <code>useEffect</code> bạn có thể khai báo một <code>side effect</code> mà cần phải chạy sau khi render. Khi bạn trả về một hàm callback từ <code>useEffect</code>, nó sẽ được gọi khi effect được cleanup, có nghĩa là khi component bị destroy.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useRef</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>DateTimePicker</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;awesome-date-time-picker&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Component</span>() {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dateTimePickerRef</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>();
+
+  <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dateTimePickerInstance</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>DateTimePicker</span>(
+      <span style=color:#a6e22e>dateTimePickerRef</span>.<span style=color:#a6e22e>current</span>
+    );
+    <span style=color:#66d9ef>return</span> () =&gt; {
+      <span style=color:#a6e22e>dateTimePickerInstance</span>.<span style=color:#a6e22e>destroy</span>();
+    };
+  }, []);
+
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span> <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>dateTimePickerRef</span>} /&gt;;
+}
+</code></pre></div><p>Việc này tương tự đăng ký một <code>beforeDestroy</code> listener trong mounted ở một Vue component.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>mounted</span>() {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dateTimePicker</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>DateTimePicker</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>$refs</span>.<span style=color:#a6e22e>input</span>);
+
+      <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>$once</span>(<span style=color:#e6db74>&#34;hook:beforeDestroy&#34;</span>, () =&gt; {
+        <span style=color:#a6e22e>dateTimePicker</span>.<span style=color:#a6e22e>destroy</span>();
+      });
+    },
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>Tương tự <code>useMemo</code>, <code>useEffect</code> nhận vào một array các biến phụ thuộc, như là parameter thứ hai.</p><p>Nếu không khai báo bất kỳ biến phụ thuộc nào, effect sẽ chạy sau mỗi lần render, và sẽ được clean up trước khi mỗi lần render kế tiếp. Chức năng này tương tự như một sự kết hợp giữa <code>mounted</code>, <code>updated</code>, <code>beforeUpdate</code> and <code>beforeDestroy</code>.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#a6e22e>useEffect</span>(() =&gt; {
+  <span style=color:#75715e>// Happens after every render
+</span><span style=color:#75715e></span>
+  <span style=color:#66d9ef>return</span> () =&gt; {
+    <span style=color:#75715e>// Optional; clean up before next render
+</span><span style=color:#75715e></span>  };
+});
+</code></pre></div><p>Nếu bạn chỉ định effect không có biến phụ thuộc nào, effect sẽ chỉ chạy lần đầu tiên khi component render lần đầu tiên, bởi vì nó không có lý do gì để cập nhật. Chức năng này tương tự như sự kết hợp giữa <code>mounted</code>, và <code>beforeDestroyed</code>.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#a6e22e>useEffect</span>(() =&gt; {
+  <span style=color:#75715e>// Happens on mount
+</span><span style=color:#75715e></span>
+  <span style=color:#66d9ef>return</span> () =&gt; {
+    <span style=color:#75715e>// Optional; clean up before unmount
+</span><span style=color:#75715e></span>  };
+}, []);
+</code></pre></div><p>Nếu bạn chỉ định biến phụ thuộc effect sẽ chỉ chạy khi các biến phụ thuộc có thay đổi. Chúng ta sẽ quay trở lại đề tài này trong phần nói về <code>watcher</code>.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>count</span>, <span style=color:#a6e22e>setCount</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
+
+<span style=color:#a6e22e>useEffect</span>(() =&gt; {
+  <span style=color:#75715e>// Happens when `count` changes
+</span><span style=color:#75715e></span>
+  <span style=color:#66d9ef>return</span> () =&gt; {
+    <span style=color:#75715e>// Optional; clean up when `count` changed
+</span><span style=color:#75715e></span>  };
+}, [<span style=color:#a6e22e>count</span>]);
+</code></pre></div><p>Cố gắng để translate một lifecycle thành effect không phải là ý tưởng hay. Sẽ tốt hơn nếu bạn xem mọi thứ như một tập hợp của những side effect được khai báo. Và các effect được gọi là những phần hiện thực chi tiết.</p><p>Giống như Ryan Florence đã tổng hợp dưới này:</p><pre><code>The question is not “when does this effect run” the question is “with which state does this effect synchronize with”
+
+useEffect(fn) // all state
+useEffect(fn, []) // no state
+useEffect(fn, [these, states])
+</code></pre><h1 id=8-watchers>8. Watchers</h1><p>Tương đương bên React: <code>useEffect</code> hook</p><p>Khái niệm về Watcher tương tự như là lifecycle hook: &ldquo;Khi X xảy ra, thực hiện Y&rdquo;. Watcher không tồn tại trong React, nhưng bạn có thể đạt được hiệu ứng tương tự với <code>useEffect</code>.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- AjaxToggle.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;checkbox&#34;</span> <span style=color:#a6e22e>v-model</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;checked&#34;</span> /&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>data</span>() {
+      <span style=color:#66d9ef>return</span> {
+        <span style=color:#a6e22e>checked</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+      };
+    },
+
+    <span style=color:#a6e22e>watch</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>checked</span>(<span style=color:#a6e22e>checked</span>) {
+        <span style=color:#a6e22e>syncWithServer</span>(<span style=color:#a6e22e>checked</span>);
+      },
+    },
+
+    <span style=color:#a6e22e>methods</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>syncWithServer</span>(<span style=color:#a6e22e>checked</span>) {
+        <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>      },
+    },
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>AjaxToggle</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>checked</span>, <span style=color:#a6e22e>setChecked</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>false</span>);
+
+  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>syncWithServer</span>(<span style=color:#a6e22e>checked</span>) {
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>  }
+
+  <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+    <span style=color:#a6e22e>syncWithServer</span>(<span style=color:#a6e22e>checked</span>);
+  }, [<span style=color:#a6e22e>checked</span>]);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>input</span>
+      <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;checkbox&#34;</span>
+      <span style=color:#a6e22e>checked</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>checked</span>}
+      <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>setChecked</span>(<span style=color:#f92672>!</span><span style=color:#a6e22e>checked</span>)}
+    /&gt;
+  );
+}
+</code></pre></div><p>Chú ý <code>useEffect</code> cũng sẽ chạy ở lần đầu tiên. Điều này tương tự như khi sử dụng <code>immediate</code> parameter trong Vue watcher.</p><p>Nếu bạn không muốn effect chạy ở lần đầu tiên bạn phải tạo một <code>ref</code> để lưu lại về việc render lần đầu tiên đã được chạy hay chưa.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useRef</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>AjaxToggle</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>checked</span>, <span style=color:#a6e22e>setChecked</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>false</span>);
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>firstRender</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>true</span>);
+
+  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>syncWithServer</span>(<span style=color:#a6e22e>checked</span>) {
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>  }
+
+  <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>firstRender</span>.<span style=color:#a6e22e>current</span>) {
+      <span style=color:#a6e22e>firstRender</span>.<span style=color:#a6e22e>current</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>;
+      <span style=color:#66d9ef>return</span>;
+    }
+    <span style=color:#a6e22e>syncWithServer</span>(<span style=color:#a6e22e>checked</span>);
+  }, [<span style=color:#a6e22e>checked</span>]);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>input</span>
+      <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;checkbox&#34;</span>
+      <span style=color:#a6e22e>checked</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>checked</span>}
+      <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>setChecked</span>(<span style=color:#f92672>!</span><span style=color:#a6e22e>checked</span>)}
+    /&gt;
+  );
+}
+</code></pre></div><h1 id=9-slots--scoped-slots>9. Slots & scoped slots</h1><p>Tương đương bên React: JSX props or render props</p><p>Nếu bạn render một template ở giữa tag open và close của component, react sẽ truyền nó như là children prop.</p><p>Với Vue bạn có thể khai báo một <code>&lt;slot /></code> tag nơi mà content thuộc về. Với React thì bạn sẽ render child prop.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- RedParagraph.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;color: red&#34;</span>&gt;
+    &lt;<span style=color:#f92672>slot</span> /&gt;
+  &lt;/<span style=color:#f92672>p</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>RedParagraph</span>({ <span style=color:#a6e22e>children</span> }) {
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>color</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;red&#34;</span> }}&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>p</span>&gt;;
+}
+</code></pre></div><p>Bởi vì <code>slots</code> chỉ có vai trò như là prop trong React, chúng ta không cần phải khai báo bất cứ gì trong template, ta chỉ cần nhận vào props sử dụng JSX và render chúng ở bất cứ nơi nào và thời điểm mình muốn.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- Layout.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex&#34;</span>&gt;
+    &lt;<span style=color:#f92672>section</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;w-1/3&#34;</span>&gt;
+      &lt;<span style=color:#f92672>slot</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sidebar&#34;</span> /&gt;
+    &lt;/<span style=color:#f92672>section</span>&gt;
+    &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex-1&#34;</span>&gt;
+      &lt;<span style=color:#f92672>slot</span> /&gt;
+    &lt;/<span style=color:#f92672>main</span>&gt;
+  &lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+<span style=color:#75715e>&lt;!-- In use: --&gt;</span>
+
+&lt;<span style=color:#f92672>layout</span>&gt;
+  &lt;<span style=color:#f92672>template</span> <span style=color:#960050;background-color:#1e0010>#</span><span style=color:#a6e22e>sidebar</span>&gt;
+    &lt;<span style=color:#f92672>nav</span>&gt;...&lt;/<span style=color:#f92672>nav</span>&gt;
+  &lt;/<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>template</span> <span style=color:#960050;background-color:#1e0010>#</span><span style=color:#a6e22e>default</span>&gt;
+    &lt;<span style=color:#f92672>post</span>&gt;...&lt;/<span style=color:#f92672>post</span>&gt;
+  &lt;/<span style=color:#f92672>template</span>&gt;
+&lt;/<span style=color:#f92672>layout</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>RedParagraph</span>({ <span style=color:#a6e22e>sidebar</span>, <span style=color:#a6e22e>children</span> }) {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex&#34;</span>&gt;
+      &lt;<span style=color:#f92672>section</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;w-1/3&#34;</span>&gt;{<span style=color:#a6e22e>sidebar</span>}&lt;/<span style=color:#f92672>section</span>&gt;
+      &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex-1&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>main</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+}
+
+<span style=color:#75715e>// In use:
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>return</span> (
+  &lt;<span style=color:#f92672>Layout</span> <span style=color:#a6e22e>sidebar</span><span style=color:#f92672>=</span>{&lt;<span style=color:#f92672>nav</span>&gt;...&lt;/<span style=color:#f92672>nav</span>&gt;}&gt;
+    &lt;<span style=color:#f92672>Post</span>&gt;...&lt;/<span style=color:#f92672>Post</span>&gt;
+  &lt;/<span style=color:#f92672>Layout</span>&gt;
+);
+</code></pre></div><p>Vue có scoped slots để truyền data xuống slot sẽ được render.
+Những phần chính của scopped slot sẽ được render.</p><p>Thông thường slot sẽ được render trước khi chúng được truyền xuống parent component. Component cha sẽ quyết định sẽ làm gì với những fragment được render.</p><p>Scoped slot không thể được render trước component cha bởi vì nó cần dữ liệu truyền vào của component cha, nói cách khác scoped slot là lazily evaluated slot.</p><p>Lazily trong Javascript thì rõ ràng: chỉ cần wrap nó lại trong một function và gọi nó khi cần thiết. Nếu bạn cần một scoped slot trong React chỉ cần truyền vào một hàm mà trả về một template khi được gọi.</p><p>Đối với một scoped slot, chúng ta có thể một lần nữa sử dụng children hoặc bất cứ prop nào khác như là named scoped slot, tuy nhiên chúng ta sẽ truyền vào một hàm thay vì trả về một template.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- CurrentUser.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>span</span>&gt;
+    &lt;<span style=color:#f92672>slot</span> <span style=color:#a6e22e>:user</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user&#34;</span> /&gt;
+  &lt;/<span style=color:#f92672>span</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>inject</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;user&#34;</span>],
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+
+<span style=color:#75715e>&lt;!-- In use: --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>current-user</span>&gt;
+    &lt;<span style=color:#f92672>template</span> <span style=color:#960050;background-color:#1e0010>#</span><span style=color:#a6e22e>default</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{ user }&#34;</span>&gt; {{ user.firstName }} &lt;/<span style=color:#f92672>template</span>&gt;
+  &lt;/<span style=color:#f92672>current-user</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useContext</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>UserContext</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./UserContext&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>CurrentUser</span>({ <span style=color:#a6e22e>children</span> }) {
+  <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>user</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>useContext</span>(<span style=color:#a6e22e>UserContext</span>);
+
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>span</span>&gt;{<span style=color:#a6e22e>children</span>(<span style=color:#a6e22e>user</span>)}&lt;/<span style=color:#f92672>span</span>&gt;;
+}
+
+<span style=color:#75715e>// In use:
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>CurrentUser</span>&gt;{(<span style=color:#a6e22e>user</span>) =&gt; <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>firstName</span>}&lt;/<span style=color:#f92672>CurrentUser</span>&gt;;
+</code></pre></div><h1 id=10-provide--inject>10. Provide / inject</h1><p>Tương đương bên React: <code>createContext</code> và <code>useContext</code> hook</p><p><code>Provide / inject</code> cho phép một component share state cho nhánh con của của. Tương tự bên React có context.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!-- MyProvider.vue --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>div</span>&gt;&lt;<span style=color:#f92672>slot</span> /&gt;&lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>provide</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>foo</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;bar&#34;</span>,
+    },
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+
+<span style=color:#75715e>&lt;!-- Must be rendered inside a MyProvider instance: --&gt;</span>
+
+&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>p</span>&gt;{{ foo }}&lt;/<span style=color:#f92672>p</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+&lt;<span style=color:#f92672>script</span>&gt;
+  <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+    <span style=color:#a6e22e>inject</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;foo&#34;</span>],
+  };
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createContext</span>, <span style=color:#a6e22e>useContext</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fooContext</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createContext</span>(<span style=color:#e6db74>&#34;foo&#34;</span>);
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>MyProvider</span>({ <span style=color:#a6e22e>children</span> }) {
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>FooContext.Provider</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;foo&#34;</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>FooContext.Provider</span>&gt;;
+}
+
+<span style=color:#75715e>// Must be rendered inside a MyProvider instance:
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>MyConsumer</span>() {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>foo</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useContext</span>(<span style=color:#a6e22e>FooContext</span>);
+
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>p</span>&gt;{<span style=color:#a6e22e>foo</span>}&lt;/<span style=color:#f92672>p</span>&gt;;
+}
+</code></pre></div><h1 id=11-custom-directives>11. Custom directives</h1><p>Tương đương bên React: Components</p><p>React không có khái niệm directive, tuy nhiên mọi vấn đề giải quyết được bằng directive đều có thể giải quyết được bằng component.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>v-tooltip</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Hello!&#34;</span>&gt;
+  &lt;<span style=color:#f92672>p</span>&gt;...&lt;/<span style=color:#f92672>p</span>&gt;
+&lt;/<span style=color:#f92672>div</span>&gt;
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>return</span> (
+  &lt;<span style=color:#f92672>Tooltip</span> <span style=color:#a6e22e>text</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Hello&#34;</span>&gt;
+    &lt;<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>p</span>&gt;...&lt;/<span style=color:#f92672>p</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  &lt;/<span style=color:#f92672>Tooltip</span>&gt;
+);
+</code></pre></div><h1 id=12-transition>12. Transition</h1><p>Tương đương bên React: Thư viện bên thứ ba</p><p>React không có hàm builtin hỗ trợ transition, nếu bạn tìm kiếm những gì tương tự như bên Vue bạn có thể sử dụng thư viện khác như là:</p><ul><li><a href=https://github.com/reactjs/react-transition-group>https://github.com/reactjs/react-transition-group</a></li><li><a href=https://www.framer.com/api/motion/>https://www.framer.com/api/motion/</a></li></ul><h1 id=nguồn-tham-khảo>Nguồn tham khảo</h1><p><a href=https://sebastiandedeyne.com/react-for-vue-developers/>https://sebastiandedeyne.com/react-for-vue-developers/</a></p><ul class=pa0></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"></aside></article></main><footer class="bg-black bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=https://samthehai.github.io>&copy; Hai Sam's Blog 2021</a><div></div></div></footer></body></html>
