@@ -214,6 +214,7 @@ Cuối cùng ta sẽ chuyển qua hàm `doPivot` phụ trách việc chọn pivo
 
 2.4.3 Chọn Pivot và thực hiện việc partition
 
+T.B.D
 # Nguồn tham khảo
 
 1. https://golang.org/src/sort/sort.go
