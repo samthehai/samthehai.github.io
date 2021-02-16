@@ -1,1 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DesignPattern on Hai Sam's Blog</title><link>https://samthehai.github.io/tags/designpattern/</link><description>Recent content in DesignPattern on Hai Sam's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 11 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://samthehai.github.io/tags/designpattern/index.xml" rel="self" type="application/rss+xml"/><item><title>Design pattern: Creational Pattern - Abstract Factory</title><link>https://samthehai.github.io/posts/design_pattern_creational_pattern_abstract_factory/</link><pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate><guid>https://samthehai.github.io/posts/design_pattern_creational_pattern_abstract_factory/</guid><description>Nguồn tham khảo</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DesignPattern on Hai Sam&#39;s Blog</title>
+    <link>https://samthehai.github.io/tags/designpattern/</link>
+    <description>Recent content in DesignPattern on Hai Sam&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://samthehai.github.io/tags/designpattern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Design pattern: Creational Pattern - Abstract Factory</title>
+      <link>https://samthehai.github.io/posts/design_pattern_creational_pattern_abstract_factory/</link>
+      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://samthehai.github.io/posts/design_pattern_creational_pattern_abstract_factory/</guid>
+      <description>Nguồn tham khảo </description>
+    </item>
+    
+  </channel>
+</rss>
