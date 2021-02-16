@@ -17,14 +17,5 @@
  Contiguously-allocated structures bao gồm nhiều block memory liên tiếp nhau, gồm có: arrays, matrices, heaps, và hash tables. Linked data structures bao gồm những mảnh memory khác nhau được kết nối với nhau bởi pointer, gồm có: lists, trees, và graph adjacency lists  1.</description>
     </item>
     
-    <item>
-      <title>Thuật toán cơ bản: phân tích độ phức tạp giải thuật</title>
-      <link>https://samthehai.github.io/posts/basic_datastructure_skiplist/</link>
-      <pubDate>Sat, 24 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://samthehai.github.io/posts/basic_datastructure_skiplist/</guid>
-      <description>1. Giới thiệu Như ta đã biết ưu điểm của linked list so với array là ta có thể thêm và xoá node một cách linh hoạt và ít tốn kém hơn. Tuy nhiên độ phức tạp khi tìm kiếm và insert dữ liệu vào linked list trong trường hợp worst case là O(n). Vậy có cách nào cải thiện được vấn đề này ở linked list không? Câu trả lời là ta có thể đạt được kết quả tốt hơn ở một linked list đã sắp xếp nêú sử dụng skiplist.</description>
-    </item>
-    
   </channel>
 </rss>

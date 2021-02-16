@@ -6,16 +6,7 @@
     <description>Recent content in Programming on Hai Sam&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://samthehai.github.io/tags/programming/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Design pattern: Creational Pattern - Abstract Factory</title>
-      <link>https://samthehai.github.io/posts/design_pattern_creational_pattern_abstract_factory/</link>
-      <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://samthehai.github.io/posts/design_pattern_creational_pattern_abstract_factory/</guid>
-      <description>Nguồn tham khảo </description>
-    </item>
-    
+    <lastBuildDate>Mon, 25 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://samthehai.github.io/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Thuật toán cơ bản: Quicksort trong practice hay là Introsort</title>
       <link>https://samthehai.github.io/posts/basic_algorithm_quicksort/</link>
@@ -67,15 +58,6 @@ Table of contents  Templates Props Data Computed properties Methods Events Lifec
     </item>
     
     <item>
-      <title>Thuật toán thực hành: AI cho tic tac toe game</title>
-      <link>https://samthehai.github.io/posts/tic_tac_toe_ai_algorithm/</link>
-      <pubDate>Fri, 30 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://samthehai.github.io/posts/tic_tac_toe_ai_algorithm/</guid>
-      <description>1. Giới thiệu Nguồn tham khảo </description>
-    </item>
-    
-    <item>
       <title>Thuật toán cơ bản: phân tích độ phức tạp giải thuật</title>
       <link>https://samthehai.github.io/posts/basic_algorithm/</link>
       <pubDate>Sat, 24 Oct 2020 00:00:00 +0000</pubDate>
@@ -85,15 +67,6 @@ Table of contents  Templates Props Data Computed properties Methods Events Lifec
 Vậy thì thuật toán là gi?
 Một thuật toán là một quá trình để thực hiện một task, thuật toán là ý tưởng bên trong của bất kì chương trình máy tính nghiêm chỉnh nào.
 Ta có thể nói một thuật toán thì sẽ phải giải quyết một vấn đề nào đó và để giải quyết một vấn đề có thể có nhiều thuật toán khác nhau.</description>
-    </item>
-    
-    <item>
-      <title>Thuật toán cơ bản: phân tích độ phức tạp giải thuật</title>
-      <link>https://samthehai.github.io/posts/basic_datastructure_skiplist/</link>
-      <pubDate>Sat, 24 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://samthehai.github.io/posts/basic_datastructure_skiplist/</guid>
-      <description>1. Giới thiệu Như ta đã biết ưu điểm của linked list so với array là ta có thể thêm và xoá node một cách linh hoạt và ít tốn kém hơn. Tuy nhiên độ phức tạp khi tìm kiếm và insert dữ liệu vào linked list trong trường hợp worst case là O(n). Vậy có cách nào cải thiện được vấn đề này ở linked list không? Câu trả lời là ta có thể đạt được kết quả tốt hơn ở một linked list đã sắp xếp nêú sử dụng skiplist.</description>
     </item>
     
     <item>
