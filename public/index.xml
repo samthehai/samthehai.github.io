@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hai Sam&#39;s Blog</title>
+    <title>Home on Hai Sam&#39;s Blog</title>
     <link>https://samthehai.github.io/</link>
-    <description>Recent content on Hai Sam&#39;s Blog</description>
+    <description>Recent content in Home on Hai Sam&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://samthehai.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Jun 2017 18:27:58 +0100</lastBuildDate><atom:link href="https://samthehai.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Design pattern: Creational Pattern - Abstract Factory</title>
       <link>https://samthehai.github.io/posts/design_pattern_creational_pattern_abstract_factory/</link>
@@ -112,16 +112,6 @@ Ta có thể nói một thuật toán thì sẽ phải giải quyết một vấ
       
       <guid>https://samthehai.github.io/posts/go_for_c_programmers/</guid>
       <description>1. Giới thiệu về Go 1.1. Động lực    Hiện tại đang có Muốn Golang     Code khó hiểu và không an toàn Dễ đọc, code an toàn và hiệu quả Nhỏ gọn mà biểu diễn tốt   Build code siêu chậm Một hệ thống có thể mở rộng (scale) Kiểu dữ liệu tĩnh (statically) và có hỗ trợ thu dọn rác (garbage collected)   Không có hỗ trợ lập trình đồng bộ Hỗ trợ lập trình đồng bộ tốt Đối tượng nhưng không định hướng kiểu (type - oriented)   Tools cũ kĩ Những Tools mà có thể hoạt động tại những hệ thống lớn như Google Hỗ trợ lập trình đồng bộ tốt     Hiện thực hiệu quả     Thư viện chuẩn phong phú     Biên dịch nhanh     Tools có thể mở rộng được    1.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://samthehai.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://samthehai.github.io/about/</guid>
-      <description>Hai Sam, a programming enthusiasm father.
-Love Go, Vue.js, React.js and other programming stuff.</description>
     </item>
     
   </channel>
