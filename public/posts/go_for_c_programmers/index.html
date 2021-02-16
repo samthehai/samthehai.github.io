@@ -1,93 +1,250 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Golang dành cho dân lập trình C - Hai Sam&#39;s Blog</title><meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta itemprop="name" content="Golang dành cho dân lập trình C">
-<meta itemprop="description" content="1. Giới thiệu về Go 1.1. Động lực    Hiện tại đang có Muốn Golang     Code khó hiểu và không an toàn Dễ đọc, code an toàn và hiệu quả Nhỏ gọn mà biểu diễn tốt   Build code siêu chậm Một hệ thống có thể mở rộng (scale) Kiểu dữ liệu tĩnh (statically) và có hỗ trợ thu dọn rác (garbage collected)   Không có hỗ trợ lập trình đồng bộ Hỗ trợ lập trình đồng bộ tốt Đối tượng nhưng không định hướng kiểu (type - oriented)   Tools cũ kĩ Những Tools mà có thể hoạt động tại những hệ thống lớn như Google Hỗ trợ lập trình đồng bộ tốt     Hiện thực hiệu quả     Thư viện chuẩn phong phú     Biên dịch nhanh     Tools có thể mở rộng được    1.">
-<meta itemprop="datePublished" content="2020-03-15T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2020-03-15T00:00:00+00:00" />
-<meta itemprop="wordCount" content="3674">
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="canonical" href="/posts/go_for_c_programmers/">
 
+  
 
-<meta itemprop="keywords" content="Programming,Go," />
-<meta property="og:title" content="Golang dành cho dân lập trình C" />
-<meta property="og:description" content="1. Giới thiệu về Go 1.1. Động lực    Hiện tại đang có Muốn Golang     Code khó hiểu và không an toàn Dễ đọc, code an toàn và hiệu quả Nhỏ gọn mà biểu diễn tốt   Build code siêu chậm Một hệ thống có thể mở rộng (scale) Kiểu dữ liệu tĩnh (statically) và có hỗ trợ thu dọn rác (garbage collected)   Không có hỗ trợ lập trình đồng bộ Hỗ trợ lập trình đồng bộ tốt Đối tượng nhưng không định hướng kiểu (type - oriented)   Tools cũ kĩ Những Tools mà có thể hoạt động tại những hệ thống lớn như Google Hỗ trợ lập trình đồng bộ tốt     Hiện thực hiệu quả     Thư viện chuẩn phong phú     Biên dịch nhanh     Tools có thể mở rộng được    1." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://samthehai.github.io/posts/go_for_c_programmers/" />
-<meta property="article:published_time" content="2020-03-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-03-15T00:00:00+00:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Golang dành cho dân lập trình C"/>
-<meta name="twitter:description" content="1. Giới thiệu về Go 1.1. Động lực    Hiện tại đang có Muốn Golang     Code khó hiểu và không an toàn Dễ đọc, code an toàn và hiệu quả Nhỏ gọn mà biểu diễn tốt   Build code siêu chậm Một hệ thống có thể mở rộng (scale) Kiểu dữ liệu tĩnh (statically) và có hỗ trợ thu dọn rác (garbage collected)   Không có hỗ trợ lập trình đồng bộ Hỗ trợ lập trình đồng bộ tốt Đối tượng nhưng không định hướng kiểu (type - oriented)   Tools cũ kĩ Những Tools mà có thể hoạt động tại những hệ thống lớn như Google Hỗ trợ lập trình đồng bộ tốt     Hiện thực hiệu quả     Thư viện chuẩn phong phú     Biên dịch nhanh     Tools có thể mở rộng được    1."/>
-<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" media="screen" href="https://samthehai.github.io/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://samthehai.github.io/css/main.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
 
-        <link id="dark-scheme" rel="stylesheet" type="text/css" href="https://samthehai.github.io/css/dark.css" />
+  <style>
+    body {
+      visibility: hidden;
+      opacity: 0;
+    }
+  </style>
 
-	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-		<script src="https://samthehai.github.io/js/main.js"></script>
+  <link rel="stylesheet" href="/css/prism.css" media="none" onload="this.media='all';">
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+  
+    <link rel="stylesheet" href="/css/custom_01.css">
+  
+    <link rel="stylesheet" href="/css/custom_02.css">
+  
+
+  
+  
+  <title>Golang dành cho dân lập trình C | Hai Sam&#39;s Blog</title>
 </head>
 
-<body>
-	<div class="container wrapper">
-		<div class="header">
-	
-		<div class="avatar">
-			<a href="https://samthehai.github.io/">
-				<img src="https://avatars.githubusercontent.com/u/28634475?s=460&amp;u=f4564e31e24dbd90802eaf4a18d2d9e578c77108&amp;v=4" alt="Hai Sam&#39;s Blog" />
-			</a>
-		</div>
-	
-	<h1 class="site-title"><a href="https://samthehai.github.io/">Hai Sam&#39;s Blog</a></h1>
-	<div class="site-description"><p>Hai Sam, a programming enthusiasm father</p><nav class="nav social">
-			<ul class="flat"><li><a href="https://github.com/samthehai" title="Github"><i data-feather="github"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li><li><a href="#" class="scheme-toggle" id="scheme-toggle"></a></li></ul>
-		</nav>
-	</div>
+  <body>
+    <a href="#main">skip to content</a>
+    <noscript>
+  <style>
+    body {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</noscript>
 
-	<nav class="nav">
-		<ul class="flat">
-			
-			<li>
-				<a href="/">Home</a>
-			</li>
-			
-			<li>
-				<a href="/posts">All posts</a>
-			</li>
-			
-			<li>
-				<a href="/about">About</a>
-			</li>
-			
-			<li>
-				<a href="/tags">Tags</a>
-			</li>
-			
-		</ul>
-	</nav>
-</div>
+    <svg style="display: none">
+  <symbol id="bookmark" viewBox="0 0 40 50">
+   <g transform="translate(2266 3206.2)">
+    <path style="stroke:currentColor;stroke-width:3.2637;fill:none" d="m-2262.2-3203.4-.2331 42.195 16.319-16.318 16.318 16.318.2331-42.428z"/>
+   </g>
+  </symbol>
 
+  <symbol id="w3c" viewBox="0 0 127.09899 67.763">
+   <text font-size="83" style="font-size:83px;font-family:Trebuchet;letter-spacing:-12;fill-opacity:0" letter-spacing="-12" y="67.609352" x="-26.782778">W3C</text>
+   <text font-size="83" style="font-size:83px;font-weight:bold;font-family:Trebuchet;fill-opacity:0" y="67.609352" x="153.21722" font-weight="bold">SVG</text>
+   <path style="fill:currentColor;image-rendering:optimizeQuality;shape-rendering:geometricPrecision" d="m33.695.377 12.062 41.016 12.067-41.016h8.731l-19.968 67.386h-.831l-12.48-41.759-12.479 41.759h-.832l-19.965-67.386h8.736l12.061 41.016 8.154-27.618-3.993-13.397h8.737z"/>
+   <path style="fill:currentColor;image-rendering:optimizeQuality;shape-rendering:geometricPrecision" d="m91.355 46.132c0 6.104-1.624 11.234-4.862 15.394-3.248 4.158-7.45 6.237-12.607 6.237-3.882 0-7.263-1.238-10.148-3.702-2.885-2.47-5.02-5.812-6.406-10.022l6.82-2.829c1.001 2.552 2.317 4.562 3.953 6.028 1.636 1.469 3.56 2.207 5.781 2.207 2.329 0 4.3-1.306 5.909-3.911 1.609-2.606 2.411-5.738 2.411-9.401 0-4.049-.861-7.179-2.582-9.399-1.995-2.604-5.129-3.912-9.397-3.912h-3.327v-3.991l11.646-20.133h-14.062l-3.911 6.655h-2.493v-14.976h32.441v4.075l-12.31 21.217c4.324 1.385 7.596 3.911 9.815 7.571 2.22 3.659 3.329 7.953 3.329 12.892z"/>
+   <path style="fill:currentColor;image-rendering:optimizeQuality;shape-rendering:geometricPrecision" d="m125.21 0 1.414 8.6-5.008 9.583s-1.924-4.064-5.117-6.314c-2.693-1.899-4.447-2.309-7.186-1.746-3.527.73-7.516 4.938-9.258 10.13-2.084 6.21-2.104 9.218-2.178 11.978-.115 4.428.58 7.043.58 7.043s-3.04-5.626-3.011-13.866c.018-5.882.947-11.218 3.666-16.479 2.404-4.627 5.954-7.404 9.114-7.728 3.264-.343 5.848 1.229 7.841 2.938 2.089 1.788 4.213 5.698 4.213 5.698l4.94-9.837z"/>
+   <path style="fill:currentColor;image-rendering:optimizeQuality;shape-rendering:geometricPrecision" d="m125.82 48.674s-2.208 3.957-3.589 5.48c-1.379 1.524-3.849 4.209-6.896 5.555-3.049 1.343-4.646 1.598-7.661 1.306-3.01-.29-5.807-2.032-6.786-2.764-.979-.722-3.486-2.864-4.897-4.854-1.42-2-3.634-5.995-3.634-5.995s1.233 4.001 2.007 5.699c.442.977 1.81 3.965 3.749 6.572 1.805 2.425 5.315 6.604 10.652 7.545 5.336.945 9.002-1.449 9.907-2.031.907-.578 2.819-2.178 4.032-3.475 1.264-1.351 2.459-3.079 3.116-4.108.487-.758 1.276-2.286 1.276-2.286l-1.276-6.644z"/>
+  </symbol>
 
-		<div class="post">
-			<div class="post-header">
-				
-					<div class="meta">
-						<div class="date">
-							<span class="day">15</span>
-							<span class="rest">Mar 2020</span>
-						</div>
-					</div>
-				
-				<div class="matter">
-					<h1 class="title">Golang dành cho dân lập trình C</h1>
-				</div>
-			</div>
-					
-			<div class="markdown">
-				<h1 id="1-giới-thiệu-về-go">1. Giới thiệu về Go</h1>
+  <symbol id="tag" viewBox="0 0 177.16535 177.16535">
+    <g transform="translate(0 -875.2)">
+     <path style="fill-rule:evenodd;stroke-width:0;fill:currentColor" d="m159.9 894.3-68.79 8.5872-75.42 77.336 61.931 60.397 75.429-76.565 6.8495-69.755zm-31.412 31.835a10.813 10.813 0 0 1 1.8443 2.247 10.813 10.813 0 0 1 -3.5174 14.872l-.0445.0275a10.813 10.813 0 0 1 -14.86 -3.5714 10.813 10.813 0 0 1 3.5563 -14.863 10.813 10.813 0 0 1 13.022 1.2884z"/>
+    </g>
+  </symbol>
+
+  <symbol id="balloon" viewBox="0 0 141.73228 177.16535">
+   <g transform="translate(0 -875.2)">
+    <g>
+     <path style="fill:currentColor" d="m68.156 882.83-.88753 1.4269c-4.9564 7.9666-6.3764 17.321-5.6731 37.378.36584 10.437 1.1246 23.51 1.6874 29.062.38895 3.8372 3.8278 32.454 4.6105 38.459 4.6694-.24176 9.2946.2879 14.377 1.481 1.2359-3.2937 5.2496-13.088 8.886-21.623 6.249-14.668 8.4128-21.264 10.253-31.252 1.2464-6.7626 1.6341-12.156 1.4204-19.764-.36325-12.93-2.1234-19.487-6.9377-25.843-2.0833-2.7507-6.9865-7.6112-7.9127-7.8436-.79716-.20019-6.6946-1.0922-6.7755-1.0248-.02213.0182-5.0006-.41858-7.5248-.22808l-2.149-.22808h-3.3738z"/>
+     <path style="fill:currentColor" d="m61.915 883.28-3.2484.4497c-1.7863.24724-3.5182.53481-3.8494.63994-2.4751.33811-4.7267.86957-6.7777 1.5696-.28598 0-1.0254.20146-2.3695.58589-5.0418 1.4418-6.6374 2.2604-8.2567 4.2364-6.281 7.6657-11.457 18.43-12.932 26.891-1.4667 8.4111.71353 22.583 5.0764 32.996 3.8064 9.0852 13.569 25.149 22.801 37.517 1.3741 1.841 2.1708 2.9286 2.4712 3.5792 3.5437-1.1699 6.8496-1.9336 10.082-2.3263-1.3569-5.7831-4.6968-21.86-6.8361-33.002-.92884-4.8368-2.4692-14.322-3.2452-19.991-.68557-5.0083-.77707-6.9534-.74159-15.791.04316-10.803.41822-16.162 1.5026-21.503 1.4593-5.9026 3.3494-11.077 6.3247-15.852z"/>
+     <path style="fill:currentColor" d="m94.499 885.78c-.10214-.0109-.13691 0-.0907.0409.16033.13489 1.329 1.0675 2.5976 2.0723 6.7003 5.307 11.273 14.568 12.658 25.638.52519 4.1949.24765 14.361-.5059 18.523-2.4775 13.684-9.7807 32.345-20.944 53.519l-3.0559 5.7971c2.8082.76579 5.7915 1.727 8.9926 2.8441 11.562-11.691 18.349-19.678 24.129-28.394 7.8992-11.913 11.132-20.234 12.24-31.518.98442-10.02-1.5579-20.876-6.7799-28.959-.2758-.4269-.57803-.86856-.89617-1.3166-3.247-6.13-9.752-12.053-21.264-16.131-2.3687-.86369-6.3657-2.0433-7.0802-2.1166z"/>
+     <path style="fill:currentColor" d="m32.52 892.22c-.20090-.13016-1.4606.81389-3.9132 2.7457-11.486 9.0476-17.632 24.186-16.078 39.61.79699 7.9138 2.4066 13.505 5.9184 20.562 5.8577 11.77 14.749 23.219 30.087 38.74.05838.059.12188.1244.18052.1838 1.3166-.5556 2.5965-1.0618 3.8429-1.5199-.66408-.32448-1.4608-1.3297-3.8116-4.4602-5.0951-6.785-8.7512-11.962-13.051-18.486-5.1379-7.7948-5.0097-7.5894-8.0586-13.054-6.2097-11.13-8.2674-17.725-8.6014-27.563-.21552-6.3494.13041-9.2733 1.775-14.987 2.1832-7.5849 3.9273-10.986 9.2693-18.07 1.7839-2.3656 2.6418-3.57 2.4409-3.7003z"/>
+     <path style="fill:currentColor" d="m69.133 992.37c-6.2405.0309-12.635.76718-19.554 2.5706 4.6956 4.7759 9.935 10.258 12.05 12.625l4.1272 4.6202h11.493l3.964-4.4516c2.0962-2.3541 7.4804-7.9845 12.201-12.768-8.378-1.4975-16.207-2.6353-24.281-2.5955z"/>
+     <rect style="stroke-width:0;fill:currentColor" ry="2.0328" height="27.746" width="22.766" y="1017.7" x="60.201"/>
+    </g>
+   </g>
+  </symbol>
+
+  <symbol id="info" viewBox="0 0 41.667 41.667">
+   <g transform="translate(-37.035 -1004.6)">
+    <path style="stroke-linejoin:round;stroke:currentColor;stroke-linecap:round;stroke-width:3.728;fill:none" d="m76.25 1030.2a18.968 18.968 0 0 1 -23.037 13.709 18.968 18.968 0 0 1 -13.738 -23.019 18.968 18.968 0 0 1 23.001 -13.768 18.968 18.968 0 0 1 13.798 22.984"/>
+    <g transform="matrix(1.1146 0 0 1.1146 -26.276 -124.92)">
+     <path style="stroke:currentColor;stroke-linecap:round;stroke-width:3.728;fill:none" d="m75.491 1039.5v-8.7472"/>
+     <path style="stroke-width:0;fill:currentColor" transform="scale(-1)" d="m-73.193-1024.5a2.3719 2.3719 0 0 1 -2.8807 1.7142 2.3719 2.3719 0 0 1 -1.718 -2.8785 2.3719 2.3719 0 0 1 2.8763 -1.7217 2.3719 2.3719 0 0 1 1.7254 2.8741"/>
+    </g>
+   </g>
+  </symbol>
+
+  <symbol id="warning" viewBox="0 0 48.430474 41.646302">
+    <g transform="translate(-1.1273 -1010.2)">
+     <path style="stroke-linejoin:round;stroke:currentColor;stroke-linecap:round;stroke-width:4.151;fill:none" d="m25.343 1012.3-22.14 37.496h44.28z"/>
+     <path style="stroke:currentColor;stroke-linecap:round;stroke-width:4.1512;fill:none" d="m25.54 1027.7v8.7472"/>
+     <path style="stroke-width:0;fill:currentColor" d="m27.839 1042.8a2.3719 2.3719 0 0 1 -2.8807 1.7143 2.3719 2.3719 0 0 1 -1.718 -2.8785 2.3719 2.3719 0 0 1 2.8763 -1.7217 2.3719 2.3719 0 0 1 1.7254 2.8741"/>
+    </g>
+  </symbol>
+
+  <symbol id="menu" viewBox="0 0 50 50">
+     <rect style="stroke-width:0;fill:currentColor" height="10" width="50" y="0" x="0"/>
+     <rect style="stroke-width:0;fill:currentColor" height="10" width="50" y="20" x="0"/>
+     <rect style="stroke-width:0;fill:currentColor" height="10" width="50" y="40" x="0"/>
+   </symbol>
+
+   <symbol id="link" viewBox="0 0 50 50">
+    <g transform="translate(0 -1002.4)">
+     <g transform="matrix(.095670 0 0 .095670 2.3233 1004.9)">
+      <g>
+       <path style="stroke-width:0;fill:currentColor" d="m452.84 192.9-128.65 128.65c-35.535 35.54-93.108 35.54-128.65 0l-42.881-42.886 42.881-42.876 42.884 42.876c11.845 11.822 31.064 11.846 42.886 0l128.64-128.64c11.816-11.831 11.816-31.066 0-42.9l-42.881-42.881c-11.822-11.814-31.064-11.814-42.887 0l-45.928 45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526c35.535-35.521 93.136-35.521 128.64 0l42.886 42.881c35.535 35.523 35.535 93.141-.001 128.66zm-254.28 168.51-45.903 45.9c-11.845 11.846-31.064 11.817-42.881 0l-42.884-42.881c-11.845-11.821-11.845-31.041 0-42.886l128.65-128.65c11.819-11.814 31.069-11.814 42.884 0l42.886 42.886 42.876-42.886-42.876-42.881c-35.54-35.521-93.113-35.521-128.65 0l-128.65 128.64c-35.538 35.545-35.538 93.146 0 128.65l42.883 42.882c35.51 35.54 93.11 35.54 128.65 0l72.496-72.499c-23.956 1.597-48.092-3.784-69.474-16.283z"/>
+      </g>
+     </g>
+    </g>
+  </symbol>
+
+  <symbol id="doc" viewBox="0 0 35 45">
+   <g transform="translate(-147.53 -539.83)">
+    <path style="stroke:currentColor;stroke-width:2.4501;fill:none" d="m149.38 542.67v39.194h31.354v-39.194z"/>
+    <g style="stroke-width:25" transform="matrix(.098003 0 0 .098003 133.69 525.96)">
+     <path d="m220 252.36h200" style="stroke:currentColor;stroke-width:25;fill:none"/>
+     <path style="stroke:currentColor;stroke-width:25;fill:none" d="m220 409.95h200"/>
+     <path d="m220 488.74h200" style="stroke:currentColor;stroke-width:25;fill:none"/>
+     <path d="m220 331.15h200" style="stroke:currentColor;stroke-width:25;fill:none"/>
+    </g>
+   </g>
+ </symbol>
+
+ <symbol id="tick" viewBox="0 0 177.16535 177.16535">
+  <g transform="translate(0 -875.2)">
+   <rect style="stroke-width:0;fill:currentColor" transform="rotate(30)" height="155" width="40" y="702.99" x="556.82"/>
+   <rect style="stroke-width:0;fill:currentColor" transform="rotate(30)" height="40" width="90.404" y="817.99" x="506.42"/>
+  </g>
+ </symbol>
+</svg>
+
+    <div class="wrapper">
+      <header class="intro-and-nav" role="banner">
+  <div>
+    <div class="intro">
+      <a
+        class="logo"
+        href="https://samthehai.github.io/"
+        aria-label="Hai Sam&#39;s Blog home page"
+      >
+        <img src="/images/logo.svg" alt="">
+      </a>
+      <p class="library-desc">
+         Hai Sam, a programming enthusiasm father. 
+      </p>
+    </div>
+    <nav id="patterns-nav" class="patterns" role="navigation">
+  <h2 class="vh">Main navigation</h2>
+  <button id="menu-button" aria-expanded="false">
+    <svg viewBox="0 0 50 50" aria-hidden="true" focusable="false">
+      <use xlink:href="#menu"></use>
+    </svg>
+    Menu
+  </button>
+  
+  <ul id="patterns-list">
+  
+    <li class="pattern">
+      
+      
+      
+      
+      <a href="/" >
+        <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
+          <use xlink:href="#bookmark"></use>
+        </svg>
+        <span class="text">Home</span>
+      </a>
+    </li>
+  
+    <li class="pattern">
+      
+      
+      
+      
+      <a href="/post/" >
+        <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
+          <use xlink:href="#bookmark"></use>
+        </svg>
+        <span class="text">Blog</span>
+      </a>
+    </li>
+  
+    <li class="pattern">
+      
+      
+      
+      
+      <a href="/tags/" >
+        <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
+          <use xlink:href="#bookmark"></use>
+        </svg>
+        <span class="text">Tags</span>
+      </a>
+    </li>
+  
+    <li class="pattern">
+      
+      
+      
+      
+      <a href="/about/" >
+        <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
+          <use xlink:href="#bookmark"></use>
+        </svg>
+        <span class="text">About</span>
+      </a>
+    </li>
+  
+    <li class="pattern">
+      
+      
+      
+      
+      <a href="/index.xml" >
+        <svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50">
+          <use xlink:href="#bookmark"></use>
+        </svg>
+        <span class="text">RSS</span>
+      </a>
+    </li>
+  
+  </ul>
+</nav>
+    
+  </div>
+</header>
+
+      <div class="main-and-footer">
+        <div>
+          
+  <main id="main">
+    <h1>Golang dành cho dân lập trình C</h1>
+    <h1 id="1-giới-thiệu-về-go">1. Giới thiệu về Go</h1>
 <h2 id="11-động-lực">1.1. Động lực</h2>
 <table>
 <thead>
@@ -141,14 +298,15 @@
 </tbody>
 </table>
 <h2 id="12-hello-world">1.2. Hello World</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">package</span> main
+<pre><code class="language-Go">package main
 
-<span style="color:#00f">import</span> <span style="color:#a31515">&#34;fmt&#34;</span>
+import &quot;fmt&quot;
 
-<span style="color:#00f">func</span> main() {
-  fmt.Println(<span style="color:#a31515">&#34;Hello, 世界!&#34;</span>)
+func main() {
+  fmt.Println(&quot;Hello, 世界!&quot;)
 }
-</code></pre></div><h2 id="13-syntax">1.3. Syntax</h2>
+</code></pre>
+<h2 id="13-syntax">1.3. Syntax</h2>
 <blockquote>
 <p>Syntax is not important&hellip; - unless you are a programmer.</p>
 </blockquote>
@@ -159,68 +317,76 @@
 <p>Hints on Programming Language Design</p>
 <p>C. A. R. Hoare 1973</p>
 <h3 id="131-quá-dài-dòng">1.3.1. Quá dài dòng</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">scoped_ptr&lt;logStats::LogStats&gt;
+<pre><code class="language-C">scoped_ptr&lt;logStats::LogStats&gt;
     logStats(logStats::LogStats::NewLogStats(FLAGS_logStats,logStats::LogStats::kFIFO));
-</code></pre></div><h3 id="132-quá-dày-đặc">1.3.2. Quá dày đặc</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Haskell" data-lang="Haskell">(n<span style="color:#2b91af">:</span> <span style="color:#2b91af">Int</span>) <span style="color:#00f">=&gt;</span> (2 to n) |&gt; (r <span style="color:#00f">=&gt;</span> r.foldLeft(r.toSet)((ps, x) <span style="color:#00f">=&gt;</span>
-    <span style="color:#00f">if</span> (ps(x)) ps <span style="color:#008000">-- (x * x to n by x) else ps))</span>
-</code></pre></div><h3 id="133-chuẩn">1.3.3. Chuẩn</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">t := time.Now()
-<span style="color:#00f">switch</span> {
-<span style="color:#00f">case</span> t.Hour() &lt; 12:
-    <span style="color:#00f">return</span> <span style="color:#a31515">&#34;morning&#34;</span>
-<span style="color:#00f">case</span> t.Hour() &lt; 18:
-    <span style="color:#00f">return</span> <span style="color:#a31515">&#34;afternoon&#34;</span>
-<span style="color:#00f">default</span>:
-    <span style="color:#00f">return</span> <span style="color:#a31515">&#34;evening&#34;</span>
+</code></pre>
+<h3 id="132-quá-dày-đặc">1.3.2. Quá dày đặc</h3>
+<pre><code class="language-Haskell">(n: Int) =&gt; (2 to n) |&gt; (r =&gt; r.foldLeft(r.toSet)((ps, x) =&gt;
+    if (ps(x)) ps -- (x * x to n by x) else ps))
+</code></pre>
+<h3 id="133-chuẩn">1.3.3. Chuẩn</h3>
+<pre><code class="language-Go">t := time.Now()
+switch {
+case t.Hour() &lt; 12:
+    return &quot;morning&quot;
+case t.Hour() &lt; 18:
+    return &quot;afternoon&quot;
+default:
+    return &quot;evening&quot;
 }
-</code></pre></div><h2 id="14-đọc-code-go">1.4. Đọc code Go</h2>
+</code></pre>
+<h2 id="14-đọc-code-go">1.4. Đọc code Go</h2>
 <h3 id="141-packages">1.4.1. Packages</h3>
 <p>Một chương trình Go sẽ bao gồm các packages.
 Một packages sẽ bao gồm 1 hoặc nhiều files mã nguồn (go files).
 Một file mã nguồn sẽ bắt đầu với lệnh package như khai báo dưới này:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">package</span> main
+<pre><code class="language-Go">package main
 
-<span style="color:#00f">import</span> <span style="color:#a31515">&#34;fmt&#34;</span>
+import &quot;fmt&quot;
 
-<span style="color:#00f">func</span> main() {
-    fmt.Println(<span style="color:#a31515">&#34;Hello, 世界!&#34;</span>)
+func main() {
+    fmt.Println(&quot;Hello, 世界!&quot;)
 }
-</code></pre></div><p>Theo quy ước thì tất cả các file thuộc về một package sẽ nằm chung một thư mục.</p>
+</code></pre>
+<p>Theo quy ước thì tất cả các file thuộc về một package sẽ nằm chung một thư mục.</p>
 <h3 id="142-khai-báo-sử-dụng-pascal-style-từ-trái-sang-phải">1.4.2. Khai báo, sử dụng Pascal-style (từ trái sang phải)</h3>
 <p>Pattern: &lt;keyword&gt; &lt;tên&gt; [kiểu dữ liệu][khởi tạo]</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">import</span> <span style="color:#a31515">&#34;fmt&#34;</span>
+<pre><code class="language-Go">import &quot;fmt&quot;
 
-<span style="color:#00f">const</span> digits = <span style="color:#a31515">&#34;0123456789abcdef&#34;</span>
+const digits = &quot;0123456789abcdef&quot;
 
-<span style="color:#00f">type</span> Point <span style="color:#00f">struct</span> {
-    x, y <span style="color:#2b91af">int</span>
-    tag  <span style="color:#2b91af">string</span>
+type Point struct {
+    x, y int
+    tag  string
 }
 
-<span style="color:#00f">var</span> s [32]<span style="color:#2b91af">byte</span>
+var s [32]byte
 
-<span style="color:#00f">var</span> msgs = []<span style="color:#2b91af">string</span>{<span style="color:#a31515">&#34;Hello, 世界&#34;</span>, <span style="color:#a31515">&#34;Ciao, Mondo&#34;</span>}
+var msgs = []string{&quot;Hello, 世界&quot;, &quot;Ciao, Mondo&quot;}
 
-<span style="color:#00f">func</span> itoa(x, base <span style="color:#2b91af">int</span>) <span style="color:#2b91af">string</span>
-</code></pre></div><h3 id="143-why">1.4.3. Why?</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">p, q *Point
+func itoa(x, base int) string
+</code></pre>
+<h3 id="143-why">1.4.3. Why?</h3>
+<pre><code class="language-Go">p, q *Point
 
-<span style="color:#00f">func</span> adder(delta <span style="color:#2b91af">int</span>) <span style="color:#00f">func</span>(x <span style="color:#2b91af">int</span>) <span style="color:#2b91af">int</span>
-</code></pre></div><h3 id="144-constants-hằng-số">1.4.4. Constants (Hằng số)</h3>
+func adder(delta int) func(x int) int
+</code></pre>
+<h3 id="144-constants-hằng-số">1.4.4. Constants (Hằng số)</h3>
 <p>Trong Go, constants thì chính xác về mặt toán học
 Không cần thiết phải có hậu tố phía sau (như là -42LL, 7UL,&hellip;)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">const</span> (
+<pre><code class="language-Go">const (
     MaxUInt = 1&lt;&lt;64 - 1
     Pi      = 3.14159265358979323846264338327950288419716939937510582097494459
     Pi2     = Pi * Pi
     Delta   = 2.0
 )
-</code></pre></div><p>Chỉ khi được sử dụng constant mới được cắt ngắn theo kích thước.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">    <span style="color:#00f">var</span> x <span style="color:#2b91af">uint64</span> = MaxUInt
-    <span style="color:#00f">var</span> pi2 <span style="color:#2b91af">float32</span> = Pi2
-    <span style="color:#00f">var</span> delta <span style="color:#2b91af">int</span> = Delta
-</code></pre></div><p>Lợi thế lớn là ở tính dễ đọc và dễ sử dụng</p>
+</code></pre>
+<p>Chỉ khi được sử dụng constant mới được cắt ngắn theo kích thước.</p>
+<pre><code class="language-Go">    var x uint64 = MaxUInt
+    var pi2 float32 = Pi2
+    var delta int = Delta
+</code></pre>
+<p>Lợi thế lớn là ở tính dễ đọc và dễ sử dụng</p>
 <h3 id="145-types-kiểu">1.4.5. Types (Kiểu)</h3>
 <ul>
 <li>Phần quen thuộc:
@@ -249,56 +415,64 @@ Không cần thiết phải có hậu tố phía sau (như là -42LL, 7UL,&helli
 <ul>
 <li>Phần quen thuộc:</li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">var</span> i <span style="color:#2b91af">int</span>
-<span style="color:#00f">var</span> p, q *Point
-<span style="color:#00f">var</span> threshold <span style="color:#2b91af">float64</span> = 0.75
-</code></pre></div><ul>
+<pre><code class="language-Go">var i int
+var p, q *Point
+var threshold float64 = 0.75
+</code></pre>
+<ul>
 <li>Mới: Kiểu có thể được diễn giải từ cách khởi tạo</li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">var</span> i = 42       <span style="color:#008000">// type của i là int
-</span><span style="color:#008000"></span><span style="color:#00f">var</span> z = 1 + 2.3i <span style="color:#008000">// type của z là complex128
-</span></code></pre></div><ul>
+<pre><code class="language-Go">var i = 42       // type của i là int
+var z = 1 + 2.3i // type của z là complex128
+</code></pre>
+<ul>
 <li>Shortcut (bên trong functions):</li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">i := 42 <span style="color:#008000">// type của i là int
-</span></code></pre></div><ul>
+<pre><code class="language-Go">i := 42 // type của i là int
+</code></pre>
+<ul>
 <li>Thao tác lấy địa chỉ của bất kì biến nào là an toàn:</li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">return</span> &amp;i
-</code></pre></div><h3 id="147-functions">1.4.7. Functions</h3>
+<pre><code class="language-Go">return &amp;i
+</code></pre>
+<h3 id="147-functions">1.4.7. Functions</h3>
 <p>Function có thể trả về nhiều giá trị:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> atoi(s <span style="color:#2b91af">string</span>) (i <span style="color:#2b91af">int</span>, err <span style="color:#2b91af">error</span>)
-</code></pre></div><p>Closures</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> addler(delta <span style="color:#2b91af">int</span>) <span style="color:#00f">func</span>(x <span style="color:#2b91af">int</span>) <span style="color:#2b91af">int</span> {
-  f := <span style="color:#00f">func</span> (x <span style="color:#2b91af">int</span>) <span style="color:#2b91af">int</span> {
-    <span style="color:#00f">return</span> x + delta;
+<pre><code class="language-Go">func atoi(s string) (i int, err error)
+</code></pre>
+<p>Closures</p>
+<pre><code class="language-Go">func addler(delta int) func(x int) int {
+  f := func (x int) int {
+    return x + delta;
   }
-  <span style="color:#00f">return</span> f
+  return f
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">var</span> inc = addler(1)
+</code></pre>
+<pre><code class="language-Go">var inc = addler(1)
 fmt.Println(inc(0))
 fmt.Println(addler(-1)(10))
-</code></pre></div><h3 id="148-statments-câu-lệnh">1.4.8. Statments (Câu lệnh)</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">t := x;
-<span style="color:#00f">switch</span> {
-<span style="color:#00f">case</span> x == 0:
-  <span style="color:#00f">return</span> <span style="color:#a31515">&#34;0&#34;</span>
-<span style="color:#00f">case</span> x &lt; 0:
+</code></pre>
+<h3 id="148-statments-câu-lệnh">1.4.8. Statments (Câu lệnh)</h3>
+<pre><code class="language-Go">t := x;
+switch {
+case x == 0:
+  return &quot;0&quot;
+case x &lt; 0:
   t = -x
 }
-<span style="color:#00f">var</span> s [32]<span style="color:#2b91af">byte</span>
+var s [32]byte
 i := len(s)
-<span style="color:#00f">for</span> t != 0 {
+for t != 0 {
   i--
   s[i] = digits[t%base]
   t /= base
 }
-<span style="color:#00f">if</span> x &lt; 0 {
+if x &lt; 0 {
   i--
-  s[i] = <span style="color:#a31515">&#39;-&#39;</span>
+  s[i] = '-'
 }
-<span style="color:#00f">return</span> string(s[i:])
-</code></pre></div><h3 id="149-statement-của-go-dành-cho-người-lập-trình-c">1.4.9. Statement của Go dành cho người lập trình C</h3>
+return string(s[i:])
+</code></pre>
+<h3 id="149-statement-của-go-dành-cho-người-lập-trình-c">1.4.9. Statement của Go dành cho người lập trình C</h3>
 <ul>
 <li>Làm rõ ràng hơn:
 <ul>
@@ -320,58 +494,68 @@ i := len(s)
 </ul>
 <h3 id="1410-assignment-gán-giá-trị">1.4.10. Assignment (Gán giá trị)</h3>
 <p>Có thể gán nhiều giá trị đồng thời</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">a, b  = x, y
-</code></pre></div><p>Bằng với</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">t1 := x
+<pre><code class="language-Go">a, b  = x, y
+</code></pre>
+<p>Bằng với</p>
+<pre><code class="language-Go">t1 := x
 t2 := y
 a = t1
 b = t2
-</code></pre></div><p>Ví dụ</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">a, b = b, a       <span style="color:#008000">// swap a and b
-</span><span style="color:#008000"></span>i, err = atoi(s)  <span style="color:#008000">// assign results of atoi
-</span><span style="color:#008000"></span>i, _ = atoi(991)  <span style="color:#008000">// discard 2nd value
-</span></code></pre></div><h3 id="1411-switch-statements">1.4.11. Switch statements</h3>
+</code></pre>
+<p>Ví dụ</p>
+<pre><code class="language-Go">a, b = b, a       // swap a and b
+i, err = atoi(s)  // assign results of atoi
+i, _ = atoi(991)  // discard 2nd value
+</code></pre>
+<h3 id="1411-switch-statements">1.4.11. Switch statements</h3>
 <p>Switch statement có thể có nhiều case và break được hiểu ngầm</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">switch</span> {
-<span style="color:#00f">case</span> 1, 2, 3, 4, 5:
-  tag = <span style="color:#a31515">&#34;workday&#34;</span>
-<span style="color:#00f">case</span> 0, 6:
-  tag = <span style="color:#a31515">&#34;weekend&#34;</span>
-<span style="color:#00f">default</span>:
-  tag = <span style="color:#a31515">&#34;invalid&#34;</span>
+<pre><code class="language-Go">switch {
+case 1, 2, 3, 4, 5:
+  tag = &quot;workday&quot;
+case 0, 6:
+  tag = &quot;weekend&quot;
+default:
+  tag = &quot;invalid&quot;
 }
-</code></pre></div><p>Giá trị trong case thì không bắt buộc phải là constanst</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">switch</span> {
-<span style="color:#00f">case</span> day &lt; 0 || day &gt; 6:
-  tag = <span style="color:#a31515">&#34;invalid&#34;</span>
-<span style="color:#00f">case</span> day == 0 || day == 6:
-  tag = <span style="color:#a31515">&#34;weekend&#34;</span>
-<span style="color:#00f">default</span>:
-  tag = <span style="color:#a31515">&#34;workday&#34;</span>
+</code></pre>
+<p>Giá trị trong case thì không bắt buộc phải là constanst</p>
+<pre><code class="language-Go">switch {
+case day &lt; 0 || day &gt; 6:
+  tag = &quot;invalid&quot;
+case day == 0 || day == 6:
+  tag = &quot;weekend&quot;
+default:
+  tag = &quot;workday&quot;
 }
-</code></pre></div><h3 id="1412-vòng-lặp-for">1.4.12. Vòng lặp for</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">for</span> i := 0; i &lt; len(primes); i++ {
+</code></pre>
+<h3 id="1412-vòng-lặp-for">1.4.12. Vòng lặp for</h3>
+<pre><code class="language-Go">for i := 0; i &lt; len(primes); i++ {
   fmt.Println(i, primes[i])
 }
-</code></pre></div><p>Mệnh đề range cho phép duyệt qua array và slice dễ dàng</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">for</span> i, x := <span style="color:#00f">range</span> primes {
+</code></pre>
+<p>Mệnh đề range cho phép duyệt qua array và slice dễ dàng</p>
+<pre><code class="language-Go">for i, x := range primes {
   fmt.Println(i, x)
 }
-</code></pre></div><p>Những giá trị không sử dụng được bỏ qua bằng cách gán vào định danh (identifier) _</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">var</span> sum <span style="color:#2b91af">int</span>
-<span style="color:#00f">for</span> _, x := <span style="color:#00f">range</span> primes {
+</code></pre>
+<p>Những giá trị không sử dụng được bỏ qua bằng cách gán vào định danh (identifier) _</p>
+<pre><code class="language-Go">var sum int
+for _, x := range primes {
   sum += x
 }
-</code></pre></div><h2 id="15-dependencies-phụ-thuộc">1.5. Dependencies (Phụ thuộc)</h2>
+</code></pre>
+<h2 id="15-dependencies-phụ-thuộc">1.5. Dependencies (Phụ thuộc)</h2>
 <h3 id="151-dependence-trong-go">1.5.1. Dependence trong Go</h3>
 <p>Một khai báo import được dùng để mô tả một dependency trong một package khác:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">import</span> <span style="color:#a31515">&#34;net/rpc&#34;</span>
-</code></pre></div><p>Ở đây importing package phụ thuộc vào Go package &ldquo;rpc&rdquo;</p>
+<pre><code class="language-Go">import &quot;net/rpc&quot;
+</code></pre>
+<p>Ở đây importing package phụ thuộc vào Go package &ldquo;rpc&rdquo;</p>
 <p>Đường dẫn import (&ldquo;net/rpc&rdquo;) xác định duy nhất một package; nhiều packages có thể có cùng tên, nhưng chúng lại có thể nằm ở những vị trí khác nhau (thư mục)</p>
 <p>Quy định thì tên của package sẽ là phần tử cuối cùng của đường dẫn import (ở đây là &ldquo;rpc&rdquo;)</p>
 <p>Chức năng export của package rpc thì sẵn có ở trong package qualifier (rpc):</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">rpc.Call
-</code></pre></div><p>Một khai báo import trong Go có vai trò giống như include trong C.</p>
+<pre><code class="language-Go">rpc.Call
+</code></pre>
+<p>Một khai báo import trong Go có vai trò giống như include trong C.</p>
 <h3 id="152-dạo-quanh-một-vòng-với-cách-đặt-tên-trong-go">1.5.2. Dạo quanh một vòng với cách đặt tên trong Go</h3>
 <p>Cách mà tên hoạt động thì có ảnh hưởng quan trọng đến tính dễ đọc.</p>
 <p>Scope thì quyết định cách thức hoạt động của tên.</p>
@@ -430,9 +614,10 @@ Tất cả các package phụ thuộc sẽ được tìm thấy bằng cách tru
 Một tool đơn được tích hợp có thể đảm nhận việc build cho từng file hoặc cả hệ thống.</p>
 <h3 id="163-câu-lệnh-trong-go">1.6.3. Câu lệnh trong Go</h3>
 <p>Cách sử dụng:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go command [arguments]
-</code></pre></div><p>Các lệnh có thể:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">build       compile packages and dependencies
+<pre><code class="language-bash">go command [arguments]
+</code></pre>
+<p>Các lệnh có thể:</p>
+<pre><code class="language-bash">build       compile packages and dependencies
 clean       remove object files
 doc         run godoc on package sources
 fix         run go tool fix on packages
@@ -443,7 +628,8 @@ list        list packages
 run         compile and run Go program
 test        test packages
 vet         run go tool vet on packages
-</code></pre></div><p>golang.org/cmd/go/</p>
+</code></pre>
+<p>golang.org/cmd/go/</p>
 <h1 id="2-object-oriented-programming">2. Object-oriented programming</h1>
 <h2 id="21-what-is-object-oriented-programming">2.1. What is object-oriented programming?</h2>
 <blockquote>
@@ -470,113 +656,120 @@ vet         run go tool vet on packages
 <li>Interface hiện thực tính đa hình (polymorphism).</li>
 </ul>
 <h2 id="24-methods">2.4. Methods</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">package</span> main
+<pre><code class="language-Go">package main
 
-<span style="color:#00f">import</span> <span style="color:#a31515">&#34;fmt&#34;</span>
+import &quot;fmt&quot;
 
-<span style="color:#00f">type</span> Point <span style="color:#00f">struct</span>{ x, y <span style="color:#2b91af">int</span> }
+type Point struct{ x, y int }
 
-<span style="color:#00f">func</span> PointToString(p Point) <span style="color:#2b91af">string</span> {
-  <span style="color:#00f">return</span> fmt.Sprintf(<span style="color:#a31515">&#34;Point{%d, %d}&#34;</span>, p.x, p.y)
+func PointToString(p Point) string {
+  return fmt.Sprintf(&quot;Point{%d, %d}&quot;, p.x, p.y)
 }
 
-<span style="color:#00f">func</span> (p Point) String() <span style="color:#2b91af">string</span> {
-  <span style="color:#00f">return</span> fmt.Sprintf(<span style="color:#a31515">&#34;Point{%d, %d}&#34;</span>, p.x, p.y)
+func (p Point) String() string {
+  return fmt.Sprintf(&quot;Point{%d, %d}&quot;, p.x, p.y)
 }
 
-<span style="color:#00f">func</span> main() {
+func main() {
   p := Point{3, 5}
-  fmt.Println(PointToString(p)) <span style="color:#008000">// static dispatch
-</span><span style="color:#008000"></span>  fmt.Println(p.String())       <span style="color:#008000">// static dispatch
-</span><span style="color:#008000"></span>  fmt.Println(p)
+  fmt.Println(PointToString(p)) // static dispatch
+  fmt.Println(p.String())       // static dispatch
+  fmt.Println(p)
 }
-</code></pre></div><p>Output:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Point{3, 5}
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-bash">Point{3, 5}
 Point{3, 5}
 Point{3, 5}
-</code></pre></div><h2 id="25-methods-có-thể-được-đính-kèm-vào-bất-cứ-type-nào">2.5. Methods có thể được đính kèm vào bất cứ type nào</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">package</span> main
+</code></pre>
+<h2 id="25-methods-có-thể-được-đính-kèm-vào-bất-cứ-type-nào">2.5. Methods có thể được đính kèm vào bất cứ type nào</h2>
+<pre><code class="language-Go">package main
 
-<span style="color:#00f">import</span> <span style="color:#a31515">&#34;fmt&#34;</span>
+import &quot;fmt&quot;
 
-<span style="color:#00f">type</span> Celsius <span style="color:#2b91af">float32</span>
-<span style="color:#00f">type</span> Fahrenheit <span style="color:#2b91af">float32</span>
+type Celsius float32
+type Fahrenheit float32
 
-<span style="color:#00f">func</span> (t Celsius) String() <span style="color:#2b91af">string</span>           { <span style="color:#00f">return</span> fmt.Sprintf(<span style="color:#a31515">&#34;%g°C&#34;</span>, t) }
-<span style="color:#00f">func</span> (t Fahrenheit) String() <span style="color:#2b91af">string</span>        { <span style="color:#00f">return</span> fmt.Sprintf(<span style="color:#a31515">&#34;%g°F&#34;</span>, t) }
-<span style="color:#00f">func</span> (t Celsius) ToFahrenheit() Fahrenheit { <span style="color:#00f">return</span> Fahrenheit(t*9/5 + 32) }
+func (t Celsius) String() string           { return fmt.Sprintf(&quot;%g°C&quot;, t) }
+func (t Fahrenheit) String() string        { return fmt.Sprintf(&quot;%g°F&quot;, t) }
+func (t Celsius) ToFahrenheit() Fahrenheit { return Fahrenheit(t*9/5 + 32) }
 
-<span style="color:#00f">func</span> main() {
-  <span style="color:#00f">var</span> t Celsius = 21
+func main() {
+  var t Celsius = 21
   fmt.Println(t.String())
   fmt.Println(t)
   fmt.Println(t.ToFahrenheit())
 }
-</code></pre></div><h2 id="26-interfaces">2.6. Interfaces</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">type</span> Stringer <span style="color:#00f">interface</span> {
-     String() <span style="color:#2b91af">string</span>
+</code></pre>
+<h2 id="26-interfaces">2.6. Interfaces</h2>
+<pre><code class="language-Go">type Stringer interface {
+     String() string
 }
 
-<span style="color:#00f">type</span> Reader <span style="color:#00f">interface</span> {
-     Read(p []<span style="color:#2b91af">byte</span>) (n <span style="color:#2b91af">int</span>, err <span style="color:#2b91af">error</span>)
+type Reader interface {
+     Read(p []byte) (n int, err error)
 }
 
-<span style="color:#00f">type</span> Writer <span style="color:#00f">interface</span> {
-     Write(p []<span style="color:#2b91af">byte</span>) (n <span style="color:#2b91af">int</span>, err <span style="color:#2b91af">error</span>)
+type Writer interface {
+     Write(p []byte) (n int, err error)
 }
 
-<span style="color:#00f">type</span> Empty <span style="color:#00f">interface</span>{}
-</code></pre></div><p>Một interface định nghĩa một tập hợp các method
+type Empty interface{}
+</code></pre>
+<p>Một interface định nghĩa một tập hợp các method
 Một type hiện thực tất cả các method của một interface được gọi là hiện thực interface.
 Tất cả các type hiện thực interface interface{}</p>
 <h2 id="27-dispatch-động">2.7. Dispatch động</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">type</span> Stringer <span style="color:#00f">interface</span> {
-  String() <span style="color:#2b91af">string</span>
+<pre><code class="language-Go">type Stringer interface {
+  String() string
 }
 
-<span style="color:#00f">var</span> v Stringer
-<span style="color:#00f">var</span> corner = Point{1, 1}
-<span style="color:#00f">var</span> boiling = Celsius(100)
+var v Stringer
+var corner = Point{1, 1}
+var boiling = Celsius(100)
 
 v = corner
-fmt.Println(v.String()) <span style="color:#008000">// dynamic dispatch
-</span><span style="color:#008000"></span>fmt.Println(v)
+fmt.Println(v.String()) // dynamic dispatch
+fmt.Println(v)
 
 v = boiling.ToFahrenheit()
-fmt.Println(v.String()) <span style="color:#008000">// dynamic dispatch
-</span><span style="color:#008000"></span>fmt.Println(v)
-</code></pre></div><p>Một giá trị (ở đây là corner, boiling) của một type (Point, Celcius) mà hiện thực một interface (Stringer) có thể được assign vào một biến (v) của type đó.</p>
+fmt.Println(v.String()) // dynamic dispatch
+fmt.Println(v)
+</code></pre>
+<p>Một giá trị (ở đây là corner, boiling) của một type (Point, Celcius) mà hiện thực một interface (Stringer) có thể được assign vào một biến (v) của type đó.</p>
 <h2 id="28-composition-và-chaining">2.8. Composition và chaining</h2>
 <p>Thông thường interface có quy mô nhỏ (Tầm 1 -3 method).</p>
 <p>Việc sử dụng xen kẽ các interface chính trong thư viện chuẩn giúp dễ dàng xâu chuỗi (chain) các API lại với nhau.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">package</span> io <span style="color:#00f">func</span> Copy(dst Writer, src Reader) (<span style="color:#2b91af">int64</span>, <span style="color:#2b91af">error</span>)
-</code></pre></div><p>Function io.Copy copy bằng cách đọc từ bất cứ Reader nào và ghi vào bất cứ Writer nào.</p>
+<pre><code class="language-Go">package io func Copy(dst Writer, src Reader) (int64, error)
+</code></pre>
+<p>Function io.Copy copy bằng cách đọc từ bất cứ Reader nào và ghi vào bất cứ Writer nào.</p>
 <p>Interface thường được giới thiệu là tạm thời, và giống như trong thực tế.</p>
 <p>Không có hệ thống phân cấp rõ ràng và do dó cũng không cần design bất cứ hệ thống phân cấp nào.</p>
 <h2 id="29-cat">2.9. Cat</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">package</span> main
+<pre><code class="language-Go">package main
 
-<span style="color:#00f">import</span> (
-	<span style="color:#a31515">&#34;flag&#34;</span>
-	<span style="color:#a31515">&#34;io&#34;</span>
-	<span style="color:#a31515">&#34;os&#34;</span>
+import (
+	&quot;flag&quot;
+	&quot;io&quot;
+	&quot;os&quot;
 )
 
-<span style="color:#00f">func</span> main() {
+func main() {
 	flag.Parse()
-	<span style="color:#00f">for</span> _, arg := <span style="color:#00f">range</span> flag.Args() {
+	for _, arg := range flag.Args() {
 		f, err := os.Open(arg)
-		<span style="color:#00f">if</span> err != <span style="color:#00f">nil</span> {
+		if err != nil {
 			panic(err)
 		}
-		<span style="color:#00f">defer</span> f.Close()
+		defer f.Close()
 		_, err = io.Copy(os.Stdout, f)
-		<span style="color:#00f">if</span> err != <span style="color:#00f">nil</span> {
+		if err != nil {
 			panic(err)
 		}
 	}
 }
-</code></pre></div><h2 id="210-interface-trong-thực-hành">2.10. Interface trong thực hành</h2>
+</code></pre>
+<h2 id="210-interface-trong-thực-hành">2.10. Interface trong thực hành</h2>
 <ul>
 <li>
 <p>Method ở bất cứ type nào và những interface tạm tạo thành 1 kiểu lập trình hướng đối tượng nhỏ gọn.</p>
@@ -613,35 +806,39 @@ fmt.Println(v.String()) <span style="color:#008000">// dynamic dispatch
 <h3 id="341-một-function-đơn-giản">3.4.1. Một function đơn giản</h3>
 <p>Chúng ta cần một ví dụ để chỉ ra những đặc tính thú vị nổi bật của việc đồng bộ.</p>
 <p>Để tránh xao nhãng, chúng ta sẽ tạo ra một ví dụ đơn giản</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> main() {
-  f(<span style="color:#a31515">&#34;Hello, World&#34;</span>, 500*time.Millisecond)
+<pre><code class="language-Go">func main() {
+  f(&quot;Hello, World&quot;, 500*time.Millisecond)
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> f(msg <span style="color:#2b91af">string</span>, delay time.Duration) {
-  <span style="color:#00f">for</span> i := 0; ; i++ {
+</code></pre>
+<pre><code class="language-Go">func f(msg string, delay time.Duration) {
+  for i := 0; ; i++ {
     fmt.Println(msg, i)
     time.Sleep(delay)
   }
 }
-</code></pre></div><h3 id="342-bỏ-qua-nó">3.4.2 Bỏ qua nó</h3>
+</code></pre>
+<h3 id="342-bỏ-qua-nó">3.4.2 Bỏ qua nó</h3>
 <p>Dòng lệnh go thực thi function như bình thường, nhưng không bắt caller phải đợi.</p>
 <p>Nó chạy một goroutine.</p>
 <p>Chức năng tương tự như là &amp; ở cuối một lệnh shell.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> main() {
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;three&#34;</span>, 300*time.Millisecond)
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;six&#34;</span>, 600*time.Millisecond)
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;nine&#34;</span>, 900*time.Millisecond)
+<pre><code class="language-Go">func main() {
+  go f(&quot;three&quot;, 300*time.Millisecond)
+  go f(&quot;six&quot;, 600*time.Millisecond)
+  go f(&quot;nine&quot;, 900*time.Millisecond)
 }
-</code></pre></div><h3 id="343-bỏ-qua-nó-bớt-đi-một-ít">3.4.3. Bỏ qua nó bớt đi một ít</h3>
+</code></pre>
+<h3 id="343-bỏ-qua-nó-bớt-đi-một-ít">3.4.3. Bỏ qua nó bớt đi một ít</h3>
 <p>Khi hàm main return, chương trình kết thúc và function f kết thúc theo nó.</p>
 <p>Chúng ta có thể gặp nhau một ít, và nhân tiện chứng mình rằng cả main và goroutine được tạo ra đều đang chạy</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> main() {
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;three&#34;</span>, 300*time.Millisecond)
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;six&#34;</span>, 600*time.Millisecond)
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;nine&#34;</span>, 900*time.Millisecond)
+<pre><code class="language-Go">func main() {
+  go f(&quot;three&quot;, 300*time.Millisecond)
+  go f(&quot;six&quot;, 600*time.Millisecond)
+  go f(&quot;nine&quot;, 900*time.Millisecond)
   time.Sleep(3*time.Second)
-  fmt.Println(<span style="color:#a31515">&#34;Done.&#34;</span>)
+  fmt.Println(&quot;Done.&quot;)
 }
-</code></pre></div><h3 id="345-goroutines">3.4.5. Goroutines</h3>
+</code></pre>
+<h3 id="345-goroutines">3.4.5. Goroutines</h3>
 <p>Goroutine là gì? Nó là một function thực thi độc lập, được khởi phát bởi một lệnh go.</p>
 <p>Nó có call stack riêng, sẽ thu giảm theo nhu cầu.</p>
 <p>Cheap. Trong thực tế sẽ có hàng ngàn, thậm chí hàng trăm ngàn goroutine.</p>
@@ -651,104 +848,114 @@ fmt.Println(v.String()) <span style="color:#008000">// dynamic dispatch
 <p>Bạn có thể nghĩ goroutine gần giống như là một thread rất nhẹ (very cheap)</p>
 <h3 id="346-channels">3.4.6. Channels</h3>
 <p>Một channel trong Go cung cấp một kết nối giữa hai goroutine, cho phép chung giao tiếp với nhau.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#008000">// Khai báo và khởi tạo
-</span><span style="color:#008000"></span><span style="color:#00f">var</span> c <span style="color:#00f">chan</span> <span style="color:#2b91af">int</span> c = make(<span style="color:#00f">chan</span> <span style="color:#2b91af">int</span>)
-<span style="color:#008000">// hoặc
-</span><span style="color:#008000"></span>c := make(<span style="color:#00f">chan</span> <span style="color:#2b91af">int</span>)
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#008000">// Gửi đến một channel
-</span><span style="color:#008000"></span>c &lt;- 1
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#008000">// Nhận từ một channel
-</span><span style="color:#008000">// Dấu mũi tên ám chỉ hướng của dòng dữ liệu.
-</span><span style="color:#008000"></span>value = &lt;-c
-</code></pre></div><h3 id="347-sử-dụng-channel">3.4.7. Sử dụng channel</h3>
+<pre><code class="language-Go">// Khai báo và khởi tạo
+var c chan int c = make(chan int)
+// hoặc
+c := make(chan int)
+</code></pre>
+<pre><code class="language-Go">// Gửi đến một channel
+c &lt;- 1
+</code></pre>
+<pre><code class="language-Go">// Nhận từ một channel
+// Dấu mũi tên ám chỉ hướng của dòng dữ liệu.
+value = &lt;-c
+</code></pre>
+<h3 id="347-sử-dụng-channel">3.4.7. Sử dụng channel</h3>
 <p>Một channel sẽ kết nối hàm main và f goroutine để chúng có thể giao tiếp với nhau.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> main() {
-  c := make(<span style="color:#00f">chan</span> <span style="color:#2b91af">string</span>)
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;three&#34;</span>, 300*time.Millisecond, c)
-  <span style="color:#00f">for</span> i := 0; i &lt; 10; i++ {
-    fmt.Println(<span style="color:#a31515">&#34;Received&#34;</span>, &lt;-c) <span style="color:#008000">// Lệnh Receive chỉ là một giá trị
-</span><span style="color:#008000"></span>  }
-  fmt.Println(<span style="color:#a31515">&#34;Done.&#34;</span>)
+<pre><code class="language-Go">func main() {
+  c := make(chan string)
+  go f(&quot;three&quot;, 300*time.Millisecond, c)
+  for i := 0; i &lt; 10; i++ {
+    fmt.Println(&quot;Received&quot;, &lt;-c) // Lệnh Receive chỉ là một giá trị
+  }
+  fmt.Println(&quot;Done.&quot;)
 }
-</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> f(msg <span style="color:#2b91af">string</span>, delay time.Duration, c <span style="color:#00f">chan</span> <span style="color:#2b91af">string</span>) {
-  <span style="color:#00f">for</span> i := 0; ; i++ {
-    c &lt;- fmt.Sprintf(<span style="color:#a31515">&#34;%s %d&#34;</span>, msg, i) <span style="color:#008000">// Bất cứ giá trị thích hợp nào có thể được gửi.
-</span><span style="color:#008000"></span>    time.Sleep(delay)
+</code></pre>
+<pre><code class="language-Go">func f(msg string, delay time.Duration, c chan string) {
+  for i := 0; ; i++ {
+    c &lt;- fmt.Sprintf(&quot;%s %d&quot;, msg, i) // Bất cứ giá trị thích hợp nào có thể được gửi.
+    time.Sleep(delay)
   }
 }
-</code></pre></div><h3 id="348-đồng-bộ">3.4.8. Đồng bộ</h3>
+</code></pre>
+<h3 id="348-đồng-bộ">3.4.8. Đồng bộ</h3>
 <p>Khi function main thực thi &lt;-c, nó sẽ chờ một giá trị để được gửi.</p>
 <p>Tương tự, khi function f thực thi c&lt;-value, nó sẽ đợi một bên nhận sẵn sàng.</p>
 <p>Một bên gửi và bên nhận phải đều sẵn sàng thì mới có thể giao tiếp được. Ngược lại chúng ta phải đợi cho đến khi chúng sẵn sàng.</p>
 <p>Vì vậy các channel đều phải giao tiếp và đồng bộ.</p>
 <p>Channel có thể không buffer hoặc có buffer.</p>
 <h3 id="349-sử-dụng-channel-giữa-nhiều-goroutine">3.4.9. Sử dụng channel giữa nhiều goroutine</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> main() {
-  c := make(<span style="color:#00f">chan</span> <span style="color:#2b91af">string</span>)
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;three&#34;</span>, 300*time.Millisecond, c)
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;six&#34;</span>, 600*time.Millisecond, c)
-  <span style="color:#00f">go</span> f(<span style="color:#a31515">&#34;nine&#34;</span>, 900*time.Millisecond, c)
+<pre><code class="language-Go">func main() {
+  c := make(chan string)
+  go f(&quot;three&quot;, 300*time.Millisecond, c)
+  go f(&quot;six&quot;, 600*time.Millisecond, c)
+  go f(&quot;nine&quot;, 900*time.Millisecond, c)
 
-  <span style="color:#00f">for</span> i := 0; i &lt; 10; i++ {
-    fmt.Println(<span style="color:#a31515">&#34;Received&#34;</span>, &lt;-c)
+  for i := 0; i &lt; 10; i++ {
+    fmt.Println(&quot;Received&quot;, &lt;-c)
   }
 
-  fmt.Println(<span style="color:#a31515">&#34;Done.&#34;</span>)
+  fmt.Println(&quot;Done.&quot;)
 }
-</code></pre></div><p>Một channel đơn có thể được dùng để giao tiếp giữa nhiều (không chỉ là hai) goroutine; nhiều goroutine có thể giao tiếp thông qua một hoặc nhiều channel.</p>
+</code></pre>
+<p>Một channel đơn có thể được dùng để giao tiếp giữa nhiều (không chỉ là hai) goroutine; nhiều goroutine có thể giao tiếp thông qua một hoặc nhiều channel.</p>
 <p>Điều này cho phép tạo ra sự đa dạng trong các cấu trúc đồng bộ (concurrency pattern).</p>
 <h3 id="3410-các-yếu-tố-của-một-working-stealing-scheduler">3.4.10. Các yếu tố của một working-stealing scheduler</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> worker(in <span style="color:#00f">chan</span> <span style="color:#2b91af">int</span>, out <span style="color:#00f">chan</span> []<span style="color:#2b91af">int</span>) {
-  <span style="color:#00f">for</span> {
-    order := &lt;-in <span style="color:#008000">// Nhận một chỉ thị công việc.
-</span><span style="color:#008000"></span>    result := factor(order)
+<pre><code class="language-Go">func worker(in chan int, out chan []int) {
+  for {
+    order := &lt;-in // Nhận một chỉ thị công việc.
+    result := factor(order)
   }
 }
-</code></pre></div><p>Các worker sử dụng hai channel để giao tiếp:</p>
+</code></pre>
+<p>Các worker sử dụng hai channel để giao tiếp:</p>
 <ul>
 <li>in channel đợi các tính toán về chỉ thị công việc</li>
 <li>out channel giao tiếp kết quả.</li>
 <li>Bởi vì cân bằng tải, một worker (một cách rất chậm) sẽ tính toán danh sách các ước chung của một chỉ thị cho sẵn.</li>
 </ul>
 <h3 id="3411-một-matching-giữa-producer-và-consumer">3.4.11. Một matching giữa producer và consumer</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> producer(out <span style="color:#00f">chan</span> <span style="color:#2b91af">int</span>) {
-  <span style="color:#00f">for</span> order := 0; ; order++ {
-    out &lt;- order <span style="color:#008000">// Tạo ra một chỉ thị công việc.
-</span><span style="color:#008000"></span>  }
-}
-
-<span style="color:#00f">func</span> consumer(in <span style="color:#00f">chan</span> []<span style="color:#2b91af">int</span>, n <span style="color:#2b91af">int</span>) {
-  <span style="color:#00f">for</span> i := 0; i &lt; n; i++ {
-    result := &lt;-in <span style="color:#008000">// Nhận một kết quả
-</span><span style="color:#008000"></span>    fmt.Println(<span style="color:#a31515">&#34;Consumed&#34;</span>, result)
+<pre><code class="language-Go">func producer(out chan int) {
+  for order := 0; ; order++ {
+    out &lt;- order // Tạo ra một chỉ thị công việc.
   }
 }
-</code></pre></div><p>Bên producer tạo ra và cung cấp không giới hạn chỉ thị công việc và gửi chúng ra ngoài.</p>
+
+func consumer(in chan []int, n int) {
+  for i := 0; i &lt; n; i++ {
+    result := &lt;-in // Nhận một kết quả
+    fmt.Println(&quot;Consumed&quot;, result)
+  }
+}
+</code></pre>
+<p>Bên producer tạo ra và cung cấp không giới hạn chỉ thị công việc và gửi chúng ra ngoài.</p>
 <p>Bên consumer nhận n kết quả từ in channel và sau đó kết thúc.</p>
 <h3 id="3412-gộp-tất-cả-chung-với-nhau">3.4.12. Gộp tất cả chung với nhau</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#00f">func</span> main() {
+<pre><code class="language-Go">func main() {
   start := time.Now()
-  in := make(<span style="color:#00f">chan</span> <span style="color:#2b91af">int</span>)    <span style="color:#008000">// Channel mà thứ tự công việc sẽ được nhận.
-</span><span style="color:#008000"></span>  out := make(<span style="color:#00f">chan</span> []<span style="color:#2b91af">int</span>) <span style="color:#008000">// Channel mà kết quả được trả về.
-</span><span style="color:#008000"></span>  <span style="color:#00f">go</span> producer(in)
-  <span style="color:#00f">go</span> worker(in, out)      <span style="color:#008000">// Khởi phát một worker.
-</span><span style="color:#008000"></span>  consumer(out, 100)
+  in := make(chan int)    // Channel mà thứ tự công việc sẽ được nhận.
+  out := make(chan []int) // Channel mà kết quả được trả về.
+  go producer(in)
+  go worker(in, out)      // Khởi phát một worker.
+  consumer(out, 100)
   fmt.Println(time.Since(start))
 }
-</code></pre></div><p>Chúng ta sử dụng một worker đảm nhận tất cả công việc liên quan đến cân bằng tải (work load).</p>
+</code></pre>
+<p>Chúng ta sử dụng một worker đảm nhận tất cả công việc liên quan đến cân bằng tải (work load).</p>
 <p>Bởi vì chỉ có duy nhất một worker, chúng ta có thể thấy kết quả trả ngược về đúng thứ tự.</p>
 <p>Đoạn này chạy khá là chậm&hellip;</p>
 <h3 id="3413-sử-dụng-10-worker">3.4.13. Sử dụng 10 worker</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">in := make(<span style="color:#00f">chan</span> <span style="color:#2b91af">int</span>)
-out := make(<span style="color:#00f">chan</span> []<span style="color:#2b91af">int</span>)
-<span style="color:#00f">go</span> producer(in) <span style="color:#008000">// Khởi phát 10 workers.
-</span><span style="color:#008000"></span>
-<span style="color:#00f">for</span> i := 0; i &lt; 10; i++ {
-  <span style="color:#00f">go</span> worker(in, out)
+<pre><code class="language-Go">in := make(chan int)
+out := make(chan []int)
+go producer(in) // Khởi phát 10 workers.
+
+for i := 0; i &lt; 10; i++ {
+  go worker(in, out)
 }
 
 consumer(out, 100)
-</code></pre></div><p>Một worker sẵn sàng sẽ đọc các chỉ thị tiếp theo từ channel in và bắt đầu làm việc từ đó.</p>
+</code></pre>
+<p>Một worker sẵn sàng sẽ đọc các chỉ thị tiếp theo từ channel in và bắt đầu làm việc từ đó.</p>
 <p>Một worker sẵn sàng sẽ tiến hành với các chỉ thị tiếp theo và cứ thế tiếp diễn.</p>
 <p>Bởi vì chúng ta có nhiều worker và vì vậy những chỉ thị khác nhau sẽ tốn thời gian khác nhau, chúng ta thấy kết quả trả về không đúng thứ tự nữa.</p>
 <p>Trong một hệ thống nhiều core, nhiều worker có thể chạy hoàn toàn song song với nhau.</p>
@@ -775,55 +982,61 @@ consumer(out, 100)
 </li>
 </ul>
 
-			</div>
+  </main>
 
-			<div class="tags">
-				
-					
-						<ul class="flat">
-							
-							<li><a href="/tags/programming">Programming</a></li>
-							
-							<li><a href="/tags/go">Go</a></li>
-							
-						</ul>
-					
-				
-			</div><div id="disqus_thread"></div>
-<script type="text/javascript">
-	(function () {
-		
-		
-		if (window.location.hostname == "localhost")
-			return;
+          
+            <footer role="contentinfo">
+  <div
+  
+  >
+    <label for="themer">
+      dark theme: <input type="checkbox" id="themer" class="vh">
+      
+      <span aria-hidden="true"></span>
+    </label>
+  </div>
+  
+    Made with <a href="https://gohugo.io/">Hugo</a>. Themed by <a href="https://github.com/zwbetz-gh/cupper-hugo-theme">Cupper</a>. Deployed to <a href="https://www.netlify.com/">Netlify</a>.
+  
+</footer>
 
-		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-		var disqus_shortname = 'Hai Sam\u0027s Blog';
-		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	})();
-</script>
-<noscript>Please enable JavaScript to view the </a></noscript>
-<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-	</div>
-	<div class="footer wrapper">
-	<nav class="nav">
-		<div>2021  © Copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
-	</nav>
-</div>
+          
+        </div>
+      </div>
+    </div>
+    
+
+<script src="/js/dom-scripts.js"></script>  
+
+<script src="/js/prism.js"></script>
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-123-45', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-<script>feather.replace()</script>
-</body>
+
+<script src="/js/search.7aef046a0cc8b0c532f1d20087b920459bc868c936bb48a6ae221eceefca2d07.js"></script>
+
+<link rel="stylesheet" href="/css/search.fe0cd54a21628574bff49d721c827d1bb165ab56b0f22dd55ae78addbe61c309.css"></link>
+
+
+
+  <script src="/js/custom_01.js"></script>
+
+  <script src="/js/custom_02.js"></script>
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+    
+  
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-123456789-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  </body>
 </html>
