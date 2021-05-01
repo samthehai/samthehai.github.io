@@ -1,12 +1,12 @@
 <!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.79.1"><link rel=canonical href=/posts/go_for_c_programmers/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#000000><meta name=msapplication-TileColor content="#ffffff"><meta name=theme-color content="#ffffff"><style>body{visibility:hidden;opacity:0}</style><link rel=stylesheet href=/css/prism.css media=none onload="this.media='all';"><link rel=stylesheet type=text/css href=/css/styles.css><link rel=stylesheet href=/css/custom_01.css><link rel=stylesheet href=/css/custom_02.css><title>Golang dành cho dân lập trình C | Hai Sam's Blog</title></head><body><a href=#main>skip to content</a><noscript><style>body{visibility:visible;opacity:1}</style></noscript><svg style="display:none"><symbol id="bookmark" viewBox="0 0 40 50"><g transform="translate(2266 3206.2)"><path style="stroke:currentColor;stroke-width:3.2637;fill:none" d="m-2262.2-3203.4-.2331 42.195 16.319-16.318 16.318 16.318.2331-42.428z"/></g></symbol><symbol id="w3c" viewBox="0 0 127.09899 67.763"><text font-size="83" style="font-size:83px;font-family:Trebuchet;letter-spacing:-12;fill-opacity:0" letter-spacing="-12" y="67.609352" x="-26.782778">W3C</text><text font-size="83" style="font-size:83px;font-weight:700;font-family:Trebuchet;fill-opacity:0" y="67.609352" x="153.21722" font-weight="bold">SVG</text><path style="fill:currentColor;image-rendering:optimizeQuality;shape-rendering:geometricPrecision" d="m33.695.377 12.062 41.016 12.067-41.016h8.731l-19.968 67.386h-.831l-12.48-41.759-12.479 41.759h-.832l-19.965-67.386h8.736l12.061 41.016 8.154-27.618-3.993-13.397h8.737z"/><path style="fill:currentColor;image-rendering:optimizeQuality;shape-rendering:geometricPrecision" d="m91.355 46.132c0 6.104-1.624 11.234-4.862 15.394-3.248 4.158-7.45 6.237-12.607 6.237-3.882.0-7.263-1.238-10.148-3.702-2.885-2.47-5.02-5.812-6.406-10.022l6.82-2.829c1.001 2.552 2.317 4.562 3.953 6.028 1.636 1.469 3.56 2.207 5.781 2.207 2.329.0 4.3-1.306 5.909-3.911 1.609-2.606 2.411-5.738 2.411-9.401.0-4.049-.861-7.179-2.582-9.399-1.995-2.604-5.129-3.912-9.397-3.912h-3.327v-3.991l11.646-20.133h-14.062l-3.911 6.655h-2.493v-14.976h32.441v4.075l-12.31 21.217c4.324 1.385 7.596 3.911 9.815 7.571 2.22 3.659 3.329 7.953 3.329 12.892z"/><path style="fill:currentColor;image-rendering:optimizeQuality;shape-rendering:geometricPrecision" d="m125.21.0 1.414 8.6-5.008 9.583s-1.924-4.064-5.117-6.314c-2.693-1.899-4.447-2.309-7.186-1.746-3.527.73-7.516 4.938-9.258 10.13-2.084 6.21-2.104 9.218-2.178 11.978-.115 4.428.58 7.043.58 7.043s-3.04-5.626-3.011-13.866c.018-5.882.947-11.218 3.666-16.479 2.404-4.627 5.954-7.404 9.114-7.728 3.264-.343 5.848 1.229 7.841 2.938 2.089 1.788 4.213 5.698 4.213 5.698l4.94-9.837z"/><path style="fill:currentColor;image-rendering:optimizeQuality;shape-rendering:geometricPrecision" d="m125.82 48.674s-2.208 3.957-3.589 5.48c-1.379 1.524-3.849 4.209-6.896 5.555-3.049 1.343-4.646 1.598-7.661 1.306-3.01-.29-5.807-2.032-6.786-2.764-.979-.722-3.486-2.864-4.897-4.854-1.42-2-3.634-5.995-3.634-5.995s1.233 4.001 2.007 5.699c.442.977 1.81 3.965 3.749 6.572 1.805 2.425 5.315 6.604 10.652 7.545 5.336.945 9.002-1.449 9.907-2.031.907-.578 2.819-2.178 4.032-3.475 1.264-1.351 2.459-3.079 3.116-4.108.487-.758 1.276-2.286 1.276-2.286l-1.276-6.644z"/></symbol><symbol id="tag" viewBox="0 0 177.16535 177.16535"><g transform="translate(0 -875.2)"><path style="fill-rule:evenodd;stroke-width:0;fill:currentColor" d="m159.9 894.3-68.79 8.5872-75.42 77.336 61.931 60.397 75.429-76.565 6.8495-69.755zm-31.412 31.835a10.813 10.813.0 011.8443 2.247 10.813 10.813.0 01-3.5174 14.872l-.0445.0275a10.813 10.813.0 01-14.86-3.5714 10.813 10.813.0 013.5563-14.863 10.813 10.813.0 0113.022 1.2884z"/></g></symbol><symbol id="balloon" viewBox="0 0 141.73228 177.16535"><g transform="translate(0 -875.2)"><g><path style="fill:currentColor" d="m68.156 882.83-.88753 1.4269c-4.9564 7.9666-6.3764 17.321-5.6731 37.378.36584 10.437 1.1246 23.51 1.6874 29.062.38895 3.8372 3.8278 32.454 4.6105 38.459 4.6694-.24176 9.2946.2879 14.377 1.481 1.2359-3.2937 5.2496-13.088 8.886-21.623 6.249-14.668 8.4128-21.264 10.253-31.252 1.2464-6.7626 1.6341-12.156 1.4204-19.764-.36325-12.93-2.1234-19.487-6.9377-25.843-2.0833-2.7507-6.9865-7.6112-7.9127-7.8436-.79716-.20019-6.6946-1.0922-6.7755-1.0248-.02213.0182-5.0006-.41858-7.5248-.22808l-2.149-.22808h-3.3738z"/><path style="fill:currentColor" d="m61.915 883.28-3.2484.4497c-1.7863.24724-3.5182.53481-3.8494.63994-2.4751.33811-4.7267.86957-6.7777 1.5696-.28598.0-1.0254.20146-2.3695.58589-5.0418 1.4418-6.6374 2.2604-8.2567 4.2364-6.281 7.6657-11.457 18.43-12.932 26.891-1.4667 8.4111.71353 22.583 5.0764 32.996 3.8064 9.0852 13.569 25.149 22.801 37.517 1.3741 1.841 2.1708 2.9286 2.4712 3.5792 3.5437-1.1699 6.8496-1.9336 10.082-2.3263-1.3569-5.7831-4.6968-21.86-6.8361-33.002-.92884-4.8368-2.4692-14.322-3.2452-19.991-.68557-5.0083-.77707-6.9534-.74159-15.791.04316-10.803.41822-16.162 1.5026-21.503 1.4593-5.9026 3.3494-11.077 6.3247-15.852z"/><path style="fill:currentColor" d="m94.499 885.78c-.10214-.0109-.13691.0-.0907.0409.16033.13489 1.329 1.0675 2.5976 2.0723 6.7003 5.307 11.273 14.568 12.658 25.638.52519 4.1949.24765 14.361-.5059 18.523-2.4775 13.684-9.7807 32.345-20.944 53.519l-3.0559 5.7971c2.8082.76579 5.7915 1.727 8.9926 2.8441 11.562-11.691 18.349-19.678 24.129-28.394 7.8992-11.913 11.132-20.234 12.24-31.518.98442-10.02-1.5579-20.876-6.7799-28.959-.2758-.4269-.57803-.86856-.89617-1.3166-3.247-6.13-9.752-12.053-21.264-16.131-2.3687-.86369-6.3657-2.0433-7.0802-2.1166z"/><path style="fill:currentColor" d="m32.52 892.22c-.2009-.13016-1.4606.81389-3.9132 2.7457-11.486 9.0476-17.632 24.186-16.078 39.61.79699 7.9138 2.4066 13.505 5.9184 20.562 5.8577 11.77 14.749 23.219 30.087 38.74.05838.059.12188.1244.18052.1838 1.3166-.5556 2.5965-1.0618 3.8429-1.5199-.66408-.32448-1.4608-1.3297-3.8116-4.4602-5.0951-6.785-8.7512-11.962-13.051-18.486-5.1379-7.7948-5.0097-7.5894-8.0586-13.054-6.2097-11.13-8.2674-17.725-8.6014-27.563-.21552-6.3494.13041-9.2733 1.775-14.987 2.1832-7.5849 3.9273-10.986 9.2693-18.07 1.7839-2.3656 2.6418-3.57 2.4409-3.7003z"/><path style="fill:currentColor" d="m69.133 992.37c-6.2405.0309-12.635.76718-19.554 2.5706 4.6956 4.7759 9.935 10.258 12.05 12.625l4.1272 4.6202h11.493l3.964-4.4516c2.0962-2.3541 7.4804-7.9845 12.201-12.768-8.378-1.4975-16.207-2.6353-24.281-2.5955z"/><rect style="stroke-width:0;fill:currentColor" ry="2.0328" height="27.746" width="22.766" y="1017.7" x="60.201"/></g></g></symbol><symbol id="info" viewBox="0 0 41.667 41.667"><g transform="translate(-37.035 -1004.6)"><path style="stroke-linejoin:round;stroke:currentColor;stroke-linecap:round;stroke-width:3.728;fill:none" d="m76.25 1030.2a18.968 18.968.0 01-23.037 13.709 18.968 18.968.0 01-13.738-23.019 18.968 18.968.0 0123.001-13.768 18.968 18.968.0 0113.798 22.984"/><g transform="matrix(1.1146 0 0 1.1146 -26.276 -124.92)"><path style="stroke:currentColor;stroke-linecap:round;stroke-width:3.728;fill:none" d="m75.491 1039.5v-8.7472"/><path style="stroke-width:0;fill:currentColor" transform="scale(-1)" d="m-73.193-1024.5a2.3719 2.3719.0 01-2.8807 1.7142 2.3719 2.3719.0 01-1.718-2.8785 2.3719 2.3719.0 012.8763-1.7217 2.3719 2.3719.0 011.7254 2.8741"/></g></g></symbol><symbol id="warning" viewBox="0 0 48.430474 41.646302"><g transform="translate(-1.1273 -1010.2)"><path style="stroke-linejoin:round;stroke:currentColor;stroke-linecap:round;stroke-width:4.151;fill:none" d="m25.343 1012.3-22.14 37.496h44.28z"/><path style="stroke:currentColor;stroke-linecap:round;stroke-width:4.1512;fill:none" d="m25.54 1027.7v8.7472"/><path style="stroke-width:0;fill:currentColor" d="m27.839 1042.8a2.3719 2.3719.0 01-2.8807 1.7143 2.3719 2.3719.0 01-1.718-2.8785 2.3719 2.3719.0 012.8763-1.7217 2.3719 2.3719.0 011.7254 2.8741"/></g></symbol><symbol id="menu" viewBox="0 0 50 50"><rect style="stroke-width:0;fill:currentColor" height="10" width="50" y="0" x="0"/><rect style="stroke-width:0;fill:currentColor" height="10" width="50" y="20" x="0"/><rect style="stroke-width:0;fill:currentColor" height="10" width="50" y="40" x="0"/></symbol><symbol id="link" viewBox="0 0 50 50"><g transform="translate(0 -1002.4)"><g transform="matrix(.095670 0 0 .095670 2.3233 1004.9)"><g><path style="stroke-width:0;fill:currentColor" d="m452.84 192.9-128.65 128.65c-35.535 35.54-93.108 35.54-128.65.0l-42.881-42.886 42.881-42.876 42.884 42.876c11.845 11.822 31.064 11.846 42.886.0l128.64-128.64c11.816-11.831 11.816-31.066.0-42.9l-42.881-42.881c-11.822-11.814-31.064-11.814-42.887.0l-45.928 45.936c-21.292-12.531-45.491-17.905-69.449-16.291l72.501-72.526c35.535-35.521 93.136-35.521 128.64.0l42.886 42.881c35.535 35.523 35.535 93.141-.001 128.66zm-254.28 168.51-45.903 45.9c-11.845 11.846-31.064 11.817-42.881.0l-42.884-42.881c-11.845-11.821-11.845-31.041.0-42.886l128.65-128.65c11.819-11.814 31.069-11.814 42.884.0l42.886 42.886 42.876-42.886-42.876-42.881c-35.54-35.521-93.113-35.521-128.65.0l-128.65 128.64c-35.538 35.545-35.538 93.146.0 128.65l42.883 42.882c35.51 35.54 93.11 35.54 128.65.0l72.496-72.499c-23.956 1.597-48.092-3.784-69.474-16.283z"/></g></g></g></symbol><symbol id="doc" viewBox="0 0 35 45"><g transform="translate(-147.53 -539.83)"><path style="stroke:currentColor;stroke-width:2.4501;fill:none" d="m149.38 542.67v39.194h31.354V542.67z"/><g style="stroke-width:25" transform="matrix(.098003 0 0 .098003 133.69 525.96)"><path d="m220 252.36h2e2" style="stroke:currentColor;stroke-width:25;fill:none"/><path style="stroke:currentColor;stroke-width:25;fill:none" d="m220 409.95h2e2"/><path d="m220 488.74h2e2" style="stroke:currentColor;stroke-width:25;fill:none"/><path d="m220 331.15h2e2" style="stroke:currentColor;stroke-width:25;fill:none"/></g></g></symbol><symbol id="tick" viewBox="0 0 177.16535 177.16535"><g transform="translate(0 -875.2)"><rect style="stroke-width:0;fill:currentColor" transform="rotate(30)" height="155" width="40" y="702.99" x="556.82"/><rect style="stroke-width:0;fill:currentColor" transform="rotate(30)" height="40" width="90.404" y="817.99" x="506.42"/></g></symbol></svg><div class=wrapper><header class=intro-and-nav role=banner><div><div class=intro><a class=logo href=https://samthehai.github.io/ aria-label="Hai Sam's Blog home page"><img src="https://avatars.githubusercontent.com/u/28634475?s=460&u=f4564e31e24dbd90802eaf4a18d2d9e578c77108&v=4" alt></a><p class=library-desc>Hai Sam, a programming enthusiasm father.</p></div><nav id=patterns-nav class=patterns role=navigation><h2 class=vh>Main navigation</h2><button id=menu-button aria-expanded=false><svg viewBox="0 0 50 50" aria-hidden="true" focusable="false"><use xlink:href="#menu"/></svg>
-Menu</button><ul id=patterns-list><li class=pattern><a href=/><svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50"><use xlink:href="#bookmark"/></svg><span class=text>Home</span></a></li><li class=pattern><a href=/posts/><svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50"><use xlink:href="#bookmark"/></svg><span class=text>Blog</span></a></li><li class=pattern><a href=/tags/><svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50"><use xlink:href="#bookmark"/></svg><span class=text>Tags</span></a></li><li class=pattern><a href=/index.xml><svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50"><use xlink:href="#bookmark"/></svg><span class=text>RSS</span></a></li></ul></nav></div></header><div class=main-and-footer><div><main id=main><h1>Golang dành cho dân lập trình C</h1><h1 id=1-giới-thiệu-về-go>1. Giới thiệu về Go</h1><h2 id=11-động-lực>1.1. Động lực</h2><table><thead><tr><th>Hiện tại đang có</th><th style=text-align:center>Muốn</th><th style=text-align:right>Golang</th></tr></thead><tbody><tr><td>Code khó hiểu và không an toàn</td><td style=text-align:center>Dễ đọc, code an toàn và hiệu quả</td><td style=text-align:right>Nhỏ gọn mà biểu diễn tốt</td></tr><tr><td>Build code siêu chậm</td><td style=text-align:center>Một hệ thống có thể mở rộng (scale)</td><td style=text-align:right>Kiểu dữ liệu tĩnh (statically) và có hỗ trợ thu dọn rác (garbage collected)</td></tr><tr><td>Không có hỗ trợ lập trình đồng bộ</td><td style=text-align:center>Hỗ trợ lập trình đồng bộ tốt</td><td style=text-align:right>Đối tượng nhưng không định hướng kiểu (type - oriented)</td></tr><tr><td>Tools cũ kĩ</td><td style=text-align:center>Những Tools mà có thể hoạt động tại những hệ thống lớn như Google</td><td style=text-align:right>Hỗ trợ lập trình đồng bộ tốt</td></tr><tr><td></td><td style=text-align:center></td><td style=text-align:right>Hiện thực hiệu quả</td></tr><tr><td></td><td style=text-align:center></td><td style=text-align:right>Thư viện chuẩn phong phú</td></tr><tr><td></td><td style=text-align:center></td><td style=text-align:right>Biên dịch nhanh</td></tr><tr><td></td><td style=text-align:center></td><td style=text-align:right>Tools có thể mở rộng được</td></tr></tbody></table><h2 id=12-hello-world>1.2. Hello World</h2><pre><code class=language-Go>package main
+Menu</button><ul id=patterns-list><li class=pattern><a href=/><svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50"><use xlink:href="#bookmark"/></svg><span class=text>Home</span></a></li><li class=pattern><a href=/posts/><svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50"><use xlink:href="#bookmark"/></svg><span class=text>Blog</span></a></li><li class=pattern><a href=/tags/><svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50"><use xlink:href="#bookmark"/></svg><span class=text>Tags</span></a></li><li class=pattern><a href=/index.xml><svg class="bookmark-icon" aria-hidden="true" focusable="false" viewBox="0 0 40 50"><use xlink:href="#bookmark"/></svg><span class=text>RSS</span></a></li></ul></nav></div></header><div class=main-and-footer><div><main id=main><h1>Golang dành cho dân lập trình C</h1><h1 id=1-giới-thiệu-về-go>1. Giới thiệu về Go</h1><p>Như chúng ta đã biết (chưa biết thì sẽ biết ngay đây) là Go là một ngôn ngữ được viết bởi các kĩ sư Google xuất thân từ Bell Lab. Muốn khắc phục một số điểm (được cho) là nhược điểm của C trên các hệ thống web lớn. Như là:</p><table><thead><tr><th>C</th><th style=text-align:center>Mục tiêu</th><th style=text-align:right>Go</th></tr></thead><tbody><tr><td>Code khó hiểu và không an toàn</td><td style=text-align:center>Dễ đọc, code an toàn và hiệu quả</td><td style=text-align:right>Nhỏ gọn mà biểu diễn tốt</td></tr><tr><td>Build code siêu chậm</td><td style=text-align:center>Một hệ thống có thể mở rộng (scale)</td><td style=text-align:right>Kiểu dữ liệu tĩnh (statically) và có hỗ trợ thu dọn rác (garbage collected)</td></tr><tr><td>Không có hỗ trợ lập trình đồng bộ</td><td style=text-align:center>Hỗ trợ lập trình đồng bộ tốt</td><td style=text-align:right>Đối tượng nhưng không định hướng kiểu (type - oriented)</td></tr><tr><td>Tools cũ kĩ</td><td style=text-align:center>Những Tools mà có thể hoạt động tại những hệ thống lớn như Google</td><td style=text-align:right>Hỗ trợ lập trình đồng bộ tốt</td></tr><tr><td></td><td style=text-align:center></td><td style=text-align:right>Hiện thực hiệu quả</td></tr><tr><td></td><td style=text-align:center></td><td style=text-align:right>Thư viện chuẩn phong phú</td></tr><tr><td></td><td style=text-align:center></td><td style=text-align:right>Biên dịch nhanh</td></tr><tr><td></td><td style=text-align:center></td><td style=text-align:right>Tools có thể mở rộng được</td></tr></tbody></table><p>Lúc đầu đây chỉ là side project start chơi lúc rảnh rỗi không ngờ lại thành công đến như bây giờ, và chúng ta có được thứ ngôn ngữ quá xịn.</p><p>Không để chờ đợi lâu nữa như thường lệ ta qua ngay một đoạn Hello World thôi.</p><h2 id=12-hello-world>1.2. Hello World</h2><pre><code class=language-Go>package main
 
 import &quot;fmt&quot;
 
 func main() {
-  fmt.Println(&quot;Hello, 世界!&quot;)
+  fmt.Println(&quot;Hello, 世界!&quot;) // Đây là tiếng Nhật nhé, nhân tiện giới thiệu về khả năng hỗ trợ Unicode string của Go luôn.
 }
-</code></pre><h2 id=13-syntax>1.3. Syntax</h2><blockquote><p>Syntax is not important&mldr; - unless you are a programmer.</p></blockquote><p>Rob Pike.</p><blockquote><p>The readability of programs is immeasurably more important than their writeability.</p></blockquote><p>Hints on Programming Language Design</p><p>C. A. R. Hoare 1973</p><h3 id=131-quá-dài-dòng>1.3.1. Quá dài dòng</h3><pre><code class=language-C>scoped_ptr&lt;logStats::LogStats&gt;
+</code></pre><h2 id=13-syntax>1.3. Syntax</h2><p>Go được thết kế với tiêu chí đặt tính đơn giản dễ đọc lên đầu tiên vì vậy đọc code Go rất dễ hiểu, vì vậy cá nhân mình thích dùng Go để học về thuật toán.</p><blockquote><p>Syntax is not important&mldr; - unless you are a programmer.</p></blockquote><p>Rob Pike.</p><blockquote><p>The readability of programs is immeasurably more important than their writeability.</p></blockquote><p>Hints on Programming Language Design</p><p>C. A. R. Hoare 1973</p><h3 id=131-quá-dài-dòng>1.3.1. Quá dài dòng</h3><pre><code class=language-C>scoped_ptr&lt;logStats::LogStats&gt;
     logStats(logStats::LogStats::NewLogStats(FLAGS_logStats,logStats::LogStats::kFIFO));
 </code></pre><h3 id=132-quá-dày-đặc>1.3.2. Quá dày đặc</h3><pre><code class=language-Haskell>(n: Int) =&gt; (2 to n) |&gt; (r =&gt; r.foldLeft(r.toSet)((ps, x) =&gt;
     if (ps(x)) ps -- (x * x to n by x) else ps))
@@ -20,8 +20,8 @@ default:
     return &quot;evening&quot;
 }
 </code></pre><h2 id=14-đọc-code-go>1.4. Đọc code Go</h2><h3 id=141-packages>1.4.1. Packages</h3><p>Một chương trình Go sẽ bao gồm các packages.
-Một packages sẽ bao gồm 1 hoặc nhiều files mã nguồn (go files).
-Một file mã nguồn sẽ bắt đầu với lệnh package như khai báo dưới này:</p><pre><code class=language-Go>package main
+Một packages sẽ bao gồm 1 hoặc nhiều files.
+Một file sẽ bắt đầu với lệnh package như khai báo dưới này:</p><pre><code class=language-Go>package main
 
 import &quot;fmt&quot;
 
@@ -45,7 +45,7 @@ func itoa(x, base int) string
 </code></pre><h3 id=143-why>1.4.3. Why?</h3><pre><code class=language-Go>p, q *Point
 
 func adder(delta int) func(x int) int
-</code></pre><h3 id=144-constants-hằng-số>1.4.4. Constants (Hằng số)</h3><p>Trong Go, constants thì chính xác về mặt toán học
+</code></pre><h3 id=144-constants>1.4.4. Constants</h3><p>Trong Go, constants thì luôn chính xác về mặt toán học
 Không cần thiết phải có hậu tố phía sau (như là -42LL, 7UL,&mldr;)</p><pre><code class=language-Go>const (
     MaxUInt = 1&lt;&lt;64 - 1
     Pi      = 3.14159265358979323846264338327950288419716939937510582097494459
@@ -55,41 +55,48 @@ Không cần thiết phải có hậu tố phía sau (như là -42LL, 7UL,&mldr;
 </code></pre><p>Chỉ khi được sử dụng constant mới được cắt ngắn theo kích thước.</p><pre><code class=language-Go>    var x uint64 = MaxUInt
     var pi2 float32 = Pi2
     var delta int = Delta
-</code></pre><p>Lợi thế lớn là ở tính dễ đọc và dễ sử dụng</p><h3 id=145-types-kiểu>1.4.5. Types (Kiểu)</h3><ul><li>Phần quen thuộc:<ul><li>Kiểu cơ bản, arrays, structs, pointers, functions.</li></ul></li><li>Tuy nhiên:<ul><li>string là kiểu cơ bản</li><li>Không có tự động chuyển đổi kiểu cơ bản trong dòng lệnh.</li><li>Không có tính toán pointer (con trỏ), pointer và array là khác nhau.</li><li>Một kiểu function sẽ đại diện cho 1 function; context và tất cả</li></ul></li><li>Mới:<ul><li>Slices thay vì array pointer + độ dài khác nhau: []int</li><li>Maps bởi vì mọi người đều cần nó: map[string]int</li><li>Interfaces được dùng cho việc đa hình (polymorphism): interface {}</li><li>Channels để giao tiếp giữa các goroutines: chan int</li></ul></li></ul><h3 id=146-biến>1.4.6. Biến</h3><ul><li>Phần quen thuộc:</li></ul><pre><code class=language-Go>var i int
+</code></pre><p>Lợi thế lớn là ở tính dễ đọc và dễ sử dụng</p><h3 id=145-types-kiểu>1.4.5. Types (Kiểu)</h3><ul><li>Phần quen thuộc có trong C:<ul><li>Kiểu cơ bản, arrays, structs, pointers, functions.</li></ul></li><li>Tuy nhiên có một số thay đổi dưới này:<ul><li>string là kiểu cơ bản</li><li>Không có tự động chuyển đổi kiểu cơ bản trong dòng lệnh.</li><li>Không có tính toán pointer, pointer và array là khác nhau.</li><li>Một kiểu function sẽ đại diện cho 1 function</li></ul></li><li>Và các phần thêm mới đối với C:<ul><li>Slices thay vì array pointer + độ dài khác nhau: []int</li><li>Maps (lập trình viên nào lại ko cần nó): map[string]int</li><li>Interfaces được dùng cho việc đa hình (polymorphism): interface {}</li><li>Channels để giao tiếp giữa các goroutines: chan int</li></ul></li></ul><h3 id=146-biến>1.4.6. Biến</h3><ul><li>Phần quen thuộc trong C:</li></ul><pre><code class=language-Go>var i int
 var p, q *Point
 var threshold float64 = 0.75
-</code></pre><ul><li>Mới: Kiểu có thể được diễn giải từ cách khởi tạo</li></ul><pre><code class=language-Go>var i = 42       // type của i là int
+</code></pre><ul><li>Phần thêm mới so với C: Kiểu có thể được diễn giải từ cách khởi tạo</li></ul><pre><code class=language-Go>var i = 42       // type của i là int
 var z = 1 + 2.3i // type của z là complex128
 </code></pre><ul><li>Shortcut (bên trong functions):</li></ul><pre><code class=language-Go>i := 42 // type của i là int
-</code></pre><ul><li>Thao tác lấy địa chỉ của bất kì biến nào là an toàn:</li></ul><pre><code class=language-Go>return &amp;i
+</code></pre><ul><li>Thao tác lấy địa chỉ của bất kì biến nào thì là an toàn không phải là con trỏ:</li></ul><pre><code class=language-Go>return &amp;i
 </code></pre><h3 id=147-functions>1.4.7. Functions</h3><p>Function có thể trả về nhiều giá trị:</p><pre><code class=language-Go>func atoi(s string) (i int, err error)
 </code></pre><p>Closures</p><pre><code class=language-Go>func addler(delta int) func(x int) int {
   f := func (x int) int {
     return x + delta;
   }
+
   return f
 }
 </code></pre><pre><code class=language-Go>var inc = addler(1)
 fmt.Println(inc(0))
 fmt.Println(addler(-1)(10))
 </code></pre><h3 id=148-statments-câu-lệnh>1.4.8. Statments (Câu lệnh)</h3><pre><code class=language-Go>t := x;
+
 switch {
 case x == 0:
   return &quot;0&quot;
 case x &lt; 0:
   t = -x
 }
+
 var s [32]byte
+
 i := len(s)
+
 for t != 0 {
   i--
   s[i] = digits[t%base]
   t /= base
 }
+
 if x &lt; 0 {
   i--
   s[i] = '-'
 }
+
 return string(s[i:])
 </code></pre><h3 id=149-statement-của-go-dành-cho-người-lập-trình-c>1.4.9. Statement của Go dành cho người lập trình C</h3><ul><li>Làm rõ ràng hơn:<ul><li>Không có dấu chấm phẩy</li><li>Gán nhiều giá trị</li><li>++ và &ndash; cũng là câu lệnh</li><li>Không có dấu mở đóng ngoặc ở điều kiện, dấu mở đóng ngoặc nhọn là bắt buộc</li><li>Break được ngầm hiểu trong switch, làm rõ ràng việc fallthrough</li></ul></li><li>Mới:<ul><li>for range</li><li>type switch</li><li>go, select</li><li>defer</li></ul></li></ul><h3 id=1410-assignment-gán-giá-trị>1.4.10. Assignment (Gán giá trị)</h3><p>Có thể gán nhiều giá trị đồng thời</p><pre><code class=language-Go>a, b  = x, y
 </code></pre><p>Bằng với</p><pre><code class=language-Go>t1 := x
@@ -127,10 +134,11 @@ for _, x := range primes {
 }
 </code></pre><h2 id=15-dependencies-phụ-thuộc>1.5. Dependencies (Phụ thuộc)</h2><h3 id=151-dependence-trong-go>1.5.1. Dependence trong Go</h3><p>Một khai báo import được dùng để mô tả một dependency trong một package khác:</p><pre><code class=language-Go>import &quot;net/rpc&quot;
 </code></pre><p>Ở đây importing package phụ thuộc vào Go package &ldquo;rpc&rdquo;</p><p>Đường dẫn import (&ldquo;net/rpc&rdquo;) xác định duy nhất một package; nhiều packages có thể có cùng tên, nhưng chúng lại có thể nằm ở những vị trí khác nhau (thư mục)</p><p>Quy định thì tên của package sẽ là phần tử cuối cùng của đường dẫn import (ở đây là &ldquo;rpc&rdquo;)</p><p>Chức năng export của package rpc thì sẵn có ở trong package qualifier (rpc):</p><pre><code class=language-Go>rpc.Call
-</code></pre><p>Một khai báo import trong Go có vai trò giống như include trong C.</p><h3 id=152-dạo-quanh-một-vòng-với-cách-đặt-tên-trong-go>1.5.2. Dạo quanh một vòng với cách đặt tên trong Go</h3><p>Cách mà tên hoạt động thì có ảnh hưởng quan trọng đến tính dễ đọc.</p><p>Scope thì quyết định cách thức hoạt động của tên.</p><p>Go có một cấu trúc scope tương đối đơn giản:</p><ul><li>universe</li><li>package</li><li>file (chỉ được dùng cho việc import)</li><li>function</li><li>block</li></ul><h3 id=153-tính-cục-bộ-của-tên-todo>1.5.3. Tính cục bộ của tên (TODO)</h3><p>Tên viết hoa sẽ được exported: Name vs name</p><p>Package qualifier luôn đại diện cho tên được import</p><p>Component đầu tiên của mọi tên luôn được khai báo trong package hiện tại</p><p>Đây là 1 trong những quyết định đúng đắn và khó khăn nhất trong Go</p><h3 id=154-mở-rộng-cục-bộ-locality-scales>1.5.4. Mở rộng cục bộ (Locality scales)</h3><p>Không có bất ngờ khi import</p><ul><li>Việc export thêm 1 tên sẽ không phá vỡ package của tôi.</li></ul><p>Tên không bị rò rỉ vượt ra khỏi package.
+</code></pre><p>Một khai báo import trong Go có vai trò giống như include trong C.</p><h3 id=152-dạo-quanh-một-vòng-với-cách-đặt-tên-trong-go>1.5.2. Dạo quanh một vòng với cách đặt tên trong Go</h3><p>Thông thường tên (biến, function, type) có ảnh hưởng quan trọng đến tính dễ đọc của chương trình, scope sẽ quyết định đến vùng hoạt động của tên.
+Go có một cấu trúc scope tương đối đơn giản:</p><ul><li>universe</li><li>package</li><li>file (chỉ được dùng cho việc import)</li><li>function</li><li>block</li></ul><h3 id=153-tính-cục-bộ-của-tên>1.5.3. Tính cục bộ của tên</h3><p>Tên viết hoa sẽ được exported: Name vs name.</p><p>Package qualifier luôn đại diện cho tên được import.</p><p>Component đầu tiên của mọi tên luôn được khai báo trong package hiện tại.</p><p>Đây là 1 trong những quyết định đúng đắn và khó khăn nhất trong Go.</p><h3 id=154-mở-rộng-cục-bộ-locality-scales>1.5.4. Mở rộng cục bộ (Locality scales)</h3><p>Tên trong Go không thể vượt ra khỏi scope của package.
 Trong C, C++, Java tên y có thể gắn với bất cứ thứ gì.
 Trong Go, y (và cả Y) thì phải luôn được định nghĩa trong package.
-Trong Go, x.Y thì rõ ràng hơn: tìm x trong local, Y thì thuộc về x và chỉ có duy nhất một Y như vậy.</p><p>Có hiệu quả tức thì cho tính dễ đọc.</p><h3 id=155-trở-về-với-việc-import>1.5.5. Trở về với việc import</h3><p>Importing một package có nghĩa là đọc một API được export từ package đó.
+Trong Go, với syntax x.Y thì có thể dễ dàng hiểu là: tìm x trong local, Y thì thuộc về x và chỉ có duy nhất một Y như vậy.</p><p>Điều này gây ra tác dụng tốt đến tính dễ đọc của chương trình.</p><h3 id=155-trở-về-với-việc-import>1.5.5. Trở về với việc import</h3><p>Importing một package có nghĩa là đọc một API được export từ package đó.
 Thông tin export này là tự chứa (self-contain). Ví dụ:</p><ul><li>A imports B</li><li>B imports C</li><li>Những export từ B chứa tham khảo đến C</li></ul><p>Những dữ liệu export của B chứa tất cả những thông tin cần thiết về C. Một compiler thì không cần thiết phải đọc dữ liệu export bởi C.</p><p>Việc này có ảnh hưởng rất lớn đến thời gian build!</p><h3 id=156-dependence-trong-c>1.5.6. Dependence trong C</h3><p>File .h thì không tự chứa.
 Như một kết quả, một compiler cần phải lặp lại việc đọc những file header cốt lõi.
 Sử dụng ifdef vẫn yêu cầu preprocessor phải đọc rất nhiều code.
@@ -225,7 +233,7 @@ fmt.Println(v)
 v = boiling.ToFahrenheit()
 fmt.Println(v.String()) // dynamic dispatch
 fmt.Println(v)
-</code></pre><p>Một giá trị (ở đây là corner, boiling) của một type (Point, Celcius) mà hiện thực một interface (Stringer) có thể được assign vào một biến (v) của type đó.</p><h2 id=28-composition-và-chaining>2.8. Composition và chaining</h2><p>Thông thường interface có quy mô nhỏ (Tầm 1 -3 method).</p><p>Việc sử dụng xen kẽ các interface chính trong thư viện chuẩn giúp dễ dàng xâu chuỗi (chain) các API lại với nhau.</p><pre><code class=language-Go>package io func Copy(dst Writer, src Reader) (int64, error)
+</code></pre><p>Một giá trị (ở đây là corner, boiling) của một type (Point, Celcius) mà hiện thực một interface (Stringer) có thể được assign vào một biến (v) của type đó.</p><h2 id=28-composition-và-chaining>2.8. Composition và chaining</h2><p>Thông thường interface có quy mô nhỏ (Tầm 1 - 3 method).</p><p>Việc sử dụng xen kẽ các interface chính trong thư viện chuẩn giúp dễ dàng xâu chuỗi (chain) các API lại với nhau.</p><pre><code class=language-Go>package io func Copy(dst Writer, src Reader) (int64, error)
 </code></pre><p>Function io.Copy copy bằng cách đọc từ bất cứ Reader nào và ghi vào bất cứ Writer nào.</p><p>Interface thường được giới thiệu là tạm thời, và giống như trong thực tế.</p><p>Không có hệ thống phân cấp rõ ràng và do dó cũng không cần design bất cứ hệ thống phân cấp nào.</p><h2 id=29-cat>2.9. Cat</h2><pre><code class=language-Go>package main
 
 import (
@@ -236,19 +244,25 @@ import (
 
 func main() {
 	flag.Parse()
+
 	for _, arg := range flag.Args() {
 		f, err := os.Open(arg)
+
 		if err != nil {
 			panic(err)
 		}
+
 		defer f.Close()
+
 		_, err = io.Copy(os.Stdout, f)
+
 		if err != nil {
 			panic(err)
 		}
 	}
 }
-</code></pre><h2 id=210-interface-trong-thực-hành>2.10. Interface trong thực hành</h2><ul><li><p>Method ở bất cứ type nào và những interface tạm tạo thành 1 kiểu lập trình hướng đối tượng nhỏ gọn.</p></li><li><p>Go interface tạo nên một trừu tượng hậu facto.</p></li><li><p>Không có phân cấp kiểu rõ ràng</p></li><li><p>Plug and play bằng cách type-safe</p></li></ul><h1 id=3-đồng-bộ-concurrency>3. Đồng bộ (concurrency)</h1><h2 id=31-đồng-bộ-là-gì>3.1. Đồng bộ là gì?</h2><p>Đồng bộ là việc đóng gói những thực thi tính toán độc lập.</p><p>Đồng bộ là cách để cấu trúc phần mềm, như là một cách đặc biệt để viết clean code tương tác tốt với thế giới thực.</p><p>Đồng bộ thì không phải việc tính toán song song</p><h2 id=32-đồng-bộ-không-phải-là-song-song>3.2. Đồng bộ không phải là song song</h2><p>Đồng bộ không phải là song song, mặc dù nó kích hoạt tính song song.</p><p>Nếu bạn chỉ có một processor, chương trình của bạn vẫn có thể đồng bộ nhưng nó không thể song song được.</p><p>Nói một cách khác, một chương trình đồng bộ tốt có thể chạy một cách hiệu quả trên multiprocessor. Đặc tính này thì quan trọng &mldr;</p><p>Để thêm thông tin chi tiết, hãy tham khảo link dưới này.</p><p><a href=http://golang.org/s/concurrency-is-not-parallelism>http://golang.org/s/concurrency-is-not-parallelism</a></p><h2 id=33-một-model-để-xây-dựng-phần-mềm>3.3. Một model để xây dựng phần mềm</h2><p>Dễ hiểu.</p><p>Dễ dùng.</p><p>Dễ nêu lý do.</p><p>Bạn không cần phải là một chuyên gia!</p><p>(Là dễ dàng hơn nhiều việc đối mặt với các loại xử lý song song (threads, semaphores, locks, barriers,&mldr;))</p><p>Có một lịch sử dài đằng sau tính năng đồng bộ của Go, kể từ thời Hoare&rsquo;s CSP năm 1978 và thậm chí là những câu lệnh đảm bảo của Dijkstra (1975).</p><h2 id=34-ví-dụ-đơn-giản>3.4. Ví dụ đơn giản</h2><h3 id=341-một-function-đơn-giản>3.4.1. Một function đơn giản</h3><p>Chúng ta cần một ví dụ để chỉ ra những đặc tính thú vị nổi bật của việc đồng bộ.</p><p>Để tránh xao nhãng, chúng ta sẽ tạo ra một ví dụ đơn giản</p><pre><code class=language-Go>func main() {
+</code></pre><h2 id=210-interface>2.10. Interface</h2><ul><li><p>Method ở bất cứ type nào và những interface tạm tạo thành 1 kiểu lập trình hướng đối tượng nhỏ gọn.</p></li><li><p>Không có phân cấp kiểu rõ ràng</p></li><li><p>Plug and play bằng type-safe</p></li></ul><h1 id=3-đồng-bộ-concurrency>3. Đồng bộ (concurrency)</h1><h2 id=31-đồng-bộ-là-gì>3.1. Đồng bộ là gì?</h2><p>Đồng bộ là việc gôm những phần code chạy tính toán độc lập lại với nhau, và là cách để cấu trúc phần mềm, như là một cách đặc biệt để viết clean code tương tác tốt với thế giới thực.</p><p>Cần lưu ý là <code>đồng bộ thì không phải việc tính toán song song</code></p><h2 id=32-đồng-bộ-không-phải-là-song-song>3.2. Đồng bộ không phải là song song</h2><p>Đồng bộ không phải là song song, mặc dù nó kích hoạt tính song song.</p><p>Nếu bạn chỉ có một processor, chương trình của bạn vẫn có thể đồng bộ nhưng nó không thể song song được.</p><p>Nói một cách khác, một chương trình đồng bộ tốt có thể chạy một cách hiệu quả trên multiprocessor - một đặc tính rất quan trọng &mldr;</p><p>Chi tiết hơn có thể tham khảo link này:
+<a href=http://golang.org/s/concurrency-is-not-parallelism>http://golang.org/s/concurrency-is-not-parallelism</a></p><h2 id=33-đặc-tính>3.3. Đặc tính</h2><p>Dễ hiểu.</p><p>Dễ dùng.</p><p>Dễ nêu lý do.</p><p>Bạn không cần phải là một chuyên gia vẫn có thể sử dụng được.</p><p>(Là dễ hiểu hơn rất nhiều so với (threads, semaphores, locks, barriers,&mldr;))</p><p>Đằng sau tính năng đồng bộ của Go có một lịch sử dài bắt đầu từ sự ra đời của CSP năm 1978 và thậm chí là xa hơn từ thời của Dijkstra (1975).</p><p>Sau đây ta sẽ đi vào một ví dụ đơn giản</p><h2 id=34-ví-dụ-đơn-giản>3.4. Ví dụ đơn giản</h2><h3 id=341-một-function-đơn-giản>3.4.1. Một function đơn giản</h3><pre><code class=language-Go>func main() {
   f(&quot;Hello, World&quot;, 500*time.Millisecond)
 }
 </code></pre><pre><code class=language-Go>func f(msg string, delay time.Duration) {
@@ -257,19 +271,19 @@ func main() {
     time.Sleep(delay)
   }
 }
-</code></pre><h3 id=342-bỏ-qua-nó>3.4.2 Bỏ qua nó</h3><p>Dòng lệnh go thực thi function như bình thường, nhưng không bắt caller phải đợi.</p><p>Nó chạy một goroutine.</p><p>Chức năng tương tự như là & ở cuối một lệnh shell.</p><pre><code class=language-Go>func main() {
+</code></pre><h3 id=342>3.4.2</h3><p>Dùng lệnh go ta có thể thực thi function như bình thường, nhưng không bắt caller phải đợi. Bởi vì nó sẽ khởi tạo một goroutine.</p><p>Chức năng tương tự như là & ở cuối một lệnh shell.</p><pre><code class=language-Go>func main() {
   go f(&quot;three&quot;, 300*time.Millisecond)
   go f(&quot;six&quot;, 600*time.Millisecond)
   go f(&quot;nine&quot;, 900*time.Millisecond)
 }
-</code></pre><h3 id=343-bỏ-qua-nó-bớt-đi-một-ít>3.4.3. Bỏ qua nó bớt đi một ít</h3><p>Khi hàm main return, chương trình kết thúc và function f kết thúc theo nó.</p><p>Chúng ta có thể gặp nhau một ít, và nhân tiện chứng mình rằng cả main và goroutine được tạo ra đều đang chạy</p><pre><code class=language-Go>func main() {
+</code></pre><h3 id=343>3.4.3.</h3><p>Khi hàm main return, chương trình kết thúc và function f kết thúc theo nó.</p><pre><code class=language-Go>func main() {
   go f(&quot;three&quot;, 300*time.Millisecond)
   go f(&quot;six&quot;, 600*time.Millisecond)
   go f(&quot;nine&quot;, 900*time.Millisecond)
   time.Sleep(3*time.Second)
   fmt.Println(&quot;Done.&quot;)
 }
-</code></pre><h3 id=345-goroutines>3.4.5. Goroutines</h3><p>Goroutine là gì? Nó là một function thực thi độc lập, được khởi phát bởi một lệnh go.</p><p>Nó có call stack riêng, sẽ thu giảm theo nhu cầu.</p><p>Cheap. Trong thực tế sẽ có hàng ngàn, thậm chí hàng trăm ngàn goroutine.</p><p>Không phải là thread.</p><p>Có thể có chỉ một thread trong một chương trình với hàng ngàn goroutine.</p><p>Thay vì như vậy, goroutine được phân luồng động thành các thread khi cần thiết để giữ tất cả goroutine hoạt động.</p><p>Bạn có thể nghĩ goroutine gần giống như là một thread rất nhẹ (very cheap)</p><h3 id=346-channels>3.4.6. Channels</h3><p>Một channel trong Go cung cấp một kết nối giữa hai goroutine, cho phép chung giao tiếp với nhau.</p><pre><code class=language-Go>// Khai báo và khởi tạo
+</code></pre><h3 id=345-goroutines>3.4.5. Goroutines</h3><p>Goroutine là gì? Nó là một function thực thi độc lập, được khởi phát bởi một lệnh go.</p><p>Nó có call stack riêng, sẽ thu giảm theo nhu cầu.</p><p>Cheap. Trong thực tế sẽ có hàng ngàn, thậm chí hàng trăm ngàn goroutine.</p><p>Không phải là thread.</p><p>Có thể có chỉ một thread trong một chương trình với hàng ngàn goroutine.</p><p>Thay vì như vậy, goroutine được phân luồng động thành các thread khi cần thiết để giữ tất cả goroutine hoạt động.</p><p>Bạn có thể nghĩ goroutine gần giống như là một thread rất nhẹ (very cheap)</p><h3 id=346-channels>3.4.6. Channels</h3><p>Một channel trong Go cung cấp một kết nối giữa hai goroutine, cho phép chúng giao tiếp với nhau.</p><pre><code class=language-Go>// Khai báo và khởi tạo
 var c chan int c = make(chan int)
 // hoặc
 c := make(chan int)
@@ -280,10 +294,13 @@ c &lt;- 1
 value = &lt;-c
 </code></pre><h3 id=347-sử-dụng-channel>3.4.7. Sử dụng channel</h3><p>Một channel sẽ kết nối hàm main và f goroutine để chúng có thể giao tiếp với nhau.</p><pre><code class=language-Go>func main() {
   c := make(chan string)
+
   go f(&quot;three&quot;, 300*time.Millisecond, c)
+
   for i := 0; i &lt; 10; i++ {
     fmt.Println(&quot;Received&quot;, &lt;-c) // Lệnh Receive chỉ là một giá trị
   }
+
   fmt.Println(&quot;Done.&quot;)
 }
 </code></pre><pre><code class=language-Go>func f(msg string, delay time.Duration, c chan string) {
@@ -294,6 +311,7 @@ value = &lt;-c
 }
 </code></pre><h3 id=348-đồng-bộ>3.4.8. Đồng bộ</h3><p>Khi function main thực thi &lt;-c, nó sẽ chờ một giá trị để được gửi.</p><p>Tương tự, khi function f thực thi c&lt;-value, nó sẽ đợi một bên nhận sẵn sàng.</p><p>Một bên gửi và bên nhận phải đều sẵn sàng thì mới có thể giao tiếp được. Ngược lại chúng ta phải đợi cho đến khi chúng sẵn sàng.</p><p>Vì vậy các channel đều phải giao tiếp và đồng bộ.</p><p>Channel có thể không buffer hoặc có buffer.</p><h3 id=349-sử-dụng-channel-giữa-nhiều-goroutine>3.4.9. Sử dụng channel giữa nhiều goroutine</h3><pre><code class=language-Go>func main() {
   c := make(chan string)
+
   go f(&quot;three&quot;, 300*time.Millisecond, c)
   go f(&quot;six&quot;, 600*time.Millisecond, c)
   go f(&quot;nine&quot;, 900*time.Millisecond, c)
@@ -324,15 +342,19 @@ func consumer(in chan []int, n int) {
 }
 </code></pre><p>Bên producer tạo ra và cung cấp không giới hạn chỉ thị công việc và gửi chúng ra ngoài.</p><p>Bên consumer nhận n kết quả từ in channel và sau đó kết thúc.</p><h3 id=3412-gộp-tất-cả-chung-với-nhau>3.4.12. Gộp tất cả chung với nhau</h3><pre><code class=language-Go>func main() {
   start := time.Now()
+
   in := make(chan int)    // Channel mà thứ tự công việc sẽ được nhận.
   out := make(chan []int) // Channel mà kết quả được trả về.
+
   go producer(in)
   go worker(in, out)      // Khởi phát một worker.
+
   consumer(out, 100)
   fmt.Println(time.Since(start))
 }
 </code></pre><p>Chúng ta sử dụng một worker đảm nhận tất cả công việc liên quan đến cân bằng tải (work load).</p><p>Bởi vì chỉ có duy nhất một worker, chúng ta có thể thấy kết quả trả ngược về đúng thứ tự.</p><p>Đoạn này chạy khá là chậm&mldr;</p><h3 id=3413-sử-dụng-10-worker>3.4.13. Sử dụng 10 worker</h3><pre><code class=language-Go>in := make(chan int)
 out := make(chan []int)
+
 go producer(in) // Khởi phát 10 workers.
 
 for i := 0; i &lt; 10; i++ {
