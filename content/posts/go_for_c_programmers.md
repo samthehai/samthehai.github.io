@@ -6,9 +6,9 @@ tags: [Programming, Go]
 
 # 1. Giới thiệu về Go
 
-## 1.1. Động lực
+Như chúng ta đã biết (chưa biết thì sẽ biết ngay đây) là Go là một ngôn ngữ được viết bởi các kĩ sư Google xuất thân từ Bell Lab. Muốn khắc phục một số điểm (được cho) là nhược điểm của C trên các hệ thống web lớn. Như là:
 
-| Hiện tại đang có                  |                               Muốn                                |                                                                      Golang |
+| C                                 |                             Mục tiêu                              |                                                                          Go |
 | --------------------------------- | :---------------------------------------------------------------: | --------------------------------------------------------------------------: |
 | Code khó hiểu và không an toàn    |                 Dễ đọc, code an toàn và hiệu quả                  |                                                    Nhỏ gọn mà biểu diễn tốt |
 | Build code siêu chậm              |                Một hệ thống có thể mở rộng (scale)                | Kiểu dữ liệu tĩnh (statically) và có hỗ trợ thu dọn rác (garbage collected) |
@@ -19,6 +19,10 @@ tags: [Programming, Go]
 |                                   |                                                                   |                                                             Biên dịch nhanh |
 |                                   |                                                                   |                                                   Tools có thể mở rộng được |
 
+Lúc đầu đây chỉ là side project start chơi lúc rảnh rỗi không ngờ lại thành công đến như bây giờ, và chúng ta có được thứ ngôn ngữ quá xịn.
+
+Không để chờ đợi lâu nữa như thường lệ ta qua ngay một đoạn Hello World thôi.
+
 ## 1.2. Hello World
 
 ```Go
@@ -27,11 +31,13 @@ package main
 import "fmt"
 
 func main() {
-  fmt.Println("Hello, 世界!")
+  fmt.Println("Hello, 世界!") // Đây là tiếng Nhật nhé, nhân tiện giới thiệu về khả năng hỗ trợ Unicode string của Go luôn.
 }
 ```
 
 ## 1.3. Syntax
+
+Go được thết kế với tiêu chí đặt tính đơn giản dễ đọc lên đầu tiên vì vậy đọc code Go rất dễ hiểu, vì vậy cá nhân mình thích dùng Go để học về thuật toán.
 
 > Syntax is not important... - unless you are a programmer.
 
@@ -76,8 +82,8 @@ default:
 ### 1.4.1. Packages
 
 Một chương trình Go sẽ bao gồm các packages.
-Một packages sẽ bao gồm 1 hoặc nhiều files mã nguồn (go files).
-Một file mã nguồn sẽ bắt đầu với lệnh package như khai báo dưới này:
+Một packages sẽ bao gồm 1 hoặc nhiều files.
+Một file sẽ bắt đầu với lệnh package như khai báo dưới này:
 
 ```Go
 package main
@@ -120,9 +126,9 @@ p, q *Point
 func adder(delta int) func(x int) int
 ```
 
-### 1.4.4. Constants (Hằng số)
+### 1.4.4. Constants
 
-Trong Go, constants thì chính xác về mặt toán học
+Trong Go, constants thì luôn chính xác về mặt toán học
 Không cần thiết phải có hậu tố phía sau (như là -42LL, 7UL,...)
 
 ```Go
@@ -146,22 +152,22 @@ Lợi thế lớn là ở tính dễ đọc và dễ sử dụng
 
 ### 1.4.5. Types (Kiểu)
 
-- Phần quen thuộc:
+- Phần quen thuộc có trong C:
   - Kiểu cơ bản, arrays, structs, pointers, functions.
-- Tuy nhiên:
+- Tuy nhiên có một số thay đổi dưới này:
   - string là kiểu cơ bản
   - Không có tự động chuyển đổi kiểu cơ bản trong dòng lệnh.
-  - Không có tính toán pointer (con trỏ), pointer và array là khác nhau.
-  - Một kiểu function sẽ đại diện cho 1 function; context và tất cả
-- Mới:
+  - Không có tính toán pointer, pointer và array là khác nhau.
+  - Một kiểu function sẽ đại diện cho 1 function
+- Và các phần thêm mới đối với C:
   - Slices thay vì array pointer + độ dài khác nhau: []int
-  - Maps bởi vì mọi người đều cần nó: map[string]int
+  - Maps (lập trình viên nào lại ko cần nó): map[string]int
   - Interfaces được dùng cho việc đa hình (polymorphism): interface {}
   - Channels để giao tiếp giữa các goroutines: chan int
 
 ### 1.4.6. Biến
 
-- Phần quen thuộc:
+- Phần quen thuộc trong C:
 
 ```Go
 var i int
@@ -169,7 +175,7 @@ var p, q *Point
 var threshold float64 = 0.75
 ```
 
-- Mới: Kiểu có thể được diễn giải từ cách khởi tạo
+- Phần thêm mới so với C: Kiểu có thể được diễn giải từ cách khởi tạo
 
 ```Go
 var i = 42       // type của i là int
@@ -182,7 +188,7 @@ var z = 1 + 2.3i // type của z là complex128
 i := 42 // type của i là int
 ```
 
-- Thao tác lấy địa chỉ của bất kì biến nào là an toàn:
+- Thao tác lấy địa chỉ của bất kì biến nào thì là an toàn không phải là con trỏ:
 
 ```Go
 return &i
@@ -203,6 +209,7 @@ func addler(delta int) func(x int) int {
   f := func (x int) int {
     return x + delta;
   }
+
   return f
 }
 ```
@@ -217,23 +224,29 @@ fmt.Println(addler(-1)(10))
 
 ```Go
 t := x;
+
 switch {
 case x == 0:
   return "0"
 case x < 0:
   t = -x
 }
+
 var s [32]byte
+
 i := len(s)
+
 for t != 0 {
   i--
   s[i] = digits[t%base]
   t /= base
 }
+
 if x < 0 {
   i--
   s[i] = '-'
 }
+
 return string(s[i:])
 ```
 
@@ -355,10 +368,7 @@ Một khai báo import trong Go có vai trò giống như include trong C.
 
 ### 1.5.2. Dạo quanh một vòng với cách đặt tên trong Go
 
-Cách mà tên hoạt động thì có ảnh hưởng quan trọng đến tính dễ đọc.
-
-Scope thì quyết định cách thức hoạt động của tên.
-
+Thông thường tên (biến, function, type) có ảnh hưởng quan trọng đến tính dễ đọc của chương trình, scope sẽ quyết định đến vùng hoạt động của tên.
 Go có một cấu trúc scope tương đối đơn giản:
 
 - universe
@@ -367,28 +377,24 @@ Go có một cấu trúc scope tương đối đơn giản:
 - function
 - block
 
-### 1.5.3. Tính cục bộ của tên (TODO)
+### 1.5.3. Tính cục bộ của tên
 
-Tên viết hoa sẽ được exported: Name vs name
+Tên viết hoa sẽ được exported: Name vs name.
 
-Package qualifier luôn đại diện cho tên được import
+Package qualifier luôn đại diện cho tên được import.
 
-Component đầu tiên của mọi tên luôn được khai báo trong package hiện tại
+Component đầu tiên của mọi tên luôn được khai báo trong package hiện tại.
 
-Đây là 1 trong những quyết định đúng đắn và khó khăn nhất trong Go
+Đây là 1 trong những quyết định đúng đắn và khó khăn nhất trong Go.
 
 ### 1.5.4. Mở rộng cục bộ (Locality scales)
 
-Không có bất ngờ khi import
-
-- Việc export thêm 1 tên sẽ không phá vỡ package của tôi.
-
-Tên không bị rò rỉ vượt ra khỏi package.
+Tên trong Go không thể vượt ra khỏi scope của package.
 Trong C, C++, Java tên y có thể gắn với bất cứ thứ gì.
 Trong Go, y (và cả Y) thì phải luôn được định nghĩa trong package.
-Trong Go, x.Y thì rõ ràng hơn: tìm x trong local, Y thì thuộc về x và chỉ có duy nhất một Y như vậy.
+Trong Go, với syntax x.Y thì có thể dễ dàng hiểu là: tìm x trong local, Y thì thuộc về x và chỉ có duy nhất một Y như vậy.
 
-Có hiệu quả tức thì cho tính dễ đọc.
+Điều này gây ra tác dụng tốt đến tính dễ đọc của chương trình.
 
 ### 1.5.5. Trở về với việc import
 
@@ -591,7 +597,7 @@ Một giá trị (ở đây là corner, boiling) của một type (Point, Celciu
 
 ## 2.8. Composition và chaining
 
-Thông thường interface có quy mô nhỏ (Tầm 1 -3 method).
+Thông thường interface có quy mô nhỏ (Tầm 1 - 3 method).
 
 Việc sử dụng xen kẽ các interface chính trong thư viện chuẩn giúp dễ dàng xâu chuỗi (chain) các API lại với nhau.
 
@@ -618,13 +624,18 @@ import (
 
 func main() {
 	flag.Parse()
+
 	for _, arg := range flag.Args() {
 		f, err := os.Open(arg)
+
 		if err != nil {
 			panic(err)
 		}
+
 		defer f.Close()
+
 		_, err = io.Copy(os.Stdout, f)
+
 		if err != nil {
 			panic(err)
 		}
@@ -632,25 +643,21 @@ func main() {
 }
 ```
 
-## 2.10. Interface trong thực hành
+## 2.10. Interface
 
 - Method ở bất cứ type nào và những interface tạm tạo thành 1 kiểu lập trình hướng đối tượng nhỏ gọn.
 
-- Go interface tạo nên một trừu tượng hậu facto.
-
 - Không có phân cấp kiểu rõ ràng
 
-- Plug and play bằng cách type-safe
+- Plug and play bằng type-safe
 
 # 3. Đồng bộ (concurrency)
 
 ## 3.1. Đồng bộ là gì?
 
-Đồng bộ là việc đóng gói những thực thi tính toán độc lập.
+Đồng bộ là việc gôm những phần code chạy tính toán độc lập lại với nhau, và là cách để cấu trúc phần mềm, như là một cách đặc biệt để viết clean code tương tác tốt với thế giới thực.
 
-Đồng bộ là cách để cấu trúc phần mềm, như là một cách đặc biệt để viết clean code tương tác tốt với thế giới thực.
-
-Đồng bộ thì không phải việc tính toán song song
+Cần lưu ý là `đồng bộ thì không phải việc tính toán song song`
 
 ## 3.2. Đồng bộ không phải là song song
 
@@ -658,13 +665,12 @@ func main() {
 
 Nếu bạn chỉ có một processor, chương trình của bạn vẫn có thể đồng bộ nhưng nó không thể song song được.
 
-Nói một cách khác, một chương trình đồng bộ tốt có thể chạy một cách hiệu quả trên multiprocessor. Đặc tính này thì quan trọng ...
+Nói một cách khác, một chương trình đồng bộ tốt có thể chạy một cách hiệu quả trên multiprocessor - một đặc tính rất quan trọng ...
 
-Để thêm thông tin chi tiết, hãy tham khảo link dưới này.
+Chi tiết hơn có thể tham khảo link này:
+http://golang.org/s/concurrency-is-not-parallelism
 
-  http://golang.org/s/concurrency-is-not-parallelism
-
-## 3.3. Một model để xây dựng phần mềm
+## 3.3. Đặc tính
 
 Dễ hiểu.
 
@@ -672,19 +678,17 @@ Dễ dùng.
 
 Dễ nêu lý do.
 
-Bạn không cần phải là một chuyên gia!
+Bạn không cần phải là một chuyên gia vẫn có thể sử dụng được.
 
-(Là dễ dàng hơn nhiều việc đối mặt với các loại xử lý song song (threads, semaphores, locks, barriers,...))
+(Là dễ hiểu hơn rất nhiều so với (threads, semaphores, locks, barriers,...))
 
-Có một lịch sử dài đằng sau tính năng đồng bộ của Go, kể từ thời Hoare's CSP năm 1978 và thậm chí là những câu lệnh đảm bảo của Dijkstra (1975).
+Đằng sau tính năng đồng bộ của Go có một lịch sử dài bắt đầu từ sự ra đời của CSP năm 1978 và thậm chí là xa hơn từ thời của Dijkstra (1975).
+
+Sau đây ta sẽ đi vào một ví dụ đơn giản
 
 ## 3.4. Ví dụ đơn giản
 
 ### 3.4.1. Một function đơn giản
-
-Chúng ta cần một ví dụ để chỉ ra những đặc tính thú vị nổi bật của việc đồng bộ.
-
-Để tránh xao nhãng, chúng ta sẽ tạo ra một ví dụ đơn giản
 
 ```Go
 func main() {
@@ -701,11 +705,9 @@ func f(msg string, delay time.Duration) {
 }
 ```
 
-### 3.4.2 Bỏ qua nó
+### 3.4.2
 
-Dòng lệnh go thực thi function như bình thường, nhưng không bắt caller phải đợi.
-
-Nó chạy một goroutine.
+Dùng lệnh go ta có thể thực thi function như bình thường, nhưng không bắt caller phải đợi. Bởi vì nó sẽ khởi tạo một goroutine.
 
 Chức năng tương tự như là & ở cuối một lệnh shell.
 
@@ -717,11 +719,9 @@ func main() {
 }
 ```
 
-### 3.4.3. Bỏ qua nó bớt đi một ít
+### 3.4.3.
 
 Khi hàm main return, chương trình kết thúc và function f kết thúc theo nó.
-
-Chúng ta có thể gặp nhau một ít, và nhân tiện chứng mình rằng cả main và goroutine được tạo ra đều đang chạy
 
 ```Go
 func main() {
@@ -751,7 +751,7 @@ Bạn có thể nghĩ goroutine gần giống như là một thread rất nhẹ 
 
 ### 3.4.6. Channels
 
-Một channel trong Go cung cấp một kết nối giữa hai goroutine, cho phép chung giao tiếp với nhau.
+Một channel trong Go cung cấp một kết nối giữa hai goroutine, cho phép chúng giao tiếp với nhau.
 
 ```Go
 // Khai báo và khởi tạo
@@ -778,10 +778,13 @@ Một channel sẽ kết nối hàm main và f goroutine để chúng có thể 
 ```Go
 func main() {
   c := make(chan string)
+
   go f("three", 300*time.Millisecond, c)
+
   for i := 0; i < 10; i++ {
     fmt.Println("Received", <-c) // Lệnh Receive chỉ là một giá trị
   }
+
   fmt.Println("Done.")
 }
 ```
@@ -812,6 +815,7 @@ Channel có thể không buffer hoặc có buffer.
 ```Go
 func main() {
   c := make(chan string)
+
   go f("three", 300*time.Millisecond, c)
   go f("six", 600*time.Millisecond, c)
   go f("nine", 900*time.Millisecond, c)
@@ -840,6 +844,7 @@ func worker(in chan int, out chan []int) {
 ```
 
 Các worker sử dụng hai channel để giao tiếp:
+
 - in channel đợi các tính toán về chỉ thị công việc
 - out channel giao tiếp kết quả.
 - Bởi vì cân bằng tải, một worker (một cách rất chậm) sẽ tính toán danh sách các ước chung của một chỉ thị cho sẵn.
@@ -870,10 +875,13 @@ Bên consumer nhận n kết quả từ in channel và sau đó kết thúc.
 ```Go
 func main() {
   start := time.Now()
+
   in := make(chan int)    // Channel mà thứ tự công việc sẽ được nhận.
   out := make(chan []int) // Channel mà kết quả được trả về.
+
   go producer(in)
   go worker(in, out)      // Khởi phát một worker.
+
   consumer(out, 100)
   fmt.Println(time.Since(start))
 }
@@ -890,6 +898,7 @@ Bởi vì chỉ có duy nhất một worker, chúng ta có thể thấy kết qu
 ```Go
 in := make(chan int)
 out := make(chan []int)
+
 go producer(in) // Khởi phát 10 workers.
 
 for i := 0; i < 10; i++ {
@@ -911,7 +920,7 @@ Trong một hệ thống nhiều core, nhiều worker có thể chạy hoàn to�
 
 ### 3.4.14. Cách tiếp cận của Go
 
-Không giao tiếp bằng cách chia sẻ bộ nhớ, mà là chia sẻ bộ nhớ bằng  cách giao tiếp.
+Không giao tiếp bằng cách chia sẻ bộ nhớ, mà là chia sẻ bộ nhớ bằng cách giao tiếp.
 
 ## Links tham khảo
 
@@ -930,4 +939,3 @@ Không giao tiếp bằng cách chia sẻ bộ nhớ, mà là chia sẻ bộ nh�
 - Các bài viết phong phú khác:
 
   golang.org/doc
-

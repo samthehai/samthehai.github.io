@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 26 Jun 2017 18:27:58 +0100</lastBuildDate><atom:link href="https://samthehai.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Thuật toán cơ bản: Dynamic Programming</title>
+      <link>https://samthehai.github.io/posts/basic_algorithm_dynamic_programming/</link>
+      <pubDate>Sun, 28 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://samthehai.github.io/posts/basic_algorithm_dynamic_programming/</guid>
+      <description> 1. Giới thiệu Nguồn tham khảo  https://golang.org/src/sort/sort.go  </description>
+    </item>
+    
+    <item>
       <title>Thuật toán cơ bản: Quicksort trong practice hay là Introsort</title>
       <link>https://samthehai.github.io/posts/basic_algorithm_quicksort/</link>
       <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
@@ -84,7 +93,8 @@ Ta có thể nói một thuật toán thì sẽ phải giải quyết một vấ
       <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://samthehai.github.io/posts/go_for_c_programmers/</guid>
-      <description>1. Giới thiệu về Go 1.1. Động lực    Hiện tại đang có Muốn Golang     Code khó hiểu và không an toàn Dễ đọc, code an toàn và hiệu quả Nhỏ gọn mà biểu diễn tốt   Build code siêu chậm Một hệ thống có thể mở rộng (scale) Kiểu dữ liệu tĩnh (statically) và có hỗ trợ thu dọn rác (garbage collected)   Không có hỗ trợ lập trình đồng bộ Hỗ trợ lập trình đồng bộ tốt Đối tượng nhưng không định hướng kiểu (type - oriented)   Tools cũ kĩ Những Tools mà có thể hoạt động tại những hệ thống lớn như Google Hỗ trợ lập trình đồng bộ tốt     Hiện thực hiệu quả     Thư viện chuẩn phong phú     Biên dịch nhanh     Tools có thể mở rộng được    1.</description>
+      <description>1. Giới thiệu về Go Như chúng ta đã biết (chưa biết thì sẽ biết ngay đây) là Go là một ngôn ngữ được viết bởi các kĩ sư Google xuất thân từ Bell Lab. Muốn khắc phục một số điểm (được cho) là nhược điểm của C trên các hệ thống web lớn. Như là:
+   C Mục tiêu Go     Code khó hiểu và không an toàn Dễ đọc, code an toàn và hiệu quả Nhỏ gọn mà biểu diễn tốt   Build code siêu chậm Một hệ thống có thể mở rộng (scale) Kiểu dữ liệu tĩnh (statically) và có hỗ trợ thu dọn rác (garbage collected)   Không có hỗ trợ lập trình đồng bộ Hỗ trợ lập trình đồng bộ tốt Đối tượng nhưng không định hướng kiểu (type - oriented)   Tools cũ kĩ Những Tools mà có thể hoạt động tại những hệ thống lớn như Google Hỗ trợ lập trình đồng bộ tốt     Hiện thực hiệu quả     Thư viện chuẩn phong phú     Biên dịch nhanh     Tools có thể mở rộng được    Lúc đầu đây chỉ là side project start chơi lúc rảnh rỗi không ngờ lại thành công đến như bây giờ, và chúng ta có được thứ ngôn ngữ quá xịn.</description>
     </item>
     
   </channel>
