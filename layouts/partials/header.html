@@ -1,0 +1,21 @@
+<header class="intro-and-nav" role="banner">
+  <div>
+    <div class="intro">
+      <a
+        class="logo"
+        href="{{ .Site.BaseURL }}"
+        aria-label="{{ .Site.Title }} home page"
+      >
+        <img src="{{ "https://avatars.githubusercontent.com/u/28634475?s=460&u=f4564e31e24dbd90802eaf4a18d2d9e578c77108&v=4" | relURL }}" alt="">
+      </a>
+      <p class="library-desc">
+        {{ with .Site.Params.description }} {{ . | markdownify }} {{ end }}
+      </p>
+    </div>
+    {{ partial "nav.html" . }}
+    {{ if eq .Site.Params.moveFooterToHeader true }}
+      {{ partial "footer.html" . }}
+    {{ end }}
+    {{ template "_internal/google_analytics.html" . }}
+  </div>
+</header>
