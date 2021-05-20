@@ -223,6 +223,20 @@
   </ul>
 </nav>
     
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-196070431-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
   </div>
 </header>
 
@@ -233,6 +247,16 @@
     <h1>Thuật toán cơ bản: Dynamic Programming</h1>
     <hr>
 <h1 id="1-giới-thiệu">1. Giới thiệu</h1>
+<p>Khi học thuật toán chắc chắn các bạn đã một lần nghe tới Dynamic programming hay còn gọi là quy hoạch động.
+(nếu mà chưa nghe thì giờ cũng đã nghe rồi) Đây là phương pháp dùng để tối ưu hoá thời gian tính toán các bài toán có phần tính toán lặp đi lặp lại bằng cách cache lại các bài toán nhỏ đã được tính toán trước đó để dùng lại sau này.</p>
+<p>Nghe có vẻ cũng đơn giản chỉ là lưu cache lại thôi, tuy nhiên đây là phần khó hiểu và master trong thuật toán mà lập trình viên nào học thuật toán cũng phải đau đầu vật lộn với nó.</p>
+<p>Vậy thì có bạn sẽ hỏi tôi làm lập trình viên mấy chục năm trời có thấy cần biết và sử dụng nó đâu?
+Câu trả lời là có được sử dụng nhiều trong các lĩnh vực cần giải quyết các bài toán tối ưu.
+Có thể do ngày nay cấu hình máy tính bình thường đã mạnh lên rất nhiều nên là nhiều khi ta viết code không cần phải tối ưu đến nhỏ hơn O(n^2) chương trình vẫn chạy rất là nhanh. Tuy nhiên khi ta quan tâm đến performance của hệ thống và muốn tối ưu nó thì có thể quy hoạch là vấn đề ta cần quan tâm (cái này còn tuỳ thuộc vào lĩnh vực của hệ thống của mình nữa)</p>
+<p>Một ví dụ về ứng dụng của dynamic programming là trong việc implement thuật toán propagation đình đám của <a href="http://blog.ezyang.com/2011/05/neural-networks/">Neuro Network</a></p>
+<p>Tuy nhiên, ta có thể thấy mục đích của dynamic programming là cải thiện thuật toán naive có sẵn (bruceforce đệ quy, &hellip;), vì vậy điều kiện đầu tiên để master được nó là bạn phải nghĩ ra được cách giải vét cạn của nó trước cái đã. Vì vậy sau đây ta sẽ đi trước vào các phương pháp để tìm ra các naive solution trước đã.</p>
+<h1 id="2-greed-algorithm-hay-còn-gọi-là-thuật-toán-vét-cạn">2. Greed Algorithm (hay còn gọi là thuật toán vét cạn)</h1>
+<h1 id="3-divide-and-conquer">3. Divide-and-Conquer</h1>
 <h1 id="nguồn-tham-khảo">Nguồn tham khảo</h1>
 <ol>
 <li><a href="https://golang.org/src/sort/sort.go">https://golang.org/src/sort/sort.go</a></li>
@@ -288,7 +312,7 @@
   
   <script>
   window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-  ga('create', 'UA-123456789-1', 'auto');
+  ga('create', 'UA-196070431-1', 'auto');
   ga('send', 'pageview');
   </script>
   <script async src='https://www.google-analytics.com/analytics.js'></script>

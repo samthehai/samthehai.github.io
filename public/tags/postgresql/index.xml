@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Postgresql on Hai Sam&#39;s Blog</title>
+    <link>https://samthehai.github.io/tags/postgresql/</link>
+    <description>Recent content in Postgresql on Hai Sam&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://samthehai.github.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Giải quyết lỗi pq: syntax error at or near</title>
+      <link>https://samthehai.github.io/posts/pq_syntax_error_near_soving/</link>
+      <pubDate>Thu, 20 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://samthehai.github.io/posts/pq_syntax_error_near_soving/</guid>
+      <description>1. Giới thiệu Khi đang làm việc chuyển từ MySQL vọc thử Postgres thường hay mắc phải cái lỗi này
+ Câu SQL  stmt, err := r.db.PrepareContext(ctx, `INSERT INTO users (name, firebase_id, provider) VALUES (?,?,?)`)   Lỗi  pq: syntax error at or near &amp;quot;,&amp;quot;  Thử đi thử lại bằng tay vẫn thấy đúng, ức chế đạp bàn đập máy &amp;hellip; hư máy khỏi làm luôn vẫn không ra.</description>
+    </item>
+    
+  </channel>
+</rss>

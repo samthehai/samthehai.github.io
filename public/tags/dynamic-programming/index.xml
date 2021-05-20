@@ -13,7 +13,7 @@
       <pubDate>Sun, 28 Feb 2021 00:00:00 +0000</pubDate>
       
       <guid>https://samthehai.github.io/posts/basic_algorithm_dynamic_programming/</guid>
-      <description> 1. Giới thiệu Nguồn tham khảo  https://golang.org/src/sort/sort.go  </description>
+      <description>1. Giới thiệu Khi học thuật toán chắc chắn các bạn đã một lần nghe tới Dynamic programming hay còn gọi là quy hoạch động. (nếu mà chưa nghe thì giờ cũng đã nghe rồi) Đây là phương pháp dùng để tối ưu hoá thời gian tính toán các bài toán có phần tính toán lặp đi lặp lại bằng cách cache lại các bài toán nhỏ đã được tính toán trước đó để dùng lại sau này.</description>
     </item>
     
   </channel>
