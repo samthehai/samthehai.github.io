@@ -255,12 +255,105 @@ Câu trả lời là có được sử dụng nhiều trong các lĩnh vực c�
 Có thể do ngày nay cấu hình máy tính bình thường đã mạnh lên rất nhiều nên là nhiều khi ta viết code không cần phải tối ưu đến nhỏ hơn O(n^2) chương trình vẫn chạy rất là nhanh. Tuy nhiên khi ta quan tâm đến performance của hệ thống và muốn tối ưu nó thì có thể quy hoạch là vấn đề ta cần quan tâm (cái này còn tuỳ thuộc vào lĩnh vực của hệ thống của mình nữa)</p>
 <p>Một ví dụ về ứng dụng của dynamic programming là trong việc implement thuật toán propagation đình đám của <a href="http://blog.ezyang.com/2011/05/neural-networks/">Neuro Network</a></p>
 <p>Tuy nhiên, ta có thể thấy mục đích của dynamic programming là cải thiện thuật toán naive có sẵn (bruceforce đệ quy, &hellip;), vì vậy điều kiện đầu tiên để master được nó là bạn phải nghĩ ra được cách giải vét cạn của nó trước cái đã. Vì vậy sau đây ta sẽ đi trước vào các phương pháp để tìm ra các naive solution trước đã.</p>
-<h1 id="2-greed-algorithm-hay-còn-gọi-là-thuật-toán-vét-cạn">2. Greed Algorithm (hay còn gọi là thuật toán vét cạn)</h1>
-<h1 id="3-divide-and-conquer">3. Divide-and-Conquer</h1>
+<h1 id="2-phương-pháp-đệ-quy-và-cách-giải-naive-cho-các-bài-toán-đối-tượng-của-dynamic-programing">2. Phương pháp đệ quy và cách giải &ldquo;naive&rdquo; cho các bài toán đối tượng của dynamic programing.</h1>
+<p>Ta sẽ bắt đầu phần này bằng một ví dụ.</p>
+<h2 id="21-ví-dụ">2.1 Ví dụ</h2>
+<h3 id="211-cách-giải-naive-đệ-quy-của-bài-toán-tìm-phần-tử-thứ-n-của-dãy-fibonacci-numbers">2.1.1 Cách giải &ldquo;naive&rdquo; đệ quy của bài toán tìm phần tử thứ n của dãy Fibonacci Numbers</h3>
+<p>Về dãy Fibonacci có thể tham khảo ở <a href="https://vi.wikipedia.org/wiki/D%C3%A3y_Fibonacci">đây</a></p>
+<p>Chuỗi Fibonacci sẽ có dạng như này:</p>
+<pre><code>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
+</code></pre>
+<p>Nói nôm na là số thứ n bằng tổng của hai số thứ n - 1 và n - 2, hai số đầu tiên là 0 và 1.</p>
+<p>Sau một hồi mò tìm thì ta cho ra được một đáp án naive này.</p>
+<pre><code class="language-Go">func fib(n int) int {
+  if n &lt;= 1 {
+    return n
+  }
+
+  return fib(n - 1) + fib(n - 2)
+}
+</code></pre>
+<p>Minh hoạ các hàm sẽ được gọi khi tính fib(5)</p>
+<pre><code>                          fib(5)
+                     /                \
+               fib(4)                fib(3)
+             /        \              /       \
+         fib(3)      fib(2)         fib(2)   fib(1)
+        /    \       /    \        /      \
+  fib(2)   fib(1)  fib(1) fib(0) fib(1) fib(0)
+  /     \
+fib(1) fib(0)
+</code></pre>
+<h3 id="212-cách-giải-naive-đệ-quy-của-bài-toán-tìm-giai-thừa-của-một-số-factorial">2.1.2 Cách giải &ldquo;naive&rdquo; đệ quy của bài toán tìm giai thừa của một số (factorial)</h3>
+<p>Về giai thừa có thể tham khảo ở <a href="https://vi.wikipedia.org/wiki/Giai_th%E1%BB%ABa">đây</a></p>
+<p>Không dài dòng nữa ta đưa ngay ra thuật toán đệ quy đơn giản luôn</p>
+<pre><code class="language-Go">func fac(n int) int {
+  if n &lt; 1 {
+    return 1
+  }
+
+  return n * fac(n - 1)
+}
+</code></pre>
+<pre><code>                      fac(5)
+                     /
+               fac(4)
+             /
+         fac(3)
+        /
+  fac(2)
+  /
+fac(1)
+</code></pre>
+<h2 id="22-rút-ra-bài-học-">2.2 Rút ra bài học :)</h2>
+<h3 id="221">2.2.1.</h3>
+<p>Qua hai bài toán trên ta thấy cách giải đơn giản đệ quy thật sự khi tìm ra được lời giải rồi thì thấy rất là đơn giản :)</p>
+<p>Với cách giải bài toán thứ nhất ta thấy có nhiều hàm được tính đi tính lại nhiều lần như là fib(3), fib(2), fib(1), fib(0)</p>
+<p>Còn đối với bài toán thứ hai ta không thấy việc lặp lại tính toán ở đây.</p>
+<h3 id="222">2.2.2</h3>
+<p>Giả sử vào thời chưa có máy tính thì những lúc như thế này ta sẽ dùng nay giấy bút để note lại những thứ đã tính, nếu ko có giấy, bút thì dùng cây quẹt ra đất cũng được.</p>
+<p>Đối với một coder ta chắc chắn sẽ sử dụng một biến gì đó để lưu lại rồi.
+Và việc dùng biến (hay còn gọi là cache) để lưu lại kết quả đã tính toán người ta đặt cho nó một cái tên huyền bí là Dynamic Programming dịch ra tiếng Việt là Quy Hoạch Động :)</p>
+<h3 id="223">2.2.3</h3>
+<p>Dễ dàng nhận ra là ta có thể dùng quy hoạch động để giải quyết bài toán số 1, còn bài toán số 2 thì không thể vì nó không có sự lặp đi lặp lại tính toán ở đây.</p>
+<h3 id="224-nguồn-tham-khảo-về-các-naive-solution-khác">2.2.4 Nguồn tham khảo về các naive solution khác.</h3>
+<ul>
+<li>
+<p><a href="https://algorithm-visualizer.org/">https://algorithm-visualizer.org/</a></p>
+<ul>
+<li>simple-recursive</li>
+<li>brute-force</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-dynamic-programming">3. Dynamic Programming</h1>
+<h2 id="31-tabulation-vs-memoization-hay-còn-gọi-là-bottom-up-vs-top-down">3.1. Tabulation vs Memoization (hay còn gọi là Bottom-up vs Top-Down)</h2>
+<p>Như ở trên mô tả Dynamic Programming đơn giản chỉ là lưu lại các giá trị của các bài toán con nhỏ hơn để dùng sau. Tuy nhiên vậy thôi mà cũng có hai cách để lưu :)</p>
+<h3 id="311-tabulation-bottom-up">3.1.1. Tabulation (Bottom-Up)</h3>
+<p>Lưu tất cả các bài toán con của bài toán cần giải quyết bằng cách tính  và tạo một bảng giá trị từ các subproblem nhỏ nhất trước (Sau khi tạo xong rồi thì ta chỉ việc tra bảng và trả về giá trị cần tìm, lúc này là ưu việt nhất là sử dụng array, vì nó cho access trực tiếp phần tử và các máy tính hiện tại đều có hỗ trợ cache cho kiểu dữ liệu array)</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>f(n)</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
 <h1 id="nguồn-tham-khảo">Nguồn tham khảo</h1>
-<ol>
-<li><a href="https://golang.org/src/sort/sort.go">https://golang.org/src/sort/sort.go</a></li>
-</ol>
 
   </main>
 
